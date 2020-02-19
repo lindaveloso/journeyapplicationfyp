@@ -13,7 +13,7 @@ import com.example.journeyapplicationfyp.R;
 import com.example.journeyapplicationfyp.object.Bus;
 
 import java.util.ArrayList;
-
+//Adapter Class
 
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
