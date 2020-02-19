@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="home"
+        android:id="@+id/homenav"
+        android:icon="@drawable/icon"/>
+
+
+    <item android:title="Search"
+        android:id="@+id/searchnav"
+        android:icon="@drawable/magnifying_glass"/>
+
+    <item android:title="Fares"
+        android:id="@+id/farenav"
+        android:icon="@drawable/calculator"/>
+
+    <item android:title="Routes"
+        android:id="@+id/routenav"
+        android:icon="@drawable/mappp"/>
+
+    <item android:title="@string/profile"
+        android:id="@+id/profilenav"
+        android:icon="@drawable/user"/>
+
+
+</menu>
+
+

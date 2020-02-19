@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name"> </string>
+    <string name="dublinbs">Bus</string>
+    <string name="profile">Profile</string>
+
+    <!-- Navigation Top -->
+    <string name="Notifications">Notifications</string>
+    <string name="Favourites">Favourites</string>
+    <string name="Settings">Settings</string>
+    <string name="Help">Help</string>
+
+    <!-- Map Search -->
+    <string name="Searchbar">Search here</string>
+
+
+    <!-- Map -->
+    <string name="access_token">pk.eyJ1IjoibGluZGF2ZWxvc28iLCJhIjoiY2s2NnR1N2d2MWs5MDNscXdvY2o3aDEweiJ9.t1DqrStN3LbN90jfLgMuhg</string>
+    <string name="tap_on_map_instruction">Click Here</string>
+    <string name="user_location_permission_explanation">This app needs location permissions to show its functionality.</string>
+    <string name="user_location_permission_not_granted">You didn\'t grant location permissions.</string>
+    <string name="directions_activity_toast_message">You didn\'t grant location permissions.</string>
+
+    <!-- tram -->
+
+
+    <string name="text_1">GREEN LINE</string>
+    <string name="text_2">RED LINE</string>
+    <string name="text_3"> MAP "</string>
+
+</resources>
