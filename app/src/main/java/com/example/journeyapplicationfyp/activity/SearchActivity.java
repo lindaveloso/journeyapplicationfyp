@@ -26,7 +26,7 @@ public class SearchActivity extends Fragment implements View.OnClickListener {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //getActionBar().setTitle("Privet");
-       //\ setTitle(R.string.TitleWhichYouWantToDisplay);
+
 
 
 
