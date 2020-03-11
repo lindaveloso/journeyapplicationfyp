@@ -2,27 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:title="home"
-        android:id="@+id/homenav"
-        android:icon="@drawable/icon"/>
 
+    <item android:title="NAVIGATION"
+        android:icon="@drawable/nav"
+        android:id="@+id/homenav" />
 
-    <item android:title="Search"
+    <item android:title="RTPI"
         android:id="@+id/searchnav"
-        android:icon="@drawable/magnifying_glass"/>
+        android:icon="@drawable/clock"/>
 
-    <item android:title="Fares"
+    <item android:title="FARE"
         android:id="@+id/farenav"
         android:icon="@drawable/calculator"/>
 
-    <item android:title="Routes"
+    <item android:title="TIMETABLE"
         android:id="@+id/routenav"
         android:icon="@drawable/mappp"/>
-
-    <item android:title="@string/profile"
-        android:id="@+id/profilenav"
-        android:icon="@drawable/user"/>
-
 
 </menu>
 

@@ -1,6 +1,5 @@
 package com.example.journeyapplicationfyp.activity;
 
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,6 @@ import com.example.journeyapplicationfyp.R;
 import com.example.journeyapplicationfyp.object.Bus;
 
 import java.util.ArrayList;
-//Adapter Class.
 
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
@@ -32,7 +30,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        //inflating and returning our view holder
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.activity_listview_itemonly, null);
         return new MyViewHolder(view, mListener);
@@ -41,16 +38,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         final Bus bus = bList.get(position);
-
-        holder.txt1.setText(bus.getDueT());
+        holder.txt1.setText(bus.getRoutE());
         holder.txt2.setText(bus.getDestinatioN());
-        holder.txt3.setText(bus.getDirectioN());
-        holder.txt4.setText(bus.getRoutE());
+        holder.txt3.setText(bus.getDueT());
+
+
     }
 
     @Override
     public int getItemCount() {
-
         return bList.size();
     }
 
@@ -59,9 +55,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-
-        TextView txt1, txt2, txt3, txt4;
-
+        TextView txt1, txt2, txt3;
 
         public MyViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
@@ -69,7 +63,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
             txt1 = itemView.findViewById(R.id.txt1);
             txt2 = itemView.findViewById(R.id.txt2);
             txt3 = itemView.findViewById(R.id.txt3);
-            txt4 = itemView.findViewById(R.id.txt4);
 
 
             itemView.setOnClickListener(new View.OnClickListener

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view_layout">
+
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/profile"
+            android:icon="@drawable/user"
+            android:title="Profile" />
+        <item
+            android:id="@+id/nav_chat"
+            android:title="favourites" />
+
+    </group>
+
+    <item android:title="About">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:title="About Us" />
+        </menu>
+    </item>
+        <item
+            android:id="@+id/signout"
+            android:title="Sign Out" />
+
+
+</menu>

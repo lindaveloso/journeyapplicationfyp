@@ -27,4 +27,26 @@
     <color name="green_700">#0B8043</color>
 
 
+    <color name="favourites_yellow">#fffdd835</color>
+    <color name="listview_divider">#ffe0e0e0</color>
+    <color name="luas_purple">#6DDA78</color>
+
+    <color name="luas_purple_statusbar">#131313</color>
+    <color name="message_success">#ff006600</color>
+    <color name="message_warning">#fff1A82e</color>
+    <color name="message_error">#ffe00000</color>
+    <color name="off_white">#fffafafa</color>
+    <color name="stop_forecast_border_grey">#fff5f5f5</color>
+    <color name="tab_red_line">#020202</color>
+    <color name="tab_green_line">#0A0A0A</color>
+    <color name="text_grey">#ff757575</color>
+    <color name="text_link">#ff80cbc4</color>
+
+    <color name="bus">#FFCC00</color>
+    <color name="line">#ededed</color>
+
+
+
+
+
 </resources>

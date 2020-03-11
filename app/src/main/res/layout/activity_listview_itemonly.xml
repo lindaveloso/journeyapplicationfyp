@@ -1,35 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-Each List Item and how it looks like.
--->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txt1"
-        android:layout_width="381dp"
-        android:layout_height="54dp"
-        android:textColor="#08308e" />
-
-    <TextView
-        android:id="@+id/txt2"
-        android:layout_width="411dp"
-        android:layout_height="83dp"
-        android:textColor="#08308e" />
-
-    <TextView
-        android:id="@+id/txt3"
+    <RelativeLayout
         android:layout_width="394dp"
-        android:layout_height="75dp"
-        android:textColor="#08308e" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/txt4"
-        android:layout_width="391dp"
-        android:layout_height="76dp"
-        android:textColor="#08308e" />
+        <TextView
+            android:id="@+id/txt1"
+            android:layout_width="62dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:maxLines="1"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/navtextcolor"
+             />
+
+        <TextView
+            android:id="@+id/txt2"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_toRightOf="@id/txt1"
+            android:gravity="start"
+            android:maxLines="1"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/navtextcolor"
+
+           />
+
+        <TextView
+            android:id="@+id/txt3"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/txt2"
+            android:gravity="center"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/navtextcolor"
+            />
+
+        <TextView
+            android:id="@+id/txt4"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/txt3"
+            android:drawableRight="@drawable/iconaccessible"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/navtextcolor"
+             />
+
+
+    </RelativeLayout>
 
 </LinearLayout>

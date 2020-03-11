@@ -23,7 +23,9 @@ allprojects {
         jcenter()
         maven { url 'https://mapbox.bintray.com/mapbox' }
         maven { url "http://oss.sonatype.org/content/repositories/snapshots/" }
-        
+        maven{  url 'https://maven.fabric.io/public'}
+        maven{  url 'http://maven.apache.org/POM/4.0.0'}
+
     }
 }
 

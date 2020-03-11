@@ -59,14 +59,23 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.android.support:design:29.1.1'
+    implementation 'com.google.android.material:material:1.1.0'
     implementation 'com.android.volley:volley:1.1.1'
-    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.google.android.gms:play-services-tasks:17.0.0'
 
     implementation 'androidx.viewpager2:viewpager2:1.0.0-beta04'
     implementation 'androidx.fragment:fragment-ktx:1.2.0-alpha04'
     implementation 'com.google.android.material:material:1.1.0-alpha10'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.squareup.retrofit2:retrofit:2.7.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
+    implementation 'com.squareup.retrofit:retrofit:1.9.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.0.0'
+    implementation 'com.jakewharton.retrofit:retrofit1-okhttp3-client:1.0.2'
+
+
 
 
 }

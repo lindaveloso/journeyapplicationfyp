@@ -4,23 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg3"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:weightSum="10"
-    tools:context=".activity.Fragment_Searchv">
+    android:background="@color/nav"
 
-    <include
-        android:id="@+id/toolbar0"
-        layout="@layout/toolsbar_activity"
-        android:layout_height="40dp"
-        android:layout_width="389dp" />
+    android:orientation="vertical"
+    android:weightSum="9"
+    tools:context=".activity.SearchActivity">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:layout_weight="2">
-
 
 
         <TextView
@@ -30,24 +24,25 @@
             android:layout_centerInParent="true"
             android:text="SEARCH"
             android:textColor="@color/tool"
-            android:textSize="34sp" />
+            android:textSize="34sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
+
+    <Space
+        android:layout_width="403dp"
+        android:layout_height="60dp" />
 
     <GridLayout
         android:id="@+id/mainGrid"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="8"
+        android:layout_weight="6"
         android:alignmentMode="alignMargins"
         android:columnCount="2"
         android:columnOrderPreserved="false"
         android:padding="14dp"
         android:rowCount="3">
-
-        <!--row 1 -->
-
-        <!--- column 1 -->
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card1"
@@ -59,9 +54,59 @@
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             android:clickable="true"
+            android:elevation="4dp"
             android:focusable="true"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
+            app:cardCornerRadius="14dp"
+            app:cardElevation="5dp">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:background="@drawable/shadow"
+                android:orientation="vertical"
+                android:scaleType="fitCenter">
+
+                <ImageView
+                    android:layout_width="106dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/freebus" />
+
+                <TextView
+                    android:layout_width="104dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingLeft="1dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="6dp"
+                    android:text="Bus"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="14dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/shadow"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="5dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -72,66 +117,28 @@
                 android:scaleType="fitCenter">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="101dp"
+                    android:layout_height="88dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/bus" />
+                    android:src="@drawable/tram0" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingLeft="32dp"
+                    android:paddingTop="6dp"
+                    android:paddingRight="40dp"
+                    android:text="Luas"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <!--- column 2 -->
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
-            android:clickable="true"
-            android:focusable="true"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_margin="16dp"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:src="@drawable/transportation" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Hey"
-                    android:textAlignment="center"
+                    android:textAllCaps="true"
                     android:textColor="@color/tool"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
-
-        <!--- row 2 -->
-
-        <!--- column -->
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card3"
@@ -139,53 +146,12 @@
             android:layout_height="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginLeft="90dp"
+            android:layout_marginRight="-88dp"
             android:layout_marginBottom="16dp"
             android:clickable="true"
             android:focusable="true"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_margin="16dp"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:src="@drawable/transportation" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Hey"
-                    android:textAlignment="center"
-                    android:textColor="@color/tool"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <!--- column -->
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card4"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
-            android:clickable="true"
-            android:focusable="true"
-            app:cardCornerRadius="8dp"
+            app:cardCornerRadius="14dp"
             app:cardElevation="10dp">
 
             <LinearLayout
@@ -193,63 +159,27 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_margin="16dp"
+                android:background="@drawable/shadow"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="117dp"
+                    android:layout_height="80dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/transportation" />
+                    android:src="@drawable/train22" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hey"
+                    android:paddingLeft="44dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="44dp"
+                    android:text="Train"
                     android:textAlignment="center"
+                    android:textAllCaps="true"
                     android:textColor="@color/tool"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-
-        <!--- column ? BIKE -->
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card5"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
-            android:clickable="true"
-            android:focusable="true"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_margin="16dp"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:src="@drawable/transportation" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Hey"
-                    android:textAlignment="center"
-                    android:textColor="@color/tool"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 

@@ -1,7 +1,22 @@
 <resources>
     <string name="app_name"> </string>
     <string name="dublinbs">Bus</string>
+
+
+    <!-- Navigation Top -->
     <string name="profile">Profile</string>
+    <string name="Explore">Explore</string>
+    <string name="Fare">Fare</string>
+    <string name="Route">Route</string>
+    <string name="tab_text_1">MainLine</string>
+    <string name="tab_text_2">DART</string>
+    <string name="tab_text_3">Suburban</string>
+    <string name="Open">Suburban</string>
+    <string name="Close">Suburban</string>
+    <string name="TitleWhichYouWantToDisplay">Suburban</string>
+
+
+
 
     <!-- Navigation Top -->
     <string name="Notifications">Notifications</string>
@@ -9,7 +24,7 @@
     <string name="Settings">Settings</string>
     <string name="Help">Help</string>
 
-    <!-- Map Search -->
+    <!-- Map ActivitySearch -->
     <string name="Searchbar">Search here</string>
 
 
@@ -27,4 +42,402 @@
     <string name="text_2">RED LINE</string>
     <string name="text_3"> MAP "</string>
 
+
+    <!--
+       Main UI
+   -->
+    <string name="tab_red_line">Red Line</string>
+    <string name="tab_green_line">Green Line</string>
+    <string name="select_a_stop">Select a stop\u2026</string>
+    <string name="none">None</string>
+    <string name="message">Awaiting Luas status&#8230;</string>
+    <string name="message_title">Status</string>
+    <string name="message_success">normally</string>
+    <string name="message_not_running">No trams expected at this stop</string>
+    <string name="message_no_status">No status message received from server. The Luas RTPI system
+        may be down.
+    </string>
+    <string name="message_error"> Error retrieving info from Luas RTPI system.\n\nPlease check
+        your network connection. If there are no issues, the Luas RTPI system may be down.
+    </string>
+    <string name="information">\u2139</string>
+    <string name="select_stop_tutorial">Let\'s get started! Select a stop using the picker above.
+        \nTimes will update <b>every 10 seconds</b>.
+    </string>
+    <string name="notifications_tutorial">Great! You can also schedule notifications for incoming
+        trams. Just tap on a tram below to try it out.
+    </string>
+    <string name="favourites_tutorial">Perfect! Okay, one last thing. See that <b>Favourites</b>
+        (\u2605) button at the bottom of the screen? That lets you save your favourite stops for
+        quick access. Try tapping it now.
+    </string>
+    <string name="inbound">Inbound</string>
+    <string name="outbound">Outbound</string>
+    <string name="due">DUE</string>
+    <string name="min">min</string>
+    <string name="mins">mins</string>
+    <string name="no_trams_forecast"><b>No trams forecast</b></string>
+    <string name="no_trams_forecast_short"><b>No trams</b></string>
+    <string name="bottomnav_map_short">Map</string>
+    <string name="bottomnav_favourites_short">Fav\'s</string>
+    <string name="tap_to_load_times"><b>Tap to load times</b></string>
+    <string name="cannot_schedule_notification">Tram is due shortly. Cannot schedule notification.
+    </string>
+
+    <!--
+        Actions
+    -->
+    <string name="action_about">About</string>
+    <string name="action_favourites">Favourites</string>
+    <string name="action_favourites_edit">Edit</string>
+    <string name="action_favourites_save">Save</string>
+    <string name="action_news">Luas News</string>
+    <string name="action_news_alert">Alerts</string>
+    <string name="action_reload">Reload</string>
+    <string name="action_settings">Settings</string>
+
+    <!--
+        About
+    -->
+    <string name="about_title_version">Version</string>
+    <string name="about_title_description">Description</string>
+    <string name="about_description">Android and Wear OS app providing real-time tram stop
+        information for Dublin\'s Luas light rail service.</string>
+    <string name="about_title_license">Open Source License</string>
+    <string name="about_license"><u>GNU General Public License (GPLv3)</u></string>
+    <string name="about_title_source_bugs_features">Source code, bugs and feature requests</string>
+    <string name="about_source_bugs_features">github.com/thecosmicfrog/luasataglance</string>
+    <string name="about_title_privacypolicy">Privacy Policy</string>
+    <string name="about_privacypolicy" translatable="false">luasataglance.thecosmicfrog.org/privacy"
+    </string>
+
+    <!--
+        Content descriptions
+    -->
+    <string name="content_desc_action_bar_up_description">Navigate up</string>
+    <string name="content_desc_bottomnav_alerts">Alerts button</string>
+    <string name="content_desc_bottomnav_fares">Fares button</string>
+    <string name="content_desc_bottomnav_favourites">Favourites button</string>
+    <string name="content_desc_bottomnav_map">Luas Map button</string>
+    <string name="content_desc_map_close">Close Luas Map</string>
+
+    <!--
+        Fares
+    -->
+    <string name="fares_instructions">To calculate fares for your journey, select an
+        <b>Origin</b>, <b>Destination</b> and the number of <b>Adults</b> and <b>Children</b> who
+        will be travelling.</string>
+    <string name="fares_note"><b>Note:</b> Actual fares may differ. See
+        <a href="https://luas.ie/ticket-types.html">luas.ie</a> for full fare details and ticket
+        options.
+    </string>
+    <string name="fares_offpeak">Single Off-Peak</string>
+    <string name="fares_peak">Single Peak</string>
+    <string name="fares_title_line">Line</string>
+    <string name="fares_title_origin">Origin</string>
+    <string name="fares_title_destination">Destination</string>
+    <string name="fares_title_adults">Adults</string>
+    <string name="fares_title_children">Children</string>
+    <string name="fares_zero">€0.00</string>
+
+    <!--
+        Favourites
+    -->
+    <string name="favourites_title">Favourites</string>
+    <string name="favourites_edit">Edit</string>
+    <string name="favourites_none_selected">Let\'s get started!\n\nTap the purple <b>Edit</b> button
+        in the top-right corner of this dialog to start adding your most frequently-used Luas stops.
+    </string>
+
+    <!--
+        Notification
+    -->
+    <string name="notification_title">Time to leave!</string>
+    <string name="notification_tram_expected">Your tram is expected in\u0020</string>
+    <string name="notification_minute">\u0020minute.</string>
+    <string name="notification_minutes">\u0020minutes.</string>
+
+    <!--
+        Notify dialog
+    -->
+    <string name="notify_set">Schedule</string>
+    <string name="notify_title">Schedule tram notification</string>
+    <string name="notify_when">When would you like to be notified about this tram?</string>
+    <string name="notify_successful">Notification scheduled.</string>
+    <string name="notify_invalid_time">Invalid time: Tram expected before then.</string>
+
+    <!--
+        Permissions
+    -->
+    <string name="rationale_ask_accept" translatable="false">Grant permission</string>
+    <string name="rationale_ask_decline" translatable="false">No thanks</string>
+    <string name="rationale_location" translatable="false">Luas at a Glance can optionally show your
+        location on the map, making it easier for you to find your nearest Luas stop.</string>
+
+    <!--
+        Settings
+    -->
+    <string name="pref_title_notifications">Notifications</string>
+    <string name="pref_summary_notifications">Receive push notifications</string>
+    <string name="pref_key_notifications" translatable="false">notifications</string>
+    <string name="pref_title_default_stop">Default Stop</string>
+    <string name="pref_key_default_stop" translatable="false">default_stop</string>
+
+    <!--
+        What's New
+    -->
+    <string name="whatsnew_title_current" translatable="false">Version %s (%s)</string>
+    <string name="whatsnew_content_current" translatable="false">
+        \u2022 The <b>Luas Map</b> now shows your current location, making it easier for you to find
+        your nearest Luas stop.\n\n
+        \u2022 Improvements for larger screen sizes - now even more trams will be displayed on
+        taller screens! Tweaked text size to aid readability.\n\n
+        \u2022 Other misc. interface tweaks.\n\n
+        \u2022 Updates to privacy policy regarding crash and performance reporting service.
+    </string>
+
+    <!--
+        Widget
+    -->
+    <string name="widget_arrow_left">\u25C0</string>
+    <string name="widget_arrow_right">\u25B6</string>
+    <string name="widget_message_error"> Network error.\n\nPlease check your network connection.
+    </string>
+    <string name="widget_retrieving_stop_forecast" translatable="false">Retrieving stop forecast for
+        widget.</string>
+
+
+    <string-array name="array_mainline_stops">
+        <item>Select a stop\u2026</item>
+        <item>Athy</item>
+        <item>Ballybrophy</item>
+        <item>Ballycullane</item>
+        <item>Banteer</item>
+        <item>Birdhill</item>
+        <item>Bridgetown</item>
+        <item>Cahir</item>
+        <item>Compile</item>
+        <item>Carlow</item>
+        <item>Carrick on Suir</item>
+        <item>Castleconnell</item>
+        <item>Charleville</item>
+        <item>Clonmel</item>
+        <item>Cloughjordan</item>
+        <item>Curragh</item>
+        <item>Dublin Connolly</item>
+        <item>Dublin Heuston</item>
+        <item>Farranfore</item>
+        <item>Kildare</item>
+        <item>Kilkenny</item>
+        <item>Killarney</item>
+        <item>Limerick</item>
+        <item>Limerick Junction</item>
+        <item>Mallow</item>
+        <item>Millstreet</item>
+        <item>Monasterevin</item>
+        <item>Muine Bheag</item>
+        <item>Nenagh</item>
+        <item>Newbridge</item>
+        <item>Portarlington</item>
+        <item>Portlaoise</item>
+        <item>Rathmore</item>
+        <item>Roscrea</item>
+        <item>Rosslare Europort</item>
+        <item>Rosslare Strand</item>
+        <item>Templemore</item>
+        <item>Thomastown</item>
+        <item>Thurles</item>
+        <item>Tipperary</item>
+        <item>Tralee</item>
+        <item>Waterford</item>
+        <item>Wellingtonbridge</item>
+    </string-array>
+
+
+    <!--
+        Stop arrays
+    -->
+    <string-array name="array_lines">
+        <item>Red Line</item>
+        <item>Green Line</item>
+    </string-array>
+
+    <string-array name="array_number_pax">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+
+    <string-array name="array_stops_redline">
+        <item>Select a stop\u2026</item>
+        <item>The Point</item>
+        <item>Spencer Dock</item>
+        <item>Mayor Square - NCI</item>
+        <item>George\'s Dock</item>
+        <item>Connolly</item>
+        <item>Busáras</item>
+        <item>Abbey Street</item>
+        <item>Jervis</item>
+        <item>Four Courts</item>
+        <item>Smithfield</item>
+        <item>Museum</item>
+        <item>Heuston</item>
+        <item>James\'s</item>
+        <item>Fatima</item>
+        <item>Rialto</item>
+        <item>Suir Road</item>
+        <item>Goldenbridge</item>
+        <item>Drimnagh</item>
+        <item>Blackhorse</item>
+        <item>Bluebell</item>
+        <item>Kylemore</item>
+        <item>Red Cow</item>
+        <item>Kingswood</item>
+        <item>Belgard</item>
+        <item>Cookstown</item>
+        <item>Hospital</item>
+        <item>Tallaght</item>
+        <item>Fettercairn</item>
+        <item>Cheeverstown</item>
+        <item>Citywest Campus</item>
+        <item>Fortunestown</item>
+        <item>Saggart</item>
+    </string-array>
+
+    <string-array name="array_stops_greenline">
+        <item>Select a stop\u2026</item>
+        <item>Broombridge</item>
+        <item>Cabra</item>
+        <item>Phibsborough</item>
+        <item>Grangegorman</item>
+        <item>Broadstone - DIT</item>
+        <item>Dominick</item>
+        <item>Parnell</item>
+        <item>O\'Connell - Upper</item>
+        <item>O\'Connell - GPO</item>
+        <item>Marlborough</item>
+        <item>Westmoreland</item>
+        <item>Trinity</item>
+        <item>Dawson</item>
+        <item>St. Stephen\'s Green</item>
+        <item>Harcourt</item>
+        <item>Charlemont</item>
+        <item>Ranelagh</item>
+        <item>Beechwood</item>
+        <item>Cowper</item>
+        <item>Milltown</item>
+        <item>Windy Arbour</item>
+        <item>Dundrum</item>
+        <item>Balally</item>
+        <item>Kilmacud</item>
+        <item>Stillorgan</item>
+        <item>Sandyford</item>
+        <item>Central Park</item>
+        <item>Glencairn</item>
+        <item>The Gallops</item>
+        <item>Leopardstown Valley</item>
+        <item>Ballyogan Wood</item>
+        <item>Carrickmines</item>
+        <item>Laughanstown</item>
+        <item>Cherrywood</item>
+        <item>Bride\'s Glen</item>
+    </string-array>
+
+    <string-array name="array_stops_all">
+        <item>None</item>
+        <item>The Point</item>
+        <item>Spencer Dock</item>
+        <item>Mayor Square - NCI</item>
+        <item>George\'s Dock</item>
+        <item>Connolly</item>
+        <item>Busáras</item>
+        <item>Abbey Street</item>
+        <item>Jervis</item>
+        <item>Four Courts</item>
+        <item>Smithfield</item>
+        <item>Museum</item>
+        <item>Heuston</item>
+        <item>James\'s</item>
+        <item>Fatima</item>
+        <item>Rialto</item>
+        <item>Suir Road</item>
+        <item>Goldenbridge</item>
+        <item>Drimnagh</item>
+        <item>Blackhorse</item>
+        <item>Bluebell</item>
+        <item>Kylemore</item>
+        <item>Red Cow</item>
+        <item>Kingswood</item>
+        <item>Belgard</item>
+        <item>Cookstown</item>
+        <item>Hospital</item>
+        <item>Tallaght</item>
+        <item>Fettercairn</item>
+        <item>Cheeverstown</item>
+        <item>Citywest Campus</item>
+        <item>Fortunestown</item>
+        <item>Saggart</item>
+        <item>Broombridge</item>
+        <item>Cabra</item>
+        <item>Phibsborough</item>
+        <item>Grangegorman</item>
+        <item>Broadstone - DIT</item>
+        <item>Dominick</item>
+        <item>Parnell</item>
+        <item>O\'Connell - Upper</item>
+        <item>O\'Connell - GPO</item>
+        <item>Marlborough</item>
+        <item>Westmoreland</item>
+        <item>Trinity</item>
+        <item>Dawson</item>
+        <item>St. Stephen\'s Green</item>
+        <item>Harcourt</item>
+        <item>Charlemont</item>
+        <item>Ranelagh</item>
+        <item>Beechwood</item>
+        <item>Cowper</item>
+        <item>Milltown</item>
+        <item>Windy Arbour</item>
+        <item>Dundrum</item>
+        <item>Balally</item>
+        <item>Kilmacud</item>
+        <item>Stillorgan</item>
+        <item>Sandyford</item>
+        <item>Central Park</item>
+        <item>Glencairn</item>
+        <item>The Gallops</item>
+        <item>Leopardstown Valley</item>
+        <item>Ballyogan Wood</item>
+        <item>Carrickmines</item>
+        <item>Laughanstown</item>
+        <item>Cherrywood</item>
+        <item>Bride\'s Glen</item>
+    </string-array>
+
+    <string-array name="array_notifytime_mins">
+        <item>2 mins before arrival</item>
+        <item>3 mins before arrival</item>
+        <item>4 mins before arrival</item>
+        <item>5 mins before arrival</item>
+        <item>6 mins before arrival</item>
+        <item>7 mins before arrival</item>
+        <item>8 mins before arrival</item>
+        <item>9 mins before arrival</item>
+        <item>10 mins before arrival</item>
+        <item>11 mins before arrival</item>
+        <item>12 mins before arrival</item>
+        <item>13 mins before arrival</item>
+        <item>14 mins before arrival</item>
+        <item>15 mins before arrival</item>
+    </string-array>
 </resources>
+
+

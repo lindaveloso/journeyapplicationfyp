@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/train1"
+        android:layout_width="381dp"
+        android:layout_height="54dp"
+        android:textColor="#08308e" />
+
+    <TextView
+        android:id="@+id/train2"
+        android:layout_width="411dp"
+        android:layout_height="83dp"
+        android:textColor="#08308e" />
+
+    <TextView
+        android:id="@+id/train3"
+        android:layout_width="394dp"
+        android:layout_height="75dp"
+        android:textColor="#08308e" />
+
+
+
+</LinearLayout>

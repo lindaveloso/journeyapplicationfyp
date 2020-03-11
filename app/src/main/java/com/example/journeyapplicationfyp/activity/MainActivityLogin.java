@@ -1,11 +1,12 @@
-package com.example.journeyapplicationfyp.activity;
+/*package com.example.journeyapplicationfyp.activity;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
@@ -23,6 +24,8 @@ public class MainActivityLogin extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseAuth mAuth;
 
+    {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class MainActivityLogin extends AppCompatActivity {
                 new AuthUI.IdpConfig.GoogleBuilder().build());
         showSignInOptions();
     }
+
     public void showSignInOptions() {
         startActivityForResult(
                 AuthUI.getInstance().createSignInIntentBuilder()
@@ -45,6 +49,7 @@ public class MainActivityLogin extends AppCompatActivity {
                                 "XOXOXOX.HTML")
                         .build(), MY_REQUEST_CODE);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -54,7 +59,7 @@ public class MainActivityLogin extends AppCompatActivity {
                 mUser = FirebaseAuth.getInstance().getCurrentUser();
                 startActivity(new Intent(this, MainActivityHome.class));
                 Log.d(this.getClass().getName(), "This user signed in with " + response.getProviderType());
-                Toast.makeText(this, "Welcome " + mUser.getEmail(),Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Welcome " + mUser.getEmail(), Toast.LENGTH_LONG).show();
                 saveTDatabase();
                 finish();
             } else {
@@ -62,17 +67,12 @@ public class MainActivityLogin extends AppCompatActivity {
             }
         }
     }
-
-    private void saveTDatabase() {
-    }
     //get reference
     //DatabaseReference ref = FirebaseDatabase.getInstance().getReference(USERS_TABLE).child(user.getUid());
 
     //build child
     //ref.child(mUser.getUid()).setValue(user_class);
 
-
-    {
+    private void saveTDatabase() {
     }
-}
-
+}*/

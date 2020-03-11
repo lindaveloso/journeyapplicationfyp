@@ -11,12 +11,29 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.example.journeyapplicationfyp.R;
+import com.example.journeyapplicationfyp.fragment.Fragment_Faresv;
+import com.example.journeyapplicationfyp.fragment.Fragment_Homev;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivityHome extends AppCompatActivity {
 
+
+    Toolbar toolbar0;
     BottomNavigationView bottomNavigationView1;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_master);
+
+
+        bottomNavigationView1 = findViewById(R.id.BNV);
+        bottomNavigationView1.setOnNavigationItemSelectedListener(navListener);
+
+
+
+    }
+
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -31,7 +48,7 @@ public class MainActivityHome extends AppCompatActivity {
                             break;
 
                         case R.id.searchnav:
-                            selectedFragment = new Fragment_Searchv();
+                            selectedFragment = new SearchActivity();
                             break;
 
                         case R.id.routenav:
@@ -43,10 +60,10 @@ public class MainActivityHome extends AppCompatActivity {
                         case R.id.farenav:
                             selectedFragment = new Fragment_Faresv();
 
-                            break;
-                        case R.id.profilenav:
-                            selectedFragment = new Fragment_Profilev();
-                            break;
+                            //   break;
+                            // case R.id.profilenav:
+                            // selectedFragment = new Fragment_Profilev();
+                            //  break;
 
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.Frame_container,
@@ -60,36 +77,39 @@ public class MainActivityHome extends AppCompatActivity {
             };
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        bottomNavigationView1 = findViewById(R.id.BNV);
-        bottomNavigationView1.setOnNavigationItemSelectedListener(navListener);
+    //@Override
+   // public boolean onCreateOptionsMenu(Menu menu) {
+       // getMenuInflater().inflate(R.menu.toolsbarmenu, menu);
+       // return true;
+   // }
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar0);
-        setSupportActionBar(toolbar);
-
-    }
-
+   // @Override
+  //  public boolean onCreateOptionsMenu(Menu menu) {
+     //   MenuInflater inflater = getMenuInflater();
+      //  inflater.inflate(R.menu.toolsbarmenu, menu);
+        //return true;
+    //}
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_exit, menu);
-        return true;
+        getMenuInflater().inflate(R.menu.toolsbarmenu,menu);
+        return super.onCreateOptionsMenu(menu);
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch ((item.getItemId())) {
-            case R.id.signmeout:
+           /* case R.id.signmeout:
                 FirebaseAuth.getInstance().signOut();
                 finish();
                 startActivity(new Intent(this, MainActivityLogin.class));
-                break;
+                break;*/
+
+           // case R.id.action_profile:
 
 
+
+               // break;
         }
         return true;
     }

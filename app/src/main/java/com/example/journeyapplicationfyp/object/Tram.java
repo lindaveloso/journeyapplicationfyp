@@ -8,22 +8,21 @@ public class Tram implements Serializable {
 
     private String destination;
     private String direction;
-    private String due;
+    private String dueMinutes;
 
-    public Tram(String destination, String direction, String due) {
-        destination = destination;
-        direction = direction;
-        due = due;
+    public Tram(String de, String di, String du) {
+        destination = de;
+        direction = di;
+        dueMinutes = du;
     }
 
     @Override
     public String toString() {
-        if (!due.equals("DUE")) {
-            if (Integer.parseInt(due) > 1)
-                return String.format("%s\t%s\t%s", destination, direction, due + " mins");
+        if (!dueMinutes.equals("DUE")) {
+            if (Integer.parseInt(dueMinutes) > 1)
+                return String.format("%s\t%s\t%s", destination, direction, dueMinutes + " mins");
         }
-
-        return String.format("%s\t%s\t%s", destination, direction, due + " min");
+        return String.format("%s\t%s\t%s", destination, direction, dueMinutes + " min");
     }
 
     public String getDestination() {
@@ -34,7 +33,7 @@ public class Tram implements Serializable {
         return direction;
     }
 
-    public String getDue() {
-        return due;
+    public String getDueMinutes() {
+        return dueMinutes;
     }
 }

@@ -1,117 +1,99 @@
 package com.example.journeyapplicationfyp.activity;
 
-import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.journeyapplicationfyp.R;
 import com.example.journeyapplicationfyp.object.Train;
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.android.material.tabs.TabLayout;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 public class SearchActivity_Train extends AppCompatActivity {
 
-    private ArrayList<Train> trains;
+    ViewPager viewpager;
+    TabLayout tablayout;
+    private ArrayList<Train> trainList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_train);
-        trains = new ArrayList<>();
-
-        Toolbar toolbar = findViewById(R.id.toolbar0);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        LoadIrishRail();
+        Settings();
+        trainList = new ArrayList<>();
     }
 
-    private void LoadIrishRail() {
-        XmlPullParserFactory xmlPullParserFactory;
+    private void Settings() {
+        if (Build.VERSION.SDK_INT >= 21) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(
+                    ContextCompat.getColor(
+                            getApplicationContext(),
+                            R.color.luas_purple_statusbar
+                    )
+            );
 
-        try{
-            xmlPullParserFactory = XmlPullParserFactory.newInstance();
-            XmlPullParser xmlPullParser = xmlPullParserFactory.newPullParser();
-            InputStream inputStream = getAssets().open("http://api.irishrail.ie/realtime/realtime.asmx/getCurrentTrainsXML");
-            xmlPullParser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-            xmlPullParser.setInput(inputStream, null);
-           // Parseme(xmlPullParser);
-
-        } catch (XmlPullParserException e) {
-            e.printStackTrace();
-
-        } catch (IOException e) {
-            e.printStackTrace();
+            window.setNavigationBarColor(
+                    ContextCompat.getColor(
+                            getApplicationContext(),
+                            R.color.luas_purple_statusbar
+                    ));
         }
-    }
+        PageAdapterClass2 tabsPagerAdapter = new PageAdapterClass2(this, getSupportFragmentManager());
 
- /*   private void Parseme(XmlPullParser xmlPullParser)throws IOException, XmlPullParserException{
-        ArrayList<Train> trains = new ArrayList<>();
-        int eventType = xmlPullParser.getEventType();
+        final ViewPager viewPager = findViewById(R.id.viewpager);
+        viewPager.setAdapter(tabsPagerAdapter);
 
-        Train currentTrain = null;
-        while (eventType != XmlPullParser.END_DOCUMENT) {
-            String name = null;
-
-            switch (eventType) {
-                case XmlPullParser.START_DOCUMENT:
-                    trains = new ArrayList();
-                    break;
-                case XmlPullParser.START_TAG:
-                    name = xmlPullParser.getName();
-
-                  // if ("objTrainPositions".equals(name)) {
-                       // currentTrain = new Train();
-                        // trains.add(currentTrain);
+        final TabLayout tabs = findViewById(R.id.tablayout);
+        tabs.setupWithViewPager(viewPager);
 
 
-                    } else if (currentTrain != null) {
-                        if ("direction".equals(name)) {
-                            currentTrain.direction = xmlPullParser.nextText();
-                        } else if ("PublicMessage".equals(name)) {
-                            currentTrain.PublicMessage = xmlPullParser.nextText();
-                        } else if ("TrainStatus".equals(name)) {
-                            currentTrain.TrainStatus = xmlPullParser.nextText();
-                        }
-                    }
-                    break;
+        tabs.setBackgroundColor(
+                ContextCompat.getColor(getApplicationContext(), R.color.luas_purple)
+        );
+        tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
             }
 
-            eventType = xmlPullParser.next();
-        }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
 
-       /// printPlayers(players);
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
+
+        final PageAdapterClass2 pagerAdapter2 = new PageAdapterClass2(this,
+                getSupportFragmentManager()
+
+        );
+
+        viewPager.setAdapter(pagerAdapter2);
+        viewPager.addOnPageChangeListener(
+                new TabLayout.TabLayoutOnPageChangeListener(tabs)
+        );
+
+
     }
-
-    private void printPlayers(ArrayList<Train> trains) {
-        StringBuilder builder = new StringBuilder();
-
-        for (Train train : trains) {
-            builder.append(train.TrainStatus).append("\n").
-                    append(train.direction).append("\n").
-                    append(train.PublicMessage).append("\n\n");
-        }
-        //textview
-       // txt.setText(builder.toString());
-    }*/
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_exit, menu);
+        inflater.inflate(R.menu.toolsbarmenu, menu);
         return true;
     }
 
@@ -122,11 +104,11 @@ public class SearchActivity_Train extends AppCompatActivity {
                 onBackPressed();
                 return true;
 
-            case R.id.signmeout:
+            /*case R.id.signmeout:
                 FirebaseAuth.getInstance().signOut();
                 finish();
                 startActivity(new Intent(this, MainActivityLogin.class));
-                return true;
+                return true;*/
         }
 
         return super.onOptionsItemSelected(item);

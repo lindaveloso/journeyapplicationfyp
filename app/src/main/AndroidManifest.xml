@@ -23,32 +23,29 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".activity.MainActivityLogin">
+        <activity android:name=".activity.MainActivityHome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MainActivityHome">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activity.SearchActivity_Bike">
 
-        </activity>
-        <activity
-            android:name=".activity.SearchActivity_Train"
-            >
 
-        </activity>
-        <activity android:name=".activity.SearchActivity_Bus"
+        <activity android:name=".activity.SearchActivity_Train"
             android:exported="true">
 
         </activity>
-        <activity android:name=".activity.SearchActivity_Tram">
+
+        <activity android:name=".activity.SearchActivity_Bus"
+            android:label="@string/TitleWhichYouWantToDisplay"
+            android:exported="true">
+
+        </activity>
+
+        <activity
+            android:name=".activity.SearchActivity_Tram"
+            android:exported="true">
 
         </activity>
 

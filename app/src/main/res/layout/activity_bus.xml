@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <Button
+        android:id="@+id/search_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="77dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginRight="35dp"
+        android:text="SEARCH" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="62dp"
+        android:layout_marginRight="62dp"
+        android:layout_toStartOf="@id/search_button"
+        android:layout_toLeftOf="@id/search_button"
+        android:background="@drawable/customsearchbox"
+        android:drawableLeft="@android:drawable/ic_menu_search"
+        android:drawablePadding="12dp"
+        android:ems="15"
+        android:focusable="true"
+        android:hint="enter bus stop"
+        android:inputType="number"
+        android:padding="16dp"
+        android:paddingTop="20dp"
+        android:singleLine="true" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="561dp"
+        android:layout_below="@+id/editText"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="0dp">
+
+        <TextView
+            android:id="@+id/textview1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/bus"
+            android:padding="3dp"
+            android:text="Route\t\t\t"
+            android:textColor="@color/navtextcolor"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textview2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/textview1"
+            android:background="@color/bus"
+            android:padding="3dp"
+            android:text="Destination\t\t\t\t\t\t\t"
+            android:textColor="@color/navtextcolor"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textview3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/textview2"
+            android:background="@color/bus"
+            android:padding="3dp"
+            android:text="Expected Time\t\t\t\t"
+            android:textColor="@color/navtextcolor"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textview4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/textview3"
+            android:background="@color/bus"
+            android:padding="3dp"
+            android:text="Notes\t\t\t\t\t\t"
+            android:textColor="@color/navtextcolor"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="342dp"
+            android:layout_above="@+id/BNV"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="50dp"
+            android:scrollbars="vertical" />
+
+        <TextView
+            android:id="@+id/accesib"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/BNV"
+            android:layout_marginLeft="-325dp"
+            android:layout_marginBottom="15dp"
+            android:layout_toRightOf="@id/textview3"
+            android:drawableLeft="@drawable/iconaccessible"
+            android:padding="3dp"
+            android:text=" Accessible"
+            android:textColor="@color/navtextcolor"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/BNV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/nav"
+            app:itemTextColor="@color/navtextcolor"
+            app:menu="@menu/navigationbottom_menu" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
