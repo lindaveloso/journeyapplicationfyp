@@ -173,8 +173,6 @@ public class MainActivityHome extends AppCompatActivity implements
 
 // Set up a new symbol layer for displaying the searched location's feature coordinates
                 setupLayer(style);
-
-
             }
         });
 
