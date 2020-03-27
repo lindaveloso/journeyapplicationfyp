@@ -52,6 +52,10 @@
         <activity android:name=".activity.MapActivity_Routesnv">
 
         </activity>
+
+        <activity android:name=".activity.Activity_busresults">
+
+        </activity>
     </application>
 
 </manifest>

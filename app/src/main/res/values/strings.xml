@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name"> </string>
     <string name="dublinbs">Bus</string>
+    <string name="T">Train</string>
+    <string name="Tm">Luas</string>
+    <string name="B">Bus</string>
+    <string name="Ti">Search</string>
 
 
     <!-- Navigation Top -->
@@ -48,6 +52,9 @@
    -->
     <string name="tab_red_line">Red Line</string>
     <string name="tab_green_line">Green Line</string>
+    <string name="busrequest">Enter bus stop number </string>
+
+
     <string name="select_a_stop">Select a stop\u2026</string>
     <string name="none">None</string>
     <string name="message">Awaiting Luas status&#8230;</string>
@@ -205,6 +212,60 @@
     </string>
     <string name="widget_retrieving_stop_forecast" translatable="false">Retrieving stop forecast for
         widget.</string>
+
+    <string-array name="query_suggestions">
+        <item>Select a route\u2026</item>
+        <item>1</item>
+        <item>1c</item>
+        <item>4</item>
+        <item>7</item>
+        <item>7a</item>
+        <item>7b</item>
+        <item>9</item>
+        <item>11</item>
+        <item>13</item>
+        <item>7a</item>
+        <item>14</item>
+        <item>14c</item>
+        <item>15</item>
+        <item>15a</item>
+        <item>15d</item>
+        <item>15e</item>
+        <item>16</item>
+        <item>16c</item>
+        <item>16d</item>
+        <item>25</item>
+        <item>25a</item>
+        <item>25b</item>
+        <item>25d</item>
+        <item>25x</item>
+        <item>26</item>
+        <item>27</item>
+        <item>27a</item>
+        <item>27x</item>
+        <item>27b</item>
+        <item>29a</item>
+        <item>31</item>
+        <item>31a</item>
+        <item>31b</item>
+        <item>31d</item>
+        <item>33</item>
+        <item>33e</item>
+        <item>31d</item>
+        <item>33x</item>
+        <item>37</item>
+        <item>38</item>
+        <item>38a</item>
+        <item>38b</item>
+        <item>38d</item>
+        <item>39</item>
+        <item>39a</item>
+        <item>39x</item>
+        <item>40</item>
+        <item>40b</item>
+        <item>40e</item>
+        <item>41</item>
+    </string-array>
 
 
     <string-array name="array_mainline_stops">

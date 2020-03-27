@@ -5,10 +5,10 @@
 
     <item android:title="NAVIGATION"
         android:icon="@drawable/nav"
-        android:id="@+id/homenav" />
+        android:id="@+id/homehere" />
 
     <item android:title="RTPI"
-        android:id="@+id/searchnav"
+        android:id="@+id/rtpi"
         android:icon="@drawable/clock"/>
 
     <item android:title="FARE"
@@ -16,7 +16,7 @@
         android:icon="@drawable/calculator"/>
 
     <item android:title="TIMETABLE"
-        android:id="@+id/routenav"
+        android:id="@+id/timetable"
         android:icon="@drawable/mappp"/>
 
 </menu>

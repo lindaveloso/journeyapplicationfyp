@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="SEARCH"
+            android:text="@string/Ti"
             android:textColor="@color/tool"
             android:textSize="34sp"
             android:textStyle="bold" />
@@ -79,10 +79,10 @@
                     android:layout_width="104dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:paddingLeft="1dp"
-                    android:paddingRight="5dp"
+                    android:paddingStart="1dp"
                     android:paddingTop="6dp"
-                    android:text="Bus"
+                    android:paddingEnd="5dp"
+                    android:text="@string/B"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="@android:color/black"
@@ -99,8 +99,8 @@
             android:layout_height="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="14dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="14dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/shadow"
             android:clickable="true"
@@ -126,10 +126,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:paddingLeft="32dp"
+                    android:paddingStart="32dp"
                     android:paddingTop="6dp"
-                    android:paddingRight="40dp"
-                    android:text="Luas"
+                    android:paddingEnd="40dp"
+                    android:text="@string/Tm"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="@color/tool"
@@ -174,7 +174,7 @@
                     android:paddingLeft="44dp"
                     android:paddingTop="8dp"
                     android:paddingRight="44dp"
-                    android:text="Train"
+                    android:text="@string/T"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="@color/tool"
@@ -186,5 +186,6 @@
         </androidx.cardview.widget.CardView>
 
     </GridLayout>
+
 
 </LinearLayout>

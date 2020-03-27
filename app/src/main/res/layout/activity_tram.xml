@@ -7,10 +7,14 @@
     android:orientation="vertical"
     tools:context="com.example.journeyapplicationfyp.activity.SearchActivity_Tram">
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="523dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <com.google.android.material.tabs.TabLayout
@@ -22,4 +26,17 @@
             app:tabTextColor="@android:color/black" />
 
     </androidx.viewpager.widget.ViewPager>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/BNV"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:background="@color/nav"
+        app:itemTextColor="@color/navtextcolor"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/navigationbottom_menu" />
 </LinearLayout>

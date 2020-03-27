@@ -25,18 +25,12 @@ public class SearchActivity extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //getActionBar().setTitle("Privet");
-
-
-
 
         getActivity().findViewById(R.id.card3).setOnClickListener(this);
         getActivity().findViewById(R.id.card2).setOnClickListener(this);
         getActivity().findViewById(R.id.card1).setOnClickListener(this);
 
     }
-
-
 
     @Override
     public void onClick(View v) {
@@ -59,6 +53,7 @@ public class SearchActivity extends Fragment implements View.OnClickListener {
 
         }
     }
+
 
 }
 

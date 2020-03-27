@@ -4,27 +4,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view_layout">
 
-    <group android:checkableBehavior="none">
         <item
             android:id="@+id/profile"
-            android:icon="@drawable/user"
+            android:icon="@drawable/user1"
+            android:visible="true"
+            app:showAsAction="always"
             android:title="Profile" />
         <item
             android:id="@+id/nav_chat"
+            android:icon="@drawable/heart"
+            app:showAsAction="always"
             android:title="favourites" />
-
-    </group>
-
-    <item android:title="About">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:title="About Us" />
-        </menu>
-    </item>
-        <item
-            android:id="@+id/signout"
-            android:title="Sign Out" />
 
 
 </menu>

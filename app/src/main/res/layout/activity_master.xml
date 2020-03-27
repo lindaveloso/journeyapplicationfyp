@@ -1,15 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+
+    <androidx.appcompat.widget.SearchView
+
+        android:id="@+id/search1"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="0dp"
+        android:background="@drawable/customsearchbox"
+        android:focusable="false"
+        android:iconifiedByDefault="false"
+        app:queryHint="WHERE ARE YOU GOING?" />
+
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search1"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="@drawable/customsearchbox"
+        android:focusable="false"
+        android:iconifiedByDefault="false"
+        app:queryHint="DESTINATION" />
 
     <FrameLayout
         android:id="@+id/Frame_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/BNV">
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/BNV"
+        android:layout_marginBottom="-3dp">
 
+
+        <com.mapbox.mapboxsdk.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="509dp"
+            mapbox:mapbox_cameraTargetLat="51.50325"
+            mapbox:mapbox_cameraTargetLng="-0.11968"
+            mapbox:mapbox_cameraZoom="12">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_location_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:tint="@android:color/white"
+                app:backgroundTint="@color/colorPrimary"
+                app:srcCompat="@android:drawable/ic_search_category_default" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_direction_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end|top"
+
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="380dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:tint="@android:color/white"
+                app:backgroundTint="@color/colorPrimary"
+                app:srcCompat="@drawable/post" />
+        </com.mapbox.mapboxsdk.maps.MapView>
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
