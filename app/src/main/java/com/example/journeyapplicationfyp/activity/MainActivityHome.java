@@ -159,7 +159,6 @@ public class MainActivityHome extends AppCompatActivity implements
                 mapboxMap.addOnMapClickListener(MainActivityHome.this);
 
                 initSearchFab();
-
                 addUserLocations();
 
                 //initSearchDab();
