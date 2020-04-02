@@ -40,31 +40,35 @@ public class SearchActivity_Bus extends AppCompatActivity {
         bottomNavigationView1 = findViewById(R.id.BNV);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
         DisplayOption1();
-
         Button search_button = findViewById(R.id.search_button);
         search_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (v.getId()) {
-                    case R.id.search_button:
-                        EditText editText = findViewById(R.id.editText);
-                        busstop = "";
-                        busstop = editText.getText().toString();
-                        if (busstop != null) {
-                            fullURL = url1 + busstop + url2;
-                            Intent i = new Intent(SearchActivity_Bus.this, Activity_busresults.class);
-                            i.putExtra("link", fullURL);
-                            SearchActivity_Bus.this.startActivity(i);
-
-                        } else {
-                            Toast.makeText(getApplicationContext(), "BIG_ERROR", Toast.LENGTH_SHORT);
-                        }
-                        break;
-                    default:
-                        throw new RuntimeException("UNKNOWN_BUTTONID");
+                if (validationDetails()) {
+                    fullURL = url1 + busstop + url2;
+                    Intent i = new Intent(SearchActivity_Bus.this, Activity_busresults.class);
+                    i.putExtra("link", fullURL);
+                    SearchActivity_Bus.this.startActivity(i);
                 }
             }
         });
+
+
+    }
+
+    private boolean validationDetails() {
+        EditText editText = findViewById(R.id.editText);
+        busstop = "";
+        busstop = editText.getText().toString();
+
+        if (editText.getText().toString().isEmpty()) {
+            Toast.makeText(getApplicationContext(), "Empty Field for Dublin Bus Stop", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (editText.getText().toString().equals("0")) {
+            Toast.makeText(getApplicationContext(), "Not a valid Dublin Bus stop", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
     private void DisplayOption1() {
@@ -76,14 +80,14 @@ public class SearchActivity_Bus extends AppCompatActivity {
             window.setStatusBarColor(
                     ContextCompat.getColor(
                             getApplicationContext(),
-                            R.color.luas_purple_statusbar
+                            R.color.system
                     )
             );
 
             window.setNavigationBarColor(
                     ContextCompat.getColor(
                             getApplicationContext(),
-                            R.color.luas_purple_statusbar
+                            R.color.system
                     ));
         }
 

@@ -3,6 +3,7 @@ package com.example.journeyapplicationfyp.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,30 +13,30 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.journeyapplicationfyp.R;
 import com.example.journeyapplicationfyp.fragment.Fragment_Faresv;
+import com.example.journeyapplicationfyp.fragment.Timetable_fragment;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
+import com.google.gson.JsonObject;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
+import com.mapbox.api.directions.v5.DirectionsCriteria;
+import com.mapbox.api.directions.v5.MapboxDirections;
 import com.mapbox.api.directions.v5.models.DirectionsResponse;
-import com.mapbox.mapboxsdk.Mapbox;
-import com.mapbox.mapboxsdk.plugins.places.autocomplete.PlaceAutocomplete;
-import com.mapbox.mapboxsdk.plugins.places.autocomplete.model.PlaceOptions;
-import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
-import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
-
-import android.graphics.Color;
-
-import com.google.gson.JsonObject;
+import com.mapbox.api.directions.v5.models.DirectionsRoute;
 import com.mapbox.api.geocoding.v5.models.CarmenFeature;
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.FeatureCollection;
+import com.mapbox.geojson.LineString;
 import com.mapbox.geojson.Point;
-
+import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
@@ -47,13 +48,32 @@ import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
-import com.mapbox.services.android.navigation.ui.v5.route.NavigationMapRoute;
-import com.mapbox.services.android.navigation.v5.navigation.MapboxNavigationOptions;
-import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
+import com.mapbox.mapboxsdk.plugins.places.autocomplete.PlaceAutocomplete;
+import com.mapbox.mapboxsdk.plugins.places.autocomplete.model.PlaceOptions;
+import com.mapbox.mapboxsdk.style.layers.LineLayer;
+import com.mapbox.mapboxsdk.style.layers.Property;
+import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
+import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
+import com.mapbox.mapboxsdk.utils.BitmapUtils;
 
 import java.util.List;
 
-public class MainActivityHome extends AppCompatActivity implements
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import timber.log.Timber;
+
+import static com.mapbox.core.constants.Constants.PRECISION_6;
+import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconAllowOverlap;
+import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconIgnorePlacement;
+import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconImage;
+import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconOffset;
+import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineCap;
+import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineColor;
+import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineJoin;
+import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineWidth;
+
+public class MainActivityHome extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
         OnMapReadyCallback, PermissionsListener, MapboxMap.OnMapClickListener {
 
 
@@ -69,6 +89,19 @@ public class MainActivityHome extends AppCompatActivity implements
     private String symbolIconId = "symbolIconId";
     private Marker originMarker;
     private Marker destinationMarker;
+    private static final String ROUTE_LAYER_ID = "route-layer-id";
+    private static final String ROUTE_SOURCE_ID = "route-source-id";
+    private static final String ICON_LAYER_ID = "icon-layer-id";
+    private static final String ICON_SOURCE_ID = "icon-source-id";
+    private static final String RED_PIN_ICON_ID = "red-pin-icon-id";
+    private DirectionsRoute currentRoute;
+    // private DirectionsRouteType
+    private MapboxDirections client;
+    private Point origin;
+    private Point destination;
+    private DrawerLayout drawer;
+
+
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -82,7 +115,7 @@ public class MainActivityHome extends AppCompatActivity implements
                             break;
 
                         case R.id.timetable:
-                            intent = new Intent(MainActivityHome.this, MapActivity_Routesnv.class);
+                            intent = new Intent(MainActivityHome.this, Timetable_fragment.class);
                             startActivity(intent);
                             finish();
                             return true;
@@ -106,7 +139,9 @@ public class MainActivityHome extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         Mapbox.getInstance(this, getString(R.string.access_token));
         setContentView(R.layout.activity_master);
-
+        // drawer = findViewById(R.id.drawer_layout);
+        // NavigationView navigationView = findViewById(R.id.nav_view);
+        // navigationView.setNavigationItemSelectedListener(this);
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
@@ -115,6 +150,10 @@ public class MainActivityHome extends AppCompatActivity implements
         bottomNavigationView1.setOnNavigationItemSelectedListener(navListener);
         BadgeDrawable badge = bottomNavigationView1.getOrCreateBadge(R.id.rtpi);
         badge.setVisible(true);
+
+      /*  final ActionBar ab = getSupportActionBar();
+        ab.setHomeAsUpIndicator(R.drawable.ic_menu);
+        ab.setDisplayHomeAsUpEnabled(true);*/
 
     }
 
@@ -133,20 +172,28 @@ public class MainActivityHome extends AppCompatActivity implements
                 startActivity(new Intent(this, MainActivityLogin.class));
                 break;*/
 
-           // case R.id.action_profile:
+            // case R.id.action_profile:
 
 
-
-               // break;
+            // break;
         }
         return true;
     }
 
     @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+    @Override
     public void onMapReady(@NonNull final MapboxMap mapboxMap) {
         MainActivityHome.this.mapboxMap = mapboxMap;
 
-        mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
+        mapboxMap.setStyle(Style.TRAFFIC_NIGHT, new Style.OnStyleLoaded() {
             @Override
             public void onStyleLoaded(@NonNull Style style) {
                 enableLocationComponent(style);
@@ -156,43 +203,87 @@ public class MainActivityHome extends AppCompatActivity implements
                         Toast.LENGTH_LONG
                 ).show();
 
+                origin = Point.fromLngLat(-3.588098, 37.176164);
+
+                destination = Point.fromLngLat(-3.601845, 37.184080);
+
                 mapboxMap.addOnMapClickListener(MainActivityHome.this);
 
+                initSearchDirections();
                 initSearchFab();
                 addUserLocations();
 
-                //initSearchDab();
 
-// Add the symbol layer icon to map for future use
+// Add the symbol layer icon to map for future fuse
                 style.addImage(symbolIconId, BitmapFactory.decodeResource(
-                        MainActivityHome.this.getResources(), R.drawable.calculate_icon));
+                        MainActivityHome.this.getResources(), R.drawable.map_marker_light));
 
 // Create an empty GeoJSON source using the empty feature collection
                 setUpSource(style);
-
 // Set up a new symbol layer for displaying the searched location's feature coordinates
                 setupLayer(style);
+
+                initSource(style);
+
+                initLayers(style);
+
+                getRoute(mapboxMap, origin, destination);
+
+
             }
         });
 
 
     }
 
+    private void initLayers(@NonNull Style loadedMapStyle) {
+
+        LineLayer routeLayer = new LineLayer(ROUTE_LAYER_ID, ROUTE_SOURCE_ID);
+
+// Add the LineLayer to the map. This layer will display the directions route.
+        routeLayer.setProperties(
+                lineCap(Property.LINE_CAP_ROUND),
+                lineJoin(Property.LINE_JOIN_ROUND),
+                lineWidth(5f),
+                lineColor(Color.parseColor("#009688"))
+        );
+        loadedMapStyle.addLayer(routeLayer);
+
+// Add the red marker icon image to the map
+        loadedMapStyle.addImage(RED_PIN_ICON_ID, BitmapUtils.getBitmapFromDrawable(
+                getResources().getDrawable(R.drawable.map_marker_light)));
+
+// Add the red marker icon SymbolLayer to the map
+        loadedMapStyle.addLayer(new SymbolLayer(ICON_LAYER_ID, ICON_SOURCE_ID).withProperties(
+                iconImage(RED_PIN_ICON_ID),
+                iconIgnorePlacement(true),
+                iconAllowOverlap(true),
+                iconOffset(new Float[]{0f, -9f})));
+    }
+
+    private void initSource(@NonNull Style loadedMapStyle) {
+
+        loadedMapStyle.addSource(new GeoJsonSource(ROUTE_SOURCE_ID));
+
+        GeoJsonSource iconGeoJsonSource = new GeoJsonSource(ICON_SOURCE_ID, FeatureCollection.fromFeatures(new Feature[]{
+                Feature.fromGeometry(Point.fromLngLat(origin.longitude(), origin.latitude())),
+                Feature.fromGeometry(Point.fromLngLat(destination.longitude(), destination.latitude()))}));
+        loadedMapStyle.addSource(iconGeoJsonSource);
 
 
-           /* private void initSearchDab() {
-                findViewById(R.id.fab_direction_search).setOnClickListener(new View.OnClickListener() {
-                   /* @Override
-                    public void onClick(View view) {
-                        Intent intent = new NavigationMapRoute.Builder()
-                                .accessToken(Mapbox.getAccessToken() != null ? Mapbox.getAccessToken() : getString(R.string.access_token))
+    }
 
 
+    private void initSearchDirections() {
+        findViewById(R.id.fab_direction_search).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-                    }
 
-                });
-            }*/
+            }
+
+        });
+    }
 
 
     private void initSearchFab() {
@@ -228,7 +319,6 @@ public class MainActivityHome extends AppCompatActivity implements
                 .properties(new JsonObject())
                 .build();
     }
-
 
     private void setUpSource(@NonNull Style loadedMapStyle) {
         loadedMapStyle.addSource(new GeoJsonSource(geojsonSourceLayerId));
@@ -272,6 +362,72 @@ public class MainActivityHome extends AppCompatActivity implements
             }
         }
     }
+
+    /**
+     * Make a request to the Mapbox Directions API. Once successful, pass the route to the
+     * route layer.
+     *
+     * @param mapboxMap   the Mapbox map object that the route will be drawn on
+     * @param origin      the starting point of the route
+     * @param destination the desired finish point of the route
+     */
+    private void getRoute(MapboxMap mapboxMap, Point origin, Point destination) {
+        client = MapboxDirections.builder()
+                .origin(origin)
+                .destination(destination)
+                .overview(DirectionsCriteria.OVERVIEW_FULL)
+                .profile(DirectionsCriteria.PROFILE_DRIVING)
+                .accessToken(getString(R.string.access_token))
+                .build();
+
+        client.enqueueCall(new Callback<DirectionsResponse>() {
+            @Override
+            public void onResponse(Call<DirectionsResponse> call, Response<DirectionsResponse> response) {
+// You can get the generic HTTP info about the response
+                Timber.d("Response code: " + response.code());
+                if (response.body() == null) {
+                    Timber.e("No routes found, make sure you set the right user and access token.");
+                    return;
+                } else if (response.body().routes().size() < 1) {
+                    Timber.e("No routes found");
+                    return;
+                }
+
+// Get the directions route
+                currentRoute = response.body().routes().get(0);
+
+// Make a toast which displays the route's distance
+              /*  Toast.makeText(MainActivityHome.this, String.format(
+                        getString(R.string.directions_activity_toast_message),
+                        currentRoute.distance()), Toast.LENGTH_SHORT).show();*/
+
+                if (mapboxMap != null) {
+                    mapboxMap.getStyle(new Style.OnStyleLoaded() {
+                        @Override
+                        public void onStyleLoaded(@NonNull Style style) {
+
+// Retrieve and update the source designated for showing the directions route
+                            GeoJsonSource source = style.getSourceAs(ROUTE_SOURCE_ID);
+
+// Create a LineString with the directions route's geometry and
+// reset the GeoJSON source for the route LineLayer source
+                            if (source != null) {
+                                source.setGeoJson(LineString.fromPolyline(currentRoute.geometry(), PRECISION_6));
+                            }
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DirectionsResponse> call, Throwable throwable) {
+                Timber.e("Error: " + throwable.getMessage());
+                Toast.makeText(MainActivityHome.this, "Error: " + throwable.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
 
     @SuppressWarnings({"MissingPermission"})
@@ -363,18 +519,23 @@ public class MainActivityHome extends AppCompatActivity implements
 
     @Override
     public boolean onMapClick(@NonNull LatLng point) {
-        CameraPosition position = new CameraPosition.Builder()
-                .target(new LatLng(51.50550, -0.07520)) // Sets the new camera position
-                .zoom(17) // Sets the zoom
-                .bearing(180) // Rotate the camera
-                .tilt(30) // Set the camera tilt
-                .build(); // Creates a CameraPosition from the builder
+       /* CameraPosition position = new CameraPosition.Builder()
+                .target(new LatLng(51.50550, -0.07520))
+                .zoom(30)
+                .bearing(180)
+                .tilt(30)
+                .build();
 
         mapboxMap.animateCamera(CameraUpdateFactory
-                .newCameraPosition(position), 7000);
-
+                .newCameraPosition(position), 7000);*/
         return true;
     }
 
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+
+        return false;
+    }
 }

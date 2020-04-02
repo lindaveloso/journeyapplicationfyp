@@ -40,14 +40,14 @@ public class SearchActivity_Train extends AppCompatActivity {
             window.setStatusBarColor(
                     ContextCompat.getColor(
                             getApplicationContext(),
-                            R.color.luas_purple_statusbar
+                            R.color.system
                     )
             );
 
             window.setNavigationBarColor(
                     ContextCompat.getColor(
                             getApplicationContext(),
-                            R.color.luas_purple_statusbar
+                            R.color.system
                     ));
         }
         PageAdapterClass2 tabsPagerAdapter = new PageAdapterClass2(this, getSupportFragmentManager());

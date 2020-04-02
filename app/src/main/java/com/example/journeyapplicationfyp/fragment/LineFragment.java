@@ -24,10 +24,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.journeyapplicationfyp.Constant;
 import com.example.journeyapplicationfyp.R;
-import com.example.journeyapplicationfyp.util.Analytics;
-import com.example.journeyapplicationfyp.util.Preferences;
-import com.example.journeyapplicationfyp.util.Settings;
-import com.example.journeyapplicationfyp.util.StopForecastUtil;
 import com.example.journeyapplicationfyp.activity.NotifyTimeActivity;
 import com.example.journeyapplicationfyp.activity.NotifyTimesMap;
 import com.example.journeyapplicationfyp.api.ApiMethods;
@@ -35,6 +31,10 @@ import com.example.journeyapplicationfyp.api.ApiTimes;
 import com.example.journeyapplicationfyp.object.EnglishGaeilgeMap;
 import com.example.journeyapplicationfyp.object.StopForecast;
 import com.example.journeyapplicationfyp.object.StopNameIdMap;
+import com.example.journeyapplicationfyp.util.Analytics;
+import com.example.journeyapplicationfyp.util.Preferences;
+import com.example.journeyapplicationfyp.util.Settings;
+import com.example.journeyapplicationfyp.util.StopForecastUtil;
 import com.example.journeyapplicationfyp.view.SpinnerCardView;
 import com.example.journeyapplicationfyp.view.StatusCardView;
 import com.example.journeyapplicationfyp.view.StopForecastCardView;
@@ -97,7 +97,6 @@ public class LineFragment extends Fragment {
     public static LineFragment newInstance(String line) {
         LineFragment lineFragment = new LineFragment();
         Bundle bundle = new Bundle();
-
         bundle.putInt(Constant.RES_ARRAY_STOPS_RED_LINE, R.array.array_stops_redline);
         bundle.putInt(Constant.RES_ARRAY_STOPS_GREEN_LINE, R.array.array_stops_greenline);
 
@@ -121,7 +120,6 @@ public class LineFragment extends Fragment {
                 );
 
                 break;
-
             case Constant.GREEN_LINE:
                 bundle.putString(Constant.LINE, Constant.GREEN_LINE);
                 bundle.putInt(Constant.RES_LAYOUT_FRAGMENT_LINE, R.layout.tab_greenline);
@@ -143,19 +141,15 @@ public class LineFragment extends Fragment {
                 break;
 
             default:
-                /* If for some reason the line doesn't make sense. */
                 Log.wtf(LineFragment.class.getSimpleName(), "Invalid line specified.");
         }
-
         lineFragment.setArguments(bundle);
-
         return lineFragment;
     }
 
     @Override
     public void onAttach(Context c) {
         super.onAttach(c);
-
         context = c;
     }
 
@@ -163,54 +157,30 @@ public class LineFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        initFragmentVars();
-
+        initFragmentVariables();
         setHasOptionsMenu(true);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        /* Inflate the layout for this fragment. */
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(resLayoutFragmentLine, container, false);
-
-        /* Initialise correct locale. */
         localeDefault = Locale.getDefault().toString();
-
-        /* Instantiate a new StopNameIdMap. */
         mapStopNameId = new StopNameIdMap(localeDefault);
-
         if (isAdded()) {
             isInitialised = initFragment();
         }
-
-        /*
-         * If an Intent did not bring us to this Activity and there is a stop name saved in shared
-         * preferences, load that stop.
-         * This provides persistence to the app across shutdowns.
-         */
         if (!getActivity().getIntent().hasExtra(Constant.STOP_NAME)) {
             if (Preferences.selectedStopName(context, Constant.NO_LINE) != null) {
                 String stopName = Preferences.selectedStopName(context, Constant.NO_LINE);
-
                 setTabAndSpinner(stopName);
             }
         }
-
-       // imageViewBottomNavAlerts =
-               // getActivity().findViewById(R.id.imageview_bottomnav_alerts);
-        //textViewBottomNavAlerts =
-               // getActivity().findViewById(R.id.textview_bottomnav_alerts);
-
         return rootView;
     }
 
     @Override
     public void onPause() {
         super.onPause();
-
-        /* Stop the auto-reload TimerTask. */
-        timerTaskReload.cancel();
     }
 
     @Override
@@ -298,10 +268,8 @@ public class LineFragment extends Fragment {
         this.isVisibleToUser = isVisibleToUser;
 
         if (isInitialised) {
-            /* If the Spinner's selected item is "Select a stop...", get out of here. */
             if (spinnerCardView.getSpinnerStops().getSelectedItemPosition() == 0) {
                 Log.i(LOG_TAG, "Spinner selected item is \"Select a stop...\"");
-
                 return;
             }
 
@@ -328,25 +296,17 @@ public class LineFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-
-        /* Set the menu to a class variable for easy manipulation. */
         this.menu = menu;
-
-        /* Inflate the menu; this adds items to the action bar if it is present. */
         inflater.inflate(resMenuLine, menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Settings.getSettings(context, item);
-
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * Initialise local variables for this Fragment instance.
-     */
-    private void initFragmentVars() {
+    private void initFragmentVariables() {
         resArrayStopsRedLine = getArguments().getInt(Constant.RES_ARRAY_STOPS_RED_LINE);
         resArrayStopsGreenLine = getArguments().getInt(Constant.RES_ARRAY_STOPS_GREEN_LINE);
         line = getArguments().getString(Constant.LINE);
@@ -368,9 +328,7 @@ public class LineFragment extends Fragment {
      */
     private boolean initFragment() {
         tabLayout = getActivity().findViewById(R.id.tablayout);
-
         progressBar = rootView.findViewById(resProgressBar);
-
         setIsLoading(false);
 
         /* Set up Spinner and onItemSelectedListener. */
@@ -888,11 +846,6 @@ public class LineFragment extends Fragment {
                         Log.e(LOG_TAG, "Reason: " + retrofitError.getResponse().getReason());
                     }
                 }
-
-                /*
-                 * If we don't receive a message or response, we can still get an idea of what's
-                 * going on by getting the "kind" of error.
-                 */
                 if (retrofitError.getKind() != null) {
                     Log.e(LOG_TAG, "Kind: " + retrofitError.getKind().toString());
                 }
@@ -905,7 +858,6 @@ public class LineFragment extends Fragment {
             }
         };
 
-        /* Call API and get stop forecast from server. */
         methods.getStopForecast(
                 API_ACTION,
                 API_VER,
@@ -1129,10 +1081,6 @@ public class LineFragment extends Fragment {
                 }
             }
         } else {
-            /*
-             * If no stop forecast can be retrieved, set a generic error message and
-             * change the color of the message title box red.
-             */
             statusCardView.setStatus(
                     getString(R.string.message_error)
             );

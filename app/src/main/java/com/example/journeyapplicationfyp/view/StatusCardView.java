@@ -17,29 +17,21 @@ public class StatusCardView extends CardView {
 
     public StatusCardView(Context context) {
         super(context);
-
         init(context);
     }
 
     public StatusCardView(Context context, AttributeSet attrs) {
         super(context, attrs);
-
         init(context);
     }
 
     public StatusCardView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
         init(context);
     }
 
-    /**
-     * Initialise custom View.
-     * @param context Context.
-     */
     public void init(Context context) {
         inflate(context, R.layout.cardview_status, this);
-
         textViewStatusTitle = findViewById(R.id.textview_status_title);
         textViewStatus = findViewById(R.id.textview_status);
     }

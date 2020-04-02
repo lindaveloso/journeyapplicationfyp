@@ -26,36 +26,44 @@
         <activity android:name=".activity.MainActivityHome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-
-        <activity android:name=".activity.SearchActivity_Train"
-            android:exported="true">
-
-        </activity>
-
-        <activity android:name=".activity.SearchActivity_Bus"
-            android:label="@string/TitleWhichYouWantToDisplay"
+        <activity
+            android:name=".activity.SearchActivity_Train"
+            android:label="Train"
             android:exported="true">
 
         </activity>
 
         <activity
+            android:name=".activity.SearchActivity_Bus"
+            android:exported="true"
+            android:label="@string/TitleWhichYouWantToDisplay">
+
+        </activity>
+
+        <activity
             android:name=".activity.SearchActivity_Tram"
+            android:label="Tram"
             android:exported="true">
 
         </activity>
 
-        <activity android:name=".activity.MapActivity_Routesnv">
+        <activity android:name=".fragment.Timetable_fragment">
 
         </activity>
 
-        <activity android:name=".activity.Activity_busresults">
+        <activity
+            android:name=".activity.Activity_busresults"
+            android:label="Dublin Bus">
 
         </activity>
+
+
     </application>
 
 </manifest>

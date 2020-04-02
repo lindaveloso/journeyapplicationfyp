@@ -5,40 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <androidx.appcompat.widget.SearchView
-
-        android:id="@+id/search1"
-        android:layout_width="match_parent"
-        android:layout_height="47dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="0dp"
-        android:background="@drawable/customsearchbox"
-        android:focusable="false"
-        android:iconifiedByDefault="false"
-        app:queryHint="WHERE ARE YOU GOING?" />
-
-
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/search2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/search1"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
-        android:background="@drawable/customsearchbox"
-        android:focusable="false"
-        android:iconifiedByDefault="false"
-        app:queryHint="DESTINATION" />
-
     <FrameLayout
         android:id="@+id/Frame_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/BNV"
         android:layout_marginBottom="-3dp">
-
 
         <com.mapbox.mapboxsdk.maps.MapView
             android:id="@+id/mapView"
@@ -77,13 +49,14 @@
         </com.mapbox.mapboxsdk.maps.MapView>
     </FrameLayout>
 
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/BNV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/nav"
-        app:labelVisibilityMode="labeled"
         app:itemTextColor="@color/navtextcolor"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/navigationbottom_menu" />
 </RelativeLayout>

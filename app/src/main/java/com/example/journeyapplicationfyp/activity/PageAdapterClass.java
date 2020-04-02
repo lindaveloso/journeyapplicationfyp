@@ -15,7 +15,6 @@ public class PageAdapterClass extends FragmentStatePagerAdapter {
         numTabs = n;
     }
 
-
     @Override
     public Fragment getItem(int position) {
         switch (position) {

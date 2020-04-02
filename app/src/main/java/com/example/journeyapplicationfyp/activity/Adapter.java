@@ -28,6 +28,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         mListener = listener;
     }
 
+    public void update(ArrayList<Bus> bList) {
+        bList.clear();
+        bList.addAll(bList);
+        notifyDataSetChanged();
+    }
+
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -41,8 +47,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         holder.txt1.setText(bus.getRoutE());
         holder.txt2.setText(bus.getDestinatioN());
         holder.txt3.setText(bus.getDueT());
-
-
     }
 
     @Override
@@ -63,7 +67,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
             txt1 = itemView.findViewById(R.id.txt1);
             txt2 = itemView.findViewById(R.id.txt2);
             txt3 = itemView.findViewById(R.id.txt3);
-
 
             itemView.setOnClickListener(new View.OnClickListener
                     () {

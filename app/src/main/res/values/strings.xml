@@ -47,6 +47,9 @@
     <string name="text_3"> MAP "</string>
 
 
+    <!-- Search -->
+
+
     <!--
        Main UI
    -->
@@ -78,12 +81,12 @@
         (\u2605) button at the bottom of the screen? That lets you save your favourite stops for
         quick access. Try tapping it now.
     </string>
-    <string name="inbound">Inbound</string>
-    <string name="outbound">Outbound</string>
+    <string name="inbound">INBOUND</string>
+    <string name="outbound">OUTBOUND</string>
     <string name="due">DUE</string>
     <string name="min">min</string>
     <string name="mins">mins</string>
-    <string name="no_trams_forecast"><b>No trams forecast</b></string>
+    <string name="no_trams_forecast"><b>NO TRAMS TO FORCAST</b></string>
     <string name="no_trams_forecast_short"><b>No trams</b></string>
     <string name="bottomnav_map_short">Map</string>
     <string name="bottomnav_favourites_short">Fav\'s</string>
@@ -267,6 +270,95 @@
         <item>41</item>
     </string-array>
 
+    <string-array name="array_dart_stops">
+        <item>Select a stop\u2026</item>
+        <item>Bayside</item>
+        <item>Blackrock</item>
+        <item>Booterstown</item>
+        <item>Bray</item>
+        <item>Clongriffin</item>
+        <item>Clontarf Road</item>
+        <item>Dalkey</item>
+        <item>Dublin Connolly</item>
+        <item>Dublin Pearse</item>
+        <item>Howth</item>
+        <item>Howth Junction</item>
+        <item>Kilbarrack</item>
+        <item>Kilcock</item>
+        <item>Kicoole</item>
+        <item>Killiney</item>
+        <item>Landsdowne Road</item>
+        <item>Malahide</item>
+        <item>Portmarnock</item>
+        <item>Raheny</item>
+        <item>Bayside</item>
+        <item>Bayside</item>
+        <item>Bayside</item>
+        <item>Shankill</item>
+        <item>Sutton</item>
+        <item>Sydney Parade</item>
+        <item>Tara Street</item>
+
+    </string-array>
+
+    <string-array name="array_suburban_stops">
+        <item>Select a stop\u2026</item>
+        <item>Adamstown</item>
+        <item>Ashtown</item>
+        <item>Balbriggan</item>
+        <item>Bayside</item>
+        <item>Blackrock</item>
+        <item>Booterstown</item>
+        <item>Bray</item>
+        <item>Broombridge</item>
+        <item>Castleknock</item>
+        <item>Clondalkin</item>
+        <item>Clonsilla</item>
+        <item>Clontarf Road</item>
+        <item>Coolmine</item>
+        <item>Dalkey</item>
+        <item>Docklands</item>
+        <item>Donabate</item>
+        <item>Drumcondra</item>
+        <item>Dublin Connolly</item>
+        <item>Dublin Heuston</item>
+        <item>Dublin Pearse</item>
+        <item>Dun Laoghaire</item>
+        <item>Dunboyne</item>
+        <item>Glenageary</item>
+        <item>Grand Canal Dock</item>
+        <item>Greystones</item>
+        <item>Hansfield</item>
+        <item>Harmonstown</item>
+        <item>Hazelhatch</item>
+        <item>Howth</item>
+        <item>Howth Junction</item>
+        <item>Kilbarrack</item>
+        <item>Kilcock</item>
+        <item>Kicoole</item>
+        <item>Killiney</item>
+        <item>Landsdowne Road</item>
+        <item>Leixlip (Confey)</item>
+        <item>Leixlip(Louisa Bridge)</item>
+        <item>M3 Parkway</item>
+        <item>Malahide</item>
+        <item>Navan Road Parkway</item>
+        <item>Park West</item>
+        <item>Park West and Cherry Orchard</item>
+        <item>Portmarnock</item>
+        <item>Raheny</item>
+        <item>Rush and Lusk</item>
+        <item>Sallins</item>
+        <item>Salthill and Monkstown</item>
+        <item>Sandycove</item>
+        <item>Seapoint</item>
+        <item>Shankill</item>
+        <item>Skerries</item>
+        <item>Sutton</item>
+        <item>Sydney Parade</item>
+        <item>Tara Street</item>
+        <item>Woodbrook</item>
+    </string-array>
 
     <string-array name="array_mainline_stops">
         <item>Select a stop\u2026</item>

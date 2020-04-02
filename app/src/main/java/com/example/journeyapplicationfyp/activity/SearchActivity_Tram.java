@@ -23,30 +23,15 @@ public class SearchActivity_Tram extends AppCompatActivity {
     BottomNavigationView bottomNavigationView1;
     Toolbar toolbar;
 
+    public SearchActivity_Tram() {
+        /* Required empty public constructor. */
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tram);
         bottomNavigationView1 = findViewById(R.id.BNV);
-
-      /*  if (Build.VERSION.SDK_INT >= 21) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(
-                    ContextCompat.getColor(
-                            getApplicationContext(),
-                            R.color.luas_purple_statusbar
-                    )
-            );
-
-            window.setNavigationBarColor(
-                    ContextCompat.getColor(
-                            getApplicationContext(),
-                            R.color.luas_purple_statusbar
-                    ));
-        }*/
-
         final ViewPager viewPager = findViewById(R.id.viewpager);
         final TabLayout tabLayout = findViewById(R.id.tablayout);
 
@@ -66,7 +51,7 @@ public class SearchActivity_Tram extends AppCompatActivity {
                     ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary)
             );
 
-            tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                 @Override
                 public void onTabSelected(TabLayout.Tab tab) {
                     viewPager.setCurrentItem(tab.getPosition());

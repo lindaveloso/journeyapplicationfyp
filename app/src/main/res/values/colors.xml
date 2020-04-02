@@ -2,6 +2,7 @@
 <resources>
     <color name="colorPrimary">#3373CA</color>
     <color name="colorPrimaryDark">#00574B</color>
+    <color name="system">#2B548B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="nav">#FFFFFF</color>
     <color name="navtextcolor">#020202</color>
@@ -29,7 +30,7 @@
 
     <color name="favourites_yellow">#fffdd835</color>
     <color name="listview_divider">#ffe0e0e0</color>
-    <color name="luas_purple">#6DDA78</color>
+    <color name="luas_purple">#3373CA</color>
 
 
     <color name="luas_purple_statusbar">#131313</color>

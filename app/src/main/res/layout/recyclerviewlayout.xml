@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <RelativeLayout
         android:layout_width="401dp"
         android:layout_height="719dp"
@@ -81,6 +82,21 @@
             android:textSize="15dp"
             android:textStyle="bold" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/refreshbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/BNV"
+            android:layout_gravity="bottom|end|top"
+            android:layout_marginStart="203dp"
+            android:layout_marginTop="380dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="34dp"
+            android:layout_toEndOf="@+id/accesib"
+            android:tint="@android:color/white"
+            app:backgroundTint="@color/colorPrimary"
+            app:srcCompat="@drawable/refresh" />
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/BNV"
             android:layout_width="match_parent"
@@ -90,6 +106,7 @@
             app:itemTextColor="@color/navtextcolor"
             app:labelVisibilityMode="labeled"
             app:menu="@menu/navigationbottom_menu" />
+
 
     </RelativeLayout>
 

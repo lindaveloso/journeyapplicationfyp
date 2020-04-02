@@ -23,34 +23,23 @@ public class StopForecastCardView extends CardView {
 
     public StopForecastCardView(Context context) {
         super(context);
-
         init(context);
     }
 
     public StopForecastCardView(Context context, AttributeSet attrs) {
         super(context, attrs);
-
         init(context);
     }
 
     public StopForecastCardView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
         init(context);
     }
 
-
-
-    /**
-     * Initialise custom View.
-     * @param context Context.
-     */
     public void init(Context context) {
         View view = inflate(context, R.layout.cardview_stop_forecast, this);
-
         textViewDirection = findViewById(R.id.textview_direction);
-
-        tableRowStops = new TableRow[] {
+        tableRowStops = new TableRow[]{
                 findViewById(R.id.tablerow_stop1),
                 findViewById(R.id.tablerow_stop2),
                 findViewById(R.id.tablerow_stop3),
@@ -58,8 +47,7 @@ public class StopForecastCardView extends CardView {
                 findViewById(R.id.tablerow_stop5),
                 findViewById(R.id.tablerow_stop6)
         };
-
-        textViewStopNames = new TextView[] {
+        textViewStopNames = new TextView[]{
                 findViewById(R.id.textview_stop1_name),
                 findViewById(R.id.textview_stop2_name),
                 findViewById(R.id.textview_stop3_name),
@@ -67,8 +55,7 @@ public class StopForecastCardView extends CardView {
                 findViewById(R.id.textview_stop5_name),
                 findViewById(R.id.textview_stop6_name)
         };
-
-        textViewStopTimes = new TextView[] {
+        textViewStopTimes = new TextView[]{
                 findViewById(R.id.textview_stop1_time),
                 findViewById(R.id.textview_stop2_time),
                 findViewById(R.id.textview_stop3_time),
@@ -76,14 +63,9 @@ public class StopForecastCardView extends CardView {
                 findViewById(R.id.textview_stop5_time),
                 findViewById(R.id.textview_stop6_time)
         };
-
         adjustTableRowsByScreenDensity(view);
     }
 
-    /**
-     * Adjust the number of TableRows based on the user's screen density in DPI.
-     * @param view View.
-     */
     private void adjustTableRowsByScreenDensity(View view) {
         float screenHeightDp = Preferences.screenHeight(getContext());
 
@@ -111,9 +93,6 @@ public class StopForecastCardView extends CardView {
         }
     }
 
-    /**
-     * Clear the stop forecast.
-     */
     public void clearStopForecast() {
         for (int i = 0; i < 6; i++) {
             textViewStopNames[i].setText("");

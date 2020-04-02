@@ -1,75 +1,53 @@
 package com.example.journeyapplicationfyp.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.journeyapplicationfyp.R;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.journeyapplicationfyp.activity.SearchActivity;
 
 public class Mainline_Fragment extends Fragment {
-    //private Mainline_Fragment dart_fragment;
     private Spinner spinner1;
 
     public Mainline_Fragment() {
 
     }
-
-
     public static Mainline_Fragment  newInstance() {
         return new Mainline_Fragment();
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.tab_mainline, container, false);
+        return root;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        spinner1 = (Spinner) getActivity().findViewById(R.id.spinner1);
-        SimpleSpinner();
-        addListenerOnSpinnerItemSelection();
-
-
-    }
-
-    private void SimpleSpinner() {
-        List<String> list = new ArrayList<String>();
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_spinner_dropdown_item, list);
-
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        spinner1 = getActivity().findViewById(R.id.spinner1);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.tab_mainline, container, false);
-
-        return root;
-    }
-
-    private void addListenerOnSpinnerItemSelection() {
-        spinner1 = (Spinner) getActivity().findViewById(R.id.spinner1);
-        spinner1.setOnItemSelectedListener(new CustomOnItemSelectedListener());
-    }
-
-    private class CustomOnItemSelectedListener implements android.widget.AdapterView.OnItemSelectedListener {
-        @Override
-        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            String station = parent.getItemAtPosition(position).toString();
-
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                startActivity(new Intent(getActivity(), SearchActivity.class));
+                return true;
         }
 
-        @Override
-        public void onNothingSelected(AdapterView<?> parent) {
-
-        }
+        return super.onOptionsItemSelected(item);
     }
 
 
@@ -141,6 +119,19 @@ public class Mainline_Fragment extends Fragment {
         //textview
         // txt.setText(builder.toString());
     }*/
+
+    private class OnItemSelectedListener implements android.widget.AdapterView.OnItemSelectedListener {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            String station = parent.getItemAtPosition(position).toString();
+
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    }
 
 }
 
