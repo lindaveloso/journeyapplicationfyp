@@ -1,6 +1,8 @@
 package com.example.journeyapplicationfyp;
 
-import com.example.journeyapplicationfyp.activity.FaresActivity;
+//import com.example.journeyapplicationfyp.activity.FaresActivity;
+
+import com.example.journeyapplicationfyp.fragment.Fragment_Faresv;
 
 public final class Constant {
     //JSON URL
@@ -39,7 +41,7 @@ public final class Constant {
     /*
      * Classes.
      */
-    public static final Class CLASS_FARES_ACTIVITY = FaresActivity.class;
+    public static final Class CLASS_FARES_ACTIVITY = Fragment_Faresv.class;
     //public static final Class CLASS_FAVOURITES_ACTIVITY = FavouritesActivity.class;
    // public static final Class CLASS_MAIN_ACTIVITY = MainActivity.class;
    // public static final Class CLASS_MAPS_ACTIVITY = MapsActivity.class;
@@ -72,6 +74,7 @@ public final class Constant {
     /*
      * Resources.
      */
+
     public static final String RES_LAYOUT_FRAGMENT_LINE = "resLayoutFragmentLine";
     public static final String RES_MENU_LINE = "resMenuLine";
     public static final String RES_PROGRESSBAR = "resProgressBar";
@@ -90,6 +93,8 @@ public final class Constant {
     public static final String TUTORIAL_SELECT_STOP = "select_stop";
     public static final String TUTORIAL_NOTIFICATIONS = "notifications";
     public static final String TUTORIAL_FAVOURITES = "favourites";
+    public static final String RES_MAIN_STOP = "favourites";
+    public static final String RES_MAIN_SUB = "favourites";
 }
 
 

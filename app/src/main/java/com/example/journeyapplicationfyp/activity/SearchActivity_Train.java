@@ -103,12 +103,6 @@ public class SearchActivity_Train extends AppCompatActivity {
             case android.R.id.home:
                 onBackPressed();
                 return true;
-
-            /*case R.id.signmeout:
-                FirebaseAuth.getInstance().signOut();
-                finish();
-                startActivity(new Intent(this, MainActivityLogin.class));
-                return true;*/
         }
 
         return super.onOptionsItemSelected(item);

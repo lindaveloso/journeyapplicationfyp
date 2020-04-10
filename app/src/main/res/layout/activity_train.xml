@@ -16,6 +16,7 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tablayout"
             android:layout_width="match_parent"
+            app:tabSelectedTextColor="@color/ROUTE"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
             app:tabTextAppearance="@style/MyTabLayoutTextAppearance"

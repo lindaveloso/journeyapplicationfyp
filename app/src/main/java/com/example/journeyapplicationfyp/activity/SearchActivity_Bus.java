@@ -37,9 +37,14 @@ public class SearchActivity_Bus extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         bottomNavigationView1 = findViewById(R.id.BNV);
+
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
         DisplayOption1();
+
         Button search_button = findViewById(R.id.search_button);
         search_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,15 +107,9 @@ public class SearchActivity_Bus extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            /*case android.R.id.home:
+            case android.R.id.home:
                 onBackPressed();
-                return true;*/
-
-           /* case R.id.signmeout:
-                FirebaseAuth.getInstance().signOut();
-                finish();
-                //startActivity(new Intent(this, MainActivityLogin.class));
-                return true;*/
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

@@ -148,7 +148,7 @@
     <string name="fares_title_destination">Destination</string>
     <string name="fares_title_adults">Adults</string>
     <string name="fares_title_children">Children</string>
-    <string name="fares_zero">€0.00</string>
+    <string name="default_amount">€0.00</string>
 
     <!--
         Favourites
@@ -301,6 +301,7 @@
 
     </string-array>
 
+
     <string-array name="array_suburban_stops">
         <item>Select a stop\u2026</item>
         <item>Adamstown</item>
@@ -359,6 +360,7 @@
         <item>Tara Street</item>
         <item>Woodbrook</item>
     </string-array>
+
 
     <string-array name="array_mainline_stops">
         <item>Select a stop\u2026</item>

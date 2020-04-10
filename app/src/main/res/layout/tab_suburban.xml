@@ -19,7 +19,7 @@
         android:layout_height="43dp">
 
         <Spinner
-            android:id="@+id/spinner2"
+            android:id="@+id/suburban_spinner"
             android:layout_width="3dp"
             android:layout_height="3dp"
             android:entries="@array/array_suburban_stops" />

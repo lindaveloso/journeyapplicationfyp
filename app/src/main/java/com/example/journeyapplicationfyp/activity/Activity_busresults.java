@@ -32,6 +32,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class Activity_busresults extends AppCompatActivity {
+
     private ArrayList<Bus> bList;
     private RecyclerView mRecyclerView;
     private Adapter adapter;
@@ -46,12 +47,14 @@ public class Activity_busresults extends AppCompatActivity {
 
         Intent intent = getIntent();
         String url = intent.getStringExtra("link");
+
         bList = new ArrayList<>();
         mRequestQueue = Volley.newRequestQueue(this);
         mRecyclerView = findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(mRecyclerView.getContext(), DividerItemDecoration.VERTICAL));
+
         refreshbutton = findViewById(R.id.refreshbutton);
         refreshbutton.setOnClickListener(new View.OnClickListener() {
             @Override

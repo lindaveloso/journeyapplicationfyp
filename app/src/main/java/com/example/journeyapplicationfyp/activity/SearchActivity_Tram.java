@@ -31,7 +31,11 @@ public class SearchActivity_Tram extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tram);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         bottomNavigationView1 = findViewById(R.id.BNV);
+
         final ViewPager viewPager = findViewById(R.id.viewpager);
         final TabLayout tabLayout = findViewById(R.id.tablayout);
 
@@ -67,6 +71,7 @@ public class SearchActivity_Tram extends AppCompatActivity {
             });
 
             final PageAdapterClass pagerAdapter = new PageAdapterClass(
+                    getApplicationContext(),
                     getSupportFragmentManager(),
                     tabLayout.getTabCount()
             );
@@ -90,13 +95,13 @@ public class SearchActivity_Tram extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch ((item.getItemId())) {
-           /* case R.id.signmeout:
-                FirebaseAuth.getInstance().signOut();
-                finish();
-                startActivity(new Intent(this, MainActivityLogin.class));
-                break;*/
+            case android.R.id.home:
+                onBackPressed();
+                return true;
         }
-        return true;
+
+
+        return super.onOptionsItemSelected(item);
     }
 
 

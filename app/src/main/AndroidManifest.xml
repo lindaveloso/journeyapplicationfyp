@@ -42,7 +42,7 @@
         <activity
             android:name=".activity.SearchActivity_Bus"
             android:exported="true"
-            android:label="@string/TitleWhichYouWantToDisplay">
+            android:label="Search">
 
         </activity>
 

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
@@ -60,7 +61,7 @@ public class SearchActivity extends Fragment implements View.OnClickListener {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("RTPI");
         getActivity().findViewById(R.id.card3).setOnClickListener(this);
         getActivity().findViewById(R.id.card2).setOnClickListener(this);
         getActivity().findViewById(R.id.card1).setOnClickListener(this);

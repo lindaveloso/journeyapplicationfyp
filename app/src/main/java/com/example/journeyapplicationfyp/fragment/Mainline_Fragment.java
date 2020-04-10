@@ -7,36 +7,71 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.journeyapplicationfyp.R;
 import com.example.journeyapplicationfyp.activity.SearchActivity;
 
 public class Mainline_Fragment extends Fragment {
-    private Spinner spinner1;
+
+    private Spinner tab_mainline_spinner;
+    private String selectedStop = null;
+    private String url = "http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc";
+    private String station = "";
+    private String fullurl = "";
+
 
     public Mainline_Fragment() {
 
     }
-    public static Mainline_Fragment  newInstance() {
+
+    public static Mainline_Fragment newInstance() {
         return new Mainline_Fragment();
     }
 
-
+    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.tab_mainline, container, false);
-        return root;
+        View rootView = inflater.inflate(R.layout.tab_mainline, container, false);
+        tab_mainline_spinner = rootView.findViewById(R.id.tab_mainline_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(), R.array.array_mainline_stops, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tab_mainline_spinner.setAdapter(adapter);
+        initspinnerfooter();
+        // (AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        return rootView;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        spinner1 = getActivity().findViewById(R.id.spinner1);
+    private void initspinnerfooter() {
+
+        tab_mainline_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = parent.getItemAtPosition(position).toString();
+                switch (parent.getId()) {
+                    case R.id.tab_mainline_spinner:
+                        //make sure the animal was already selected during the onCreate
+                        if (selectedStop != null) {
+                            Toast.makeText(parent.getContext(), "STOP selected is " + selectedItem,
+                                    Toast.LENGTH_LONG).show();
+                        }
+                        selectedStop = selectedItem;
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+
+        });
     }
 
     @Override
@@ -46,14 +81,15 @@ public class Mainline_Fragment extends Fragment {
                 startActivity(new Intent(getActivity(), SearchActivity.class));
                 return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
+}
+
+
 
 
   /*  private void LoadIrishRail() {
         XmlPullParserFactory xmlPullParserFactory;
-
         try {
             xmlPullParserFactory = XmlPullParserFactory.newInstance();
             XmlPullParser xmlPullParser = xmlPullParserFactory.newPullParser();
@@ -61,35 +97,27 @@ public class Mainline_Fragment extends Fragment {
             xmlPullParser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
             xmlPullParser.setInput(inputStream, null);
             Parseme(xmlPullParser);
-
         } catch (XmlPullParserException e) {
             e.printStackTrace();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
     private void Parseme(XmlPullParser xmlPullParser) throws IOException, XmlPullParserException {
         ArrayList<Train> trains = new ArrayList<>();
         int eventType = xmlPullParser.getEventType();
-
         Train currentTrain = null;
         while (eventType != XmlPullParser.END_DOCUMENT) {
             String name = null;
-
             switch (eventType) {
                 case XmlPullParser.START_DOCUMENT:
                     trains = new ArrayList();
                     break;
                 case XmlPullParser.START_TAG:
                     name = xmlPullParser.getName();
-
                     if ("objTrainPositions".equals(name)) {
                         // currentTrain = new Train(direction, publicMessage, trainStatus);
                         trains.add(currentTrain);
-
-
                     } else if (currentTrain != null) {
                         if ("direction".equals(name)) {
                             currentTrain.direction = xmlPullParser.nextText();
@@ -101,16 +129,12 @@ public class Mainline_Fragment extends Fragment {
                     }
                     break;
             }
-
             eventType = xmlPullParser.next();
         }
-
         //  printPlayers(players);
     }
-
     private void printPlayers(ArrayList<Train> trains) {
         StringBuilder builder = new StringBuilder();
-
         for (Train train : trains) {
             builder.append(train.TrainStatus).append("\n").
                     append(train.direction).append("\n").
@@ -120,19 +144,10 @@ public class Mainline_Fragment extends Fragment {
         // txt.setText(builder.toString());
     }*/
 
-    private class OnItemSelectedListener implements android.widget.AdapterView.OnItemSelectedListener {
-        @Override
-        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            String station = parent.getItemAtPosition(position).toString();
+   /* }
 
-        }
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
-        @Override
-        public void onNothingSelected(AdapterView<?> parent) {
-
-        }
-    }
-
-}
-
+    }*/
 

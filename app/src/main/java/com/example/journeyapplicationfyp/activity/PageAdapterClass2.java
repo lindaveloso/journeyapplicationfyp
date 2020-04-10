@@ -32,10 +32,10 @@ public class PageAdapterClass2 extends FragmentStatePagerAdapter {
                 return new Mainline_Fragment();
 
             case 1:
-                return new Suburban_Fragment();
+                return new Dart_Fragment();
 
             case 2:
-                return new Dart_Fragment();
+                return new Suburban_Fragment();
 
             default:
 
