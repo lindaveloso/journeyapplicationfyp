@@ -14,6 +14,17 @@
         android:layout_height="wrap_content"
         android:indeterminateOnly="true" />
 
+    <TextView
+        android:id="@+id/txt1"
+        android:layout_width="400dp"
+        android:layout_height="45dp" />
+
+    <TextView
+        android:id="@+id/txt2"
+        android:layout_width="400dp"
+        android:layout_height="45dp" />
+
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="43dp">
@@ -23,6 +34,8 @@
             android:layout_width="3dp"
             android:layout_height="3dp"
             android:entries="@array/array_mainline_stops" />
+
+
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 

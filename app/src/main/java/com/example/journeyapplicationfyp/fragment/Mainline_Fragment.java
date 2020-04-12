@@ -9,21 +9,26 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.journeyapplicationfyp.Data;
 import com.example.journeyapplicationfyp.R;
+import com.example.journeyapplicationfyp.activity.Handlexml;
 import com.example.journeyapplicationfyp.activity.SearchActivity;
+
+import java.util.List;
 
 public class Mainline_Fragment extends Fragment {
 
     private Spinner tab_mainline_spinner;
     private String selectedStop = null;
-    private String url = "http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc";
-    private String station = "";
+    TextView txt1, txt2;
     private String fullurl = "";
+    private String url = "http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc=";
+    private Handlexml obj;
 
 
     public Mainline_Fragment() {
@@ -44,6 +49,8 @@ public class Mainline_Fragment extends Fragment {
         tab_mainline_spinner.setAdapter(adapter);
         initspinnerfooter();
         // (AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        txt1 = rootView.findViewById(R.id.txt1);
+        txt2 = rootView.findViewById(R.id.txt2);
         return rootView;
     }
 
@@ -58,8 +65,10 @@ public class Mainline_Fragment extends Fragment {
                     case R.id.tab_mainline_spinner:
                         //make sure the animal was already selected during the onCreate
                         if (selectedStop != null) {
-                            Toast.makeText(parent.getContext(), "STOP selected is " + selectedItem,
-                                    Toast.LENGTH_LONG).show();
+                            fullurl = url + selectedItem;
+                            //  Toast.makeText(parent.getContext(), "STOP selected is " + fullurl,
+                            //  Toast.LENGTH_LONG).show();
+                            Irishrail();
                         }
                         selectedStop = selectedItem;
                         break;
@@ -83,71 +92,29 @@ public class Mainline_Fragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
+
+// Dom xml parser
+    // Jaxb Marshal
+    // For the network call. Please consider AsyncHttp or other async lib volleys
+
+    private void Irishrail() {
+        obj = new Handlexml(fullurl);
+        obj.fetch();
+
+        while (obj.parsingComplete) ;
+
+        List<Data> elements = obj.elements;
+        if (!elements.isEmpty()) {
+            txt2.setText(elements.get(0).getDirection());
+            txt1.setText(elements.get(0).getStationfullname());
+        }
+
+    }
+
 }
 
 
 
 
-  /*  private void LoadIrishRail() {
-        XmlPullParserFactory xmlPullParserFactory;
-        try {
-            xmlPullParserFactory = XmlPullParserFactory.newInstance();
-            XmlPullParser xmlPullParser = xmlPullParserFactory.newPullParser();
-            InputStream inputStream = getAssets().open("http://api.irishrail.ie/realtime/realtime.asmx/getCurrentTrainsXML");
-            xmlPullParser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-            xmlPullParser.setInput(inputStream, null);
-            Parseme(xmlPullParser);
-        } catch (XmlPullParserException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    private void Parseme(XmlPullParser xmlPullParser) throws IOException, XmlPullParserException {
-        ArrayList<Train> trains = new ArrayList<>();
-        int eventType = xmlPullParser.getEventType();
-        Train currentTrain = null;
-        while (eventType != XmlPullParser.END_DOCUMENT) {
-            String name = null;
-            switch (eventType) {
-                case XmlPullParser.START_DOCUMENT:
-                    trains = new ArrayList();
-                    break;
-                case XmlPullParser.START_TAG:
-                    name = xmlPullParser.getName();
-                    if ("objTrainPositions".equals(name)) {
-                        // currentTrain = new Train(direction, publicMessage, trainStatus);
-                        trains.add(currentTrain);
-                    } else if (currentTrain != null) {
-                        if ("direction".equals(name)) {
-                            currentTrain.direction = xmlPullParser.nextText();
-                        } else if ("PublicMessage".equals(name)) {
-                            currentTrain.PublicMessage = xmlPullParser.nextText();
-                        } else if ("TrainStatus".equals(name)) {
-                            currentTrain.TrainStatus = xmlPullParser.nextText();
-                        }
-                    }
-                    break;
-            }
-            eventType = xmlPullParser.next();
-        }
-        //  printPlayers(players);
-    }
-    private void printPlayers(ArrayList<Train> trains) {
-        StringBuilder builder = new StringBuilder();
-        for (Train train : trains) {
-            builder.append(train.TrainStatus).append("\n").
-                    append(train.direction).append("\n").
-                    append(train.PublicMessage).append("\n\n");
-        }
-        //textview
-        // txt.setText(builder.toString());
-    }*/
 
-   /* }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }*/
 
