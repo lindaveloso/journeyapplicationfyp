@@ -13,23 +13,20 @@ import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.journeyapplicationfyp.R;
-import com.example.journeyapplicationfyp.object.Train;
 import com.google.android.material.tabs.TabLayout;
-
-import java.util.ArrayList;
 
 public class SearchActivity_Train extends AppCompatActivity {
 
     ViewPager viewpager;
     TabLayout tablayout;
-    private ArrayList<Train> trainList;
+    //private ArrayList<Train> trainList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_train);
         Settings();
-        trainList = new ArrayList<>();
+        //trainList = new ArrayList<>();
     }
 
     private void Settings() {

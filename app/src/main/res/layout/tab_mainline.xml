@@ -29,6 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="43dp">
 
+
         <Spinner
             android:id="@+id/tab_mainline_spinner"
             android:layout_width="3dp"
@@ -36,8 +37,13 @@
             android:entries="@array/array_mainline_stops" />
 
 
+
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <ScrollView
         android:layout_width="match_parent"

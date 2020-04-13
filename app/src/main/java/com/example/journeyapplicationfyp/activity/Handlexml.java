@@ -29,7 +29,7 @@ public class Handlexml {
         String Stationfullname = "";
         String Origin = "";
         String Direction = "";
-        String Status = "";
+        String Origintime = "";
 
         //List<Data> elements = new ArrayList<>();
         try {
@@ -61,8 +61,8 @@ public class Handlexml {
                             Direction = pullParser.nextText();
 //                            data.setDirection(Direction);
                         }
-                        if (name.equalsIgnoreCase("Status")) {
-                            Status = pullParser.nextText();
+                        if (name.equalsIgnoreCase("Origintime")) {
+                            Origintime = pullParser.nextText();
 //                            data.setStatus(Status);
                         }
                         if (name.equalsIgnoreCase("Duein")) {
@@ -89,8 +89,9 @@ public class Handlexml {
                             data.setDueIn(DueIn);
                             data.setOrigin(Origin);
                             data.setStationfullname(Stationfullname);
-                            data.setStatus(Status);
+                            data.setOrigintime(Origintime);
                             elements.add(data);
+
                             flag = false;
                         }
                         break;

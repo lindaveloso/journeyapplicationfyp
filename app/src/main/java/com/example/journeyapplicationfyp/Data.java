@@ -6,7 +6,7 @@ public class Data {
     private String Stationfullname;
     private String Origin;
     private String Direction;
-    private String Status;
+    private String Origintime;
 
     public String getDueIn() {
         return DueIn;
@@ -40,11 +40,11 @@ public class Data {
         Direction = direction;
     }
 
-    public String getStatus() {
-        return Status;
+    public String getOrigintime() {
+        return Origintime;
     }
 
-    public void setStatus(String status) {
-        Status = status;
+    public void setOrigintime(String origintime) {
+        Origintime = origintime;
     }
 }

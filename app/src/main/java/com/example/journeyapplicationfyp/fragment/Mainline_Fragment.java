@@ -13,12 +13,17 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.journeyapplicationfyp.Data;
 import com.example.journeyapplicationfyp.R;
+import com.example.journeyapplicationfyp.activity.Adapter2;
 import com.example.journeyapplicationfyp.activity.Handlexml;
 import com.example.journeyapplicationfyp.activity.SearchActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Mainline_Fragment extends Fragment {
@@ -29,6 +34,10 @@ public class Mainline_Fragment extends Fragment {
     private String fullurl = "";
     private String url = "http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc=";
     private Handlexml obj;
+    private RecyclerView ry;
+    private Adapter2 adapter2;
+    private List<Data> elements;
+
 
 
     public Mainline_Fragment() {
@@ -48,6 +57,14 @@ public class Mainline_Fragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tab_mainline_spinner.setAdapter(adapter);
         initspinnerfooter();
+
+        //ADAPTER INFORMATION:
+        elements = new ArrayList<>();
+        ry = rootView.findViewById(R.id.ry);
+        ry.setHasFixedSize(true);
+        ry.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        ry.addItemDecoration(new DividerItemDecoration(ry.getContext(), DividerItemDecoration.VERTICAL));
+
         // (AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         txt1 = rootView.findViewById(R.id.txt1);
         txt2 = rootView.findViewById(R.id.txt2);
@@ -105,6 +122,9 @@ public class Mainline_Fragment extends Fragment {
 
         List<Data> elements = obj.elements;
         if (!elements.isEmpty()) {
+            adapter2 = new Adapter2(this.getActivity(), elements);
+            ry.setAdapter(adapter2);
+            adapter2.notifyDataSetChanged();
             txt2.setText(elements.get(0).getDirection());
             txt1.setText(elements.get(0).getStationfullname());
         }
