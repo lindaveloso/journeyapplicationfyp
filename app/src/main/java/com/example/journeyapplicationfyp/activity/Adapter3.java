@@ -14,31 +14,29 @@ import com.example.journeyapplicationfyp.R;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class Adapter2 extends RecyclerView.Adapter<Adapter2.MyViewHolder> {
-
+public class Adapter3 extends RecyclerView.Adapter<Adapter3.MyViewHolder> {
     private Context context;
     private List<Data> elements = new ArrayList<>();
 
 
-    public Adapter2(Context context, List<Data> elements) {
+    public Adapter3(Context context, List<Data> elements) {
         this.context = context;
         this.elements = elements;
 
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public Adapter3.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(context)
-                .inflate(R.layout.tab_mainline_oneitem, parent, false);
-        return new MyViewHolder(itemView);
+                .inflate(R.layout.tab_mainline_arrivals, parent, false);
+        return new Adapter3.MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(Adapter3.MyViewHolder holder, int position) {
         final Data data = elements.get(position);
-        holder.textview_1destination.setText(data.getDestination()); //DESTINATION
-        holder.textview_2due.setText(data.getDueIn());
+        holder.textview_1destinationA.setText(data.getDestination());
+        holder.textview_2dueA.setText(data.getDueIn());
         // holder.textview_1origintime.setText(data.getOrigintime());
         //holder.origin_info.setText(data.getOrigin());
 
@@ -51,22 +49,16 @@ public class Adapter2 extends RecyclerView.Adapter<Adapter2.MyViewHolder> {
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView textview_1destination, textview_2due, textview_1origintime, from, origin_info;
+        TextView textview_1destinationA, textview_2dueA, textview_1origintime, from, origin_info;
 
         public MyViewHolder(View view) {
             super(view);
-            textview_1destination = view.findViewById(R.id.textview_1destination);//stationfullname
-            textview_2due = view.findViewById(R.id.textview_2due);//duetime
+            textview_1destinationA = view.findViewById(R.id.textview_1destinationA);//stationfullname
+            textview_2dueA = view.findViewById(R.id.textview_2dueA);//duetime
             // textview_1origintime = view.findViewById(R.id.textview_1origintime); //origintime
             //from = view.findViewById(R.id.from);//simple text
             //origin_info = view.findViewById(R.id.origin_info);
         }
     }
 }
-
-
-
-
-
-
 

@@ -7,6 +7,7 @@ public class Data {
     private String Origin;
     private String Direction;
     private String Origintime;
+    private String Destination;
 
     public String getDueIn() {
         return DueIn;
@@ -46,5 +47,13 @@ public class Data {
 
     public void setOrigintime(String origintime) {
         Origintime = origintime;
+    }
+
+    public String getDestination() {
+        return Destination;
+    }
+
+    public void setDestination(String destination) {
+        Destination = destination;
     }
 }

@@ -28,8 +28,8 @@ public class Handlexml {
         String DueIn = "";
         String Stationfullname = "";
         String Origin = "";
-        String Direction = "";
         String Origintime = "";
+        String Destination = "";
 
         //List<Data> elements = new ArrayList<>();
         try {
@@ -58,7 +58,7 @@ public class Handlexml {
 //                            data.setOrigin(Origin);
                         }
                         if (name.equalsIgnoreCase("Destination")) {
-                            Direction = pullParser.nextText();
+                            Destination = pullParser.nextText();
 //                            data.setDirection(Direction);
                         }
                         if (name.equalsIgnoreCase("Origintime")) {
@@ -85,11 +85,11 @@ public class Handlexml {
 //                        }
                         if (flag && pullParser.getName().equalsIgnoreCase("objStationData")) {
                             Data data = new Data();
-                            data.setDirection(Direction);
                             data.setDueIn(DueIn);
                             data.setOrigin(Origin);
                             data.setStationfullname(Stationfullname);
                             data.setOrigintime(Origintime);
+                            data.setDestination(Destination);
                             elements.add(data);
 
                             flag = false;

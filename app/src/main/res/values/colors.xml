@@ -13,6 +13,8 @@
     <color name="PROFILE">#C76868</color>
     <color name="FARE">#FF9800</color>
     <color name="NAV">#FFFFFF</color>
+    <color name="border">#156919</color>
+
 
     <color name="red_100">#F44336</color>
     <color name="red_300">#3F51B5</color>

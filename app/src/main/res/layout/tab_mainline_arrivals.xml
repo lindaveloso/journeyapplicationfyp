@@ -5,21 +5,19 @@
     android:layout_height="29dp">
 
     <TextView
-        android:id="@+id/textview_1destination"
+        android:id="@+id/textview_1destinationA"
         android:layout_width="182dp"
         android:layout_height="38dp"
         android:gravity="center"
-        android:textColor="@color/navtextcolor"
         android:textSize="18sp" />
 
 
     <TextView
-        android:id="@+id/textview_2due"
+        android:id="@+id/textview_2dueA"
         android:layout_width="111dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="70dp"
-        android:layout_toRightOf="@id/textview_1destination"
-        android:textColor="@color/navtextcolor"
+        android:layout_toRightOf="@id/textview_1destinationA"
         android:textSize="18sp" />
 
     <TextView
@@ -27,9 +25,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="-84dp"
         android:layout_marginTop="0dp"
-        android:layout_toRightOf="@id/textview_2due"
+        android:layout_toRightOf="@id/textview_2dueA"
         android:text="mins"
-        android:textColor="@color/navtextcolor"
         android:textSize="18sp" />
 
 
