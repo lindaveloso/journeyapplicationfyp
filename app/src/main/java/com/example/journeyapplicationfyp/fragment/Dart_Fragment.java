@@ -9,19 +9,33 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.journeyapplicationfyp.R;
+import com.example.journeyapplicationfyp.activity.Adapter2;
+import com.example.journeyapplicationfyp.activity.Handlexml;
 import com.example.journeyapplicationfyp.activity.SearchActivity;
+import com.example.journeyapplicationfyp.object.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Dart_Fragment extends Fragment {
     private Spinner spinner3;
     private String selectedStop = null;
-
+    private Handlexml obj;
+    private RecyclerView ry;
+    private String fullurl = "";
+    private String url = "http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc=";
+    private Adapter2 adapter2;
+    private List<Data> elements;
+    private RecyclerView ry3;
 
     public Dart_Fragment() {
 
@@ -30,14 +44,12 @@ public class Dart_Fragment extends Fragment {
     public static Dart_Fragment newInstance() {
         return new Dart_Fragment();
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
-
 
     @Nullable
     @Override
@@ -48,9 +60,15 @@ public class Dart_Fragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner3.setAdapter(adapter);
         initspinnerfooter();
+
+        //ADAPTER INFORMATION 1
+        elements = new ArrayList<>();
+        ry3 = rootView.findViewById(R.id.ry3);
+        ry3.setHasFixedSize(true);
+        ry3.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        ry3.addItemDecoration(new DividerItemDecoration(ry3.getContext(), DividerItemDecoration.VERTICAL));
         return rootView;
     }
-
 
     private void initspinnerfooter() {
         spinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -59,21 +77,33 @@ public class Dart_Fragment extends Fragment {
                 String selectedItem = parent.getItemAtPosition(position).toString();
                 switch (parent.getId()) {
                     case R.id.spinner3:
-                        //make sure the animal was already selected during the onCreate
                         if (selectedStop != null) {
-                            Toast.makeText(parent.getContext(), "STOP selected is " + selectedItem,
-                                    Toast.LENGTH_LONG).show();
+                            fullurl = url + selectedItem;
+                            Irishrail();
                         }
                         selectedStop = selectedItem;
                         break;
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
+    }
+
+    private void Irishrail() {
+
+        obj = new Handlexml(fullurl);
+        obj.fetch();
+        while (obj.parsingComplete) ;
+        List<Data> elements = obj.elements;
+        if (!elements.isEmpty()) {
+            adapter2 = new Adapter2(this.getActivity(), elements);
+            ry3.setAdapter(adapter2);
+            adapter2.notifyDataSetChanged();
+
+        }
     }
 
     @Override

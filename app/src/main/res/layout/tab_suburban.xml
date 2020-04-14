@@ -1,34 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="2dp" />
+        android:layout_height="20dp" />
 
-    <ProgressBar
-        android:id="@+id/progressbar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
+    <Spinner
+        android:id="@+id/suburban_spinner"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:indeterminateOnly="true" />
+        android:layout_gravity="center"
+        android:background="@drawable/spinner_border"
+        android:elevation="4dp"
+        android:entries="@array/array_suburban_stops"
+        android:focusable="true"
+        android:padding="12dp"
+        android:popupElevation="10dp"
+        android:spinnerMode="dialog"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    <Space
         android:layout_width="match_parent"
-        android:layout_height="43dp">
+        android:layout_height="15dp" />
 
-        <Spinner
-            android:id="@+id/suburban_spinner"
-            android:layout_width="3dp"
-            android:layout_height="3dp"
-            android:entries="@array/array_suburban_stops" />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-
-    <ScrollView
+    <LinearLayout
+        android:id="@+id/greenline_scrollview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="80dp">
+
+            <TextView
+                android:id="@+id/text0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/luas_purple"
+                android:gravity="center_horizontal"
+                android:text="Departures"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ry4"
+                android:layout_width="match_parent"
+                android:layout_height="153dp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+
+            <TextView
+                android:id="@+id/text0z"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/luas_purple"
+                android:gravity="center_horizontal"
+                android:text="Arrivals"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ry2"
+                android:layout_width="match_parent"
+                android:layout_height="153dp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/refreshbutton2"
+                android:layout_width="wrap_content"
+                android:layout_height="90dp"
+                android:layout_gravity="top|end"
+                android:tint="@android:color/white"
+                app:backgroundTint="@color/colorPrimary"
+                app:srcCompat="@drawable/refresh" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
 
 </LinearLayout>
 

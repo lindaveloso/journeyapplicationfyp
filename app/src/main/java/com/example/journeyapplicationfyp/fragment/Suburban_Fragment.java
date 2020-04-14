@@ -9,27 +9,36 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.journeyapplicationfyp.R;
+import com.example.journeyapplicationfyp.activity.Adapter2;
+import com.example.journeyapplicationfyp.activity.Handlexml;
 import com.example.journeyapplicationfyp.activity.SearchActivity;
+import com.example.journeyapplicationfyp.object.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Suburban_Fragment extends Fragment {
 
     private Spinner suburban_spinner;
     private String selectedStop = null;
-
+    private RecyclerView ry4;
+    private Handlexml obj;
+    private String fullurl = "";
+    private String url = "http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc=";
+    private Adapter2 adapter2;
+    private List<Data> elements;
 
     public Suburban_Fragment() {
 
     }
-
- /*   public static Mainline_Fragment newInstance() {
-        return new Mainline_Fragment();
-    }*/
 
     @Nullable
     @Override
@@ -40,6 +49,12 @@ public class Suburban_Fragment extends Fragment {
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         suburban_spinner.setAdapter(adapter3);
         initspinnerfooter();
+        //ADAPTER INFORMATION 1
+        elements = new ArrayList<>();
+        ry4 = rootView.findViewById(R.id.ry4);
+        ry4.setHasFixedSize(true);
+        ry4.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        ry4.addItemDecoration(new DividerItemDecoration(ry4.getContext(), DividerItemDecoration.VERTICAL));
         return rootView;
     }
 
@@ -52,10 +67,9 @@ public class Suburban_Fragment extends Fragment {
                 String selectedItem = parent.getItemAtPosition(position).toString();
                 switch (parent.getId()) {
                     case R.id.suburban_spinner:
-                        //make sure the animal was already selected during the onCreate
                         if (selectedStop != null) {
-                            Toast.makeText(parent.getContext(), "STOP selected is " + selectedItem,
-                                    Toast.LENGTH_LONG).show();
+                            fullurl = url + selectedItem;
+                            suburbanRail();
                         }
                         selectedStop = selectedItem;
                         break;
@@ -70,7 +84,17 @@ public class Suburban_Fragment extends Fragment {
         });
     }
 
-//(AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    private void suburbanRail() {
+        obj = new Handlexml(fullurl);
+        obj.fetch();
+        while (obj.parsingComplete) ;
+        List<Data> elements = obj.elements;
+        if (!elements.isEmpty()) {
+            adapter2 = new Adapter2(this.getActivity(), elements);
+            ry4.setAdapter(adapter2);
+            adapter2.notifyDataSetChanged();
+        }
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

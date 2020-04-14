@@ -8,7 +8,7 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="12dp" />
+        android:layout_height="20dp" />
 
     <Spinner
         android:id="@+id/tab_mainline_spinner"
@@ -49,7 +49,7 @@
                 android:id="@+id/text0"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/bus"
+                android:background="@color/luas_purple"
                 android:gravity="center_horizontal"
                 android:text="Departures"
                 android:textColor="@android:color/black"
@@ -69,7 +69,7 @@
                 android:id="@+id/text0z"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/bus"
+                android:background="@color/luas_purple"
                 android:gravity="center_horizontal"
                 android:text="Arrivals"
                 android:textColor="@android:color/black"

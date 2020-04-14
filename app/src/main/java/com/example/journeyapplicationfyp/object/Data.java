@@ -1,4 +1,4 @@
-package com.example.journeyapplicationfyp;
+package com.example.journeyapplicationfyp.object;
 
 public class Data {
 

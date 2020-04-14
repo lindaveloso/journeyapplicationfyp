@@ -8,8 +8,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.journeyapplicationfyp.Data;
 import com.example.journeyapplicationfyp.R;
+import com.example.journeyapplicationfyp.object.Data;
 
 import java.util.ArrayList;
 import java.util.List;

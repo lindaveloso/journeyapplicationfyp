@@ -511,39 +511,30 @@ public class LineFragment extends Fragment {
                 startActivity(
                         new Intent(context, Constant.CLASS_FAVOURITES_ACTIVITY)
                 );
-
                 break;*/
 
             case Constant.REMOTEMESSAGE_VALUE_ACTIVITY_MAIN:
                 /* We're already in MainActivity. Nothing to do here. */
                /* Log.i(LOG_TAG, "Already on MainActivity. Not routing anywhere.");
                 break;
-
-
             case Constant.REMOTEMESSAGE_VALUE_ACTIVITY_MAPS:
                 Log.i(LOG_TAG, "Routing to Activity: " + Constant.CLASS_MAPS_ACTIVITY);
                 startActivity(
                         new Intent(context, Constant.CLASS_MAPS_ACTIVITY)
                 );
-
                 break;
-
             case Constant.REMOTEMESSAGE_VALUE_ACTIVITY_NEWS:
                 Log.i(LOG_TAG, "Routing to Activity: " + Constant.CLASS_NEWS_ACTIVITY);
                 startActivity(
                         new Intent(context, Constant.CLASS_NEWS_ACTIVITY)
                 );
-
                 break;
-
             case Constant.REMOTEMESSAGE_VALUE_ACTIVITY_SETTINGS:
                 Log.i(LOG_TAG, "Routing to Activity: " + Constant.CLASS_SETTINGS_ACTIVITY);
                 startActivity(
                         new Intent(context, Constant.CLASS_SETTINGS_ACTIVITY)
                 );
-
                 break;
-
             default:
                 /*
                  * We should have never gotten to this point, as NotificationUtil should
@@ -943,14 +934,14 @@ public class LineFragment extends Fragment {
                 statusCardView.setStatusColor(R.color.message_success);
 
                 /* Change the alerts image to the default white image. */
-              //  imageViewBottomNavAlerts.setImageResource(
-                    //    R.drawable.ic_error_alerts
+                //  imageViewBottomNavAlerts.setImageResource(
+                //    R.drawable.ic_error_alerts
                 //);
 
                 /* Change the color of the Alerts TextView to white (default). */
-               // textViewBottomNavAlerts.setTextColor(
-                       //ContextCompat.getColor(context, android.R.color.white)
-               // );
+                // textViewBottomNavAlerts.setTextColor(
+                //ContextCompat.getColor(context, android.R.color.white)
+                // );
             } else {
                 if (status.equals("")) {
                     /*
@@ -969,9 +960,9 @@ public class LineFragment extends Fragment {
                 statusCardView.setStatusColor(R.color.message_error);
 
                 /* Change the Alerts image to the red version. */
-               // imageViewBottomNavAlerts.setImageResource(
-                       // R.drawable.ic_error_alerts_red
-               // );
+                // imageViewBottomNavAlerts.setImageResource(
+                // R.drawable.ic_error_alerts_red
+                // );
 
                 /* Change the color of the Alerts TextView to red. */
                 textViewBottomNavAlerts.setTextColor(
@@ -1088,5 +1079,3 @@ public class LineFragment extends Fragment {
         }
     }
 }
-
-

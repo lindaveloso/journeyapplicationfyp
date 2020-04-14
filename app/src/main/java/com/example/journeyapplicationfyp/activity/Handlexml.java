@@ -1,6 +1,6 @@
 package com.example.journeyapplicationfyp.activity;
 
-import com.example.journeyapplicationfyp.Data;
+import com.example.journeyapplicationfyp.object.Data;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;

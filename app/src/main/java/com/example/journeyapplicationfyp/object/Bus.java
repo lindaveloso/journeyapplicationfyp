@@ -1,10 +1,6 @@
 package com.example.journeyapplicationfyp.object;
 
-import java.io.Serializable;
-
-public class Bus implements Serializable {
-
-    private static final long serialVersionUID = 0L;
+public class Bus {
 
     public String dueT;
     public String destinatioN;
