@@ -30,7 +30,7 @@ public class Adapter2 extends RecyclerView.Adapter<Adapter2.MyViewHolder> {
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(context)
-                .inflate(R.layout.tab_mainline_oneitem, parent, false);
+                .inflate(R.layout.tab_trainlistview_item, parent, false);
         return new MyViewHolder(itemView);
     }
 

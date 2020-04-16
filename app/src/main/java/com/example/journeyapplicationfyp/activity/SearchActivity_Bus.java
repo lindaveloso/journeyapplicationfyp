@@ -62,7 +62,7 @@ public class SearchActivity_Bus extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bus);
+        setContentView(R.layout.activity_bus_master);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         bottomNavigationView1 = findViewById(R.id.BNV);
         bottomNavigationView1.setOnNavigationItemSelectedListener(navListener);

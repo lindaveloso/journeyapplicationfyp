@@ -44,43 +44,15 @@ public class SearchActivity_Train extends AppCompatActivity {
                                 finish();
                                 break;
 
-                            case R.id.rtpi:
-                                //Toast.makeText(getApplicationContext(),"Hello Javatpoint",Toast.LENGTH_SHORT).show();
-                                //selectedFragment = new SearchActivity();
-                                // getSupportFragmentManager().beginTransaction().replace(R.id.content, selectedFragment).commit();
-                                //getSupportFragmentManager().beginTransaction().replace(R.id.Frame_container,
-                                //  selectedFragment).commit();
-                                break;
 
                             case R.id.timetable:
-                                Toast.makeText(SearchActivity_Train.this, "HELLOOO WORLD", Toast.LENGTH_SHORT).show();
-
-                                //selectedFragment = new TimetableActivity();
-
-                               /* selectedFragment.getChildFragmentManager()
-                                        .beginTransaction()
-                                        .replace(R.id.Frame_container,selectedFragment)
-                                        .commitNowAllowingStateLoss();
-
-
-                             /*   selectedFragment = new TimetableActivity();
-                                getSupportFragmentManager().beginTransaction().replace(R.id.Frame_container,
-                                        selectedFragment).commit();
-
-
-                             /*    getSupportFragmentManager().beginTransaction().replace(R.id.content, selectedFragment).commit();
-                                getSupportFragmentManager().beginTransaction().replace(R.id.Frame_container,
-                                 selectedFragment).commit();
-
-                             /*   intent = new Intent(SearchActivity_Train.this, TimetableActivity.class);
+                                intent = new Intent(SearchActivity_Train.this, TimetableActivity.class);
                                 startActivity(intent);
-                                finish();*/
                                 break;
 
                             case R.id.farenav:
                                 Toast.makeText(SearchActivity_Train.this, "HELLOOO WORLD", Toast.LENGTH_SHORT).show();
-
-                               /* selectedFragment = new Fragment_Faresv();
+                                /* selectedFragment = new Fragment_Faresv();
                                 getSupportFragmentManager().beginTransaction().replace(R.id.Frame_container,
                                         selectedFragment).commit();*/
                                 break;
@@ -93,9 +65,10 @@ public class SearchActivity_Train extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_train);
+        setContentView(R.layout.activity_train_master);
         bottomNavigationView1 = findViewById(R.id.BNV);
         bottomNavigationView1.setOnNavigationItemSelectedListener(navListener);
+        bottomNavigationView1.setSelectedItemId(R.id.rtpi);
         Settings();
     }
 
