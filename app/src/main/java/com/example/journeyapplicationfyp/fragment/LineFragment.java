@@ -18,7 +18,6 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -965,9 +964,9 @@ public class LineFragment extends Fragment {
                 // );
 
                 /* Change the color of the Alerts TextView to red. */
-                textViewBottomNavAlerts.setTextColor(
-                        ContextCompat.getColor(context, R.color.message_error)
-                );
+                // textViewBottomNavAlerts.setTextColor(
+                // ContextCompat.getColor(context, R.color.message_error)
+                // );
             }
 
             /*

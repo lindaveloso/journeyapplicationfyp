@@ -53,9 +53,10 @@
 
         </activity>
 
-        <activity android:name=".fragment.Timetable_fragment">
+        <activity android:name=".activity.TimetableActivity">
 
         </activity>
+
 
         <activity
             android:name=".activity.Activity_busresults"
@@ -63,6 +64,11 @@
 
         </activity>
 
+        <activity
+            android:name=".activity.SearchActivity"
+            android:label="Dublin Bus">
+
+        </activity>
 
     </application>
 

@@ -21,12 +21,14 @@ import com.example.journeyapplicationfyp.activity.Adapter2;
 import com.example.journeyapplicationfyp.activity.Handlexml;
 import com.example.journeyapplicationfyp.activity.SearchActivity;
 import com.example.journeyapplicationfyp.object.Data;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Suburban_Fragment extends Fragment {
 
+    BottomNavigationView bottomNavigationView1;
     private Spinner suburban_spinner;
     private String selectedStop = null;
     private RecyclerView ry4;
@@ -35,6 +37,47 @@ public class Suburban_Fragment extends Fragment {
     private String url = "http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc=";
     private Adapter2 adapter2;
     private List<Data> elements;
+
+ /*   private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                    final int previousItem = bottomNavigationView1.getSelectedItemId();
+                    final int nextItem = menuItem.getItemId();
+                    Fragment selectedFragment = null;
+                    Intent intent;
+
+                    if (previousItem != nextItem) {
+                        switch (nextItem) {
+                            case R.id.homehere:
+                                intent = new Intent(getActivity(), MainActivityHome.class);
+                                startActivity(intent);
+                                getActivity().finish();
+                                break;
+
+                            case R.id.rtpi:
+                                selectedFragment = new SearchActivity();
+                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.Frame_container,
+                                        selectedFragment).commit();
+                                break;
+
+                            case R.id.timetable:
+                                intent = new Intent(getActivity(), TimetableActivity.class);
+                                startActivity(intent);
+                                getActivity().finish();
+                                break;
+
+                            case R.id.farenav:
+                                selectedFragment = new Fragment_Faresv();
+                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.Frame_container,
+                                        selectedFragment).commit();
+                                break;
+                        }
+                    }
+                    return true;
+                }
+            };*/
+
 
     public Suburban_Fragment() {
 
@@ -49,6 +92,8 @@ public class Suburban_Fragment extends Fragment {
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         suburban_spinner.setAdapter(adapter3);
         initspinnerfooter();
+        bottomNavigationView1 = rootView.findViewById(R.id.BNV);
+        //  bottomNavigationView1.setOnNavigationItemSelectedListener(navListener);
         //ADAPTER INFORMATION 1
         elements = new ArrayList<>();
         ry4 = rootView.findViewById(R.id.ry4);

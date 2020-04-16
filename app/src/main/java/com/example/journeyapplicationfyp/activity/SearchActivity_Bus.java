@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -33,18 +34,41 @@ public class SearchActivity_Bus extends AppCompatActivity {
     private Button search_button;
     BottomNavigationView bottomNavigationView1;
 
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    final int previousItem = bottomNavigationView1.getSelectedItemId();
+                    final int nextItem = item.getItemId();
+
+                    switch (item.getItemId()) {
+                        case R.id.homehere:
+                            Intent intent = new Intent(SearchActivity_Bus.this, MainActivityHome.class);
+                            startActivity(intent);
+                            break;
+
+                        case R.id.timetable:
+                            Intent i = new Intent(SearchActivity_Bus.this, TimetableActivity.class);
+                            startActivity(i);
+                            break;
+
+                    }
+                    return true;
+                }
+            };
+    //Toast.makeText(getApplicationContext(),"Hello Javatpoint",Toast.LENGTH_SHORT).show();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         bottomNavigationView1 = findViewById(R.id.BNV);
-
+        bottomNavigationView1.setOnNavigationItemSelectedListener(navListener);
+        bottomNavigationView1.setSelectedItemId(R.id.rtpi);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
         DisplayOption1();
-
         Button search_button = findViewById(R.id.search_button);
         search_button.setOnClickListener(new View.OnClickListener() {
             @Override

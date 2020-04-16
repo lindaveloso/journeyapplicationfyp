@@ -18,8 +18,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.journeyapplicationfyp.R;
-import com.example.journeyapplicationfyp.fragment.Fragment_Faresv;
-import com.example.journeyapplicationfyp.fragment.Timetable_fragment;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -75,8 +73,6 @@ import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineWidth;
 
 public class MainActivityHome extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
         OnMapReadyCallback, PermissionsListener, MapboxMap.OnMapClickListener {
-
-
     Toolbar toolbar0;
     BottomNavigationView bottomNavigationView1;
     private static final int REQUEST_CODE_AUTOCOMPLETE = 1;
@@ -106,32 +102,32 @@ public class MainActivityHome extends AppCompatActivity implements NavigationVie
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                    final int previousItem = bottomNavigationView1.getSelectedItemId();
+                    final int nextItem = menuItem.getItemId();
                     Fragment selectedFragment = null;
                     Intent intent;
-                    switch (menuItem.getItemId()) {
+                    if (previousItem != nextItem) {
+                        switch (nextItem) {
+                            case R.id.rtpi:
+                                intent = new Intent(MainActivityHome.this, SearchActivity.class);
+                                startActivity(intent);
+                                break;
 
-                        case R.id.rtpi:
-                            selectedFragment = new SearchActivity();
-                            break;
+                            case R.id.timetable:
+                                intent = new Intent(MainActivityHome.this, TimetableActivity.class);
+                                startActivity(intent);
+                                finish();
+                                break;
 
-                        case R.id.timetable:
-                            intent = new Intent(MainActivityHome.this, Timetable_fragment.class);
-                            startActivity(intent);
-                            finish();
-                            return true;
-
-                        case R.id.farenav:
-                            selectedFragment = new Fragment_Faresv();
-
+                         /*   case R.id.farenav:
+                                selectedFragment = new Fragment_Faresv();
+                                getSupportFragmentManager().beginTransaction().replace(R.id.Frame_container,
+                                        selectedFragment).commit();
+                                break;*/
+                        }
                     }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.Frame_container,
-                            selectedFragment).commit();
                     return true;
-
-
                 }
-
-
             };
 
     @Override
@@ -146,14 +142,16 @@ public class MainActivityHome extends AppCompatActivity implements NavigationVie
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
+
         bottomNavigationView1 = findViewById(R.id.BNV);
         bottomNavigationView1.setOnNavigationItemSelectedListener(navListener);
+        bottomNavigationView1.setSelectedItemId(R.id.homehere);
         BadgeDrawable badge = bottomNavigationView1.getOrCreateBadge(R.id.rtpi);
         badge.setVisible(true);
 
-      /*  final ActionBar ab = getSupportActionBar();
-        ab.setHomeAsUpIndicator(R.drawable.ic_menu);
-        ab.setDisplayHomeAsUpEnabled(true);*/
+    }
+
+    private void initbottomva() {
 
     }
 

@@ -31,7 +31,7 @@
         android:id="@+id/mainGrid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="6"
+        android:layout_weight="7"
         android:alignmentMode="alignMargins"
         android:columnCount="2"
         android:columnOrderPreserved="false"
@@ -177,6 +177,16 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
-
     </GridLayout>
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/BNV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/nav"
+        app:itemTextColor="@color/navtextcolor"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/navigationbottom_menu" />
 </LinearLayout>
