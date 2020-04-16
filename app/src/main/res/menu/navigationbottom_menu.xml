@@ -4,7 +4,7 @@
     <item
         android:id="@+id/homehere"
         android:icon="@drawable/nav"
-        android:title="NAVIGATION" />
+        android:title="Navigation" />
 
     <item
         android:id="@+id/rtpi"
@@ -14,12 +14,12 @@
     <item
         android:id="@+id/farenav"
         android:icon="@drawable/calculator"
-        android:title="FARE" />
+        android:title="Fare" />
 
     <item
         android:id="@+id/timetable"
         android:icon="@drawable/mappp"
-        android:title="TIMETABLE" />
+        android:title="Timetable" />
 
 </menu>
 

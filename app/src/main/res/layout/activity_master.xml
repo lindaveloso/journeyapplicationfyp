@@ -55,7 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/nav"
+        android:background="?android:attr/windowBackground"
         app:itemTextColor="@color/navtextcolor"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/navigationbottom_menu" />
