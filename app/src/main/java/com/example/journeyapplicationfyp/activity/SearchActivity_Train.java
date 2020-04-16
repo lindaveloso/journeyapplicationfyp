@@ -41,7 +41,6 @@ public class SearchActivity_Train extends AppCompatActivity {
                             case R.id.homehere:
                                 intent = new Intent(SearchActivity_Train.this, MainActivityHome.class);
                                 startActivity(intent);
-                                finish();
                                 break;
 
 
