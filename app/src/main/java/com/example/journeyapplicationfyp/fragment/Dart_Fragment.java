@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.journeyapplicationfyp.R;
 import com.example.journeyapplicationfyp.activity.Adapter2;
+import com.example.journeyapplicationfyp.activity.Adapter3;
 import com.example.journeyapplicationfyp.activity.Handlexml;
 import com.example.journeyapplicationfyp.activity.SearchActivity;
 import com.example.journeyapplicationfyp.object.Data;
@@ -36,6 +37,8 @@ public class Dart_Fragment extends Fragment {
     private Adapter2 adapter2;
     private List<Data> elements;
     private RecyclerView ry3;
+    private RecyclerView ry0;
+    private Adapter3 adapter3;
 
     public Dart_Fragment() {
 
@@ -60,13 +63,15 @@ public class Dart_Fragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner3.setAdapter(adapter);
         initspinnerfooter();
-
-        //ADAPTER INFORMATION 1
         elements = new ArrayList<>();
         ry3 = rootView.findViewById(R.id.ry3);
         ry3.setHasFixedSize(true);
         ry3.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         ry3.addItemDecoration(new DividerItemDecoration(ry3.getContext(), DividerItemDecoration.VERTICAL));
+        ry0 = rootView.findViewById(R.id.ry0);
+        ry0.setHasFixedSize(true);
+        ry0.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        ry0.addItemDecoration(new DividerItemDecoration(ry0.getContext(), DividerItemDecoration.VERTICAL));
         return rootView;
     }
 
@@ -77,11 +82,9 @@ public class Dart_Fragment extends Fragment {
                 String selectedItem = parent.getItemAtPosition(position).toString();
                 switch (parent.getId()) {
                     case R.id.spinner3:
-                        if (selectedStop != null) {
-                            fullurl = url + selectedItem;
-                            Irishrail();
-                        }
                         selectedStop = selectedItem;
+                        fullurl = url + selectedItem;
+                        Irishrail();
                         break;
                 }
             }
@@ -98,10 +101,20 @@ public class Dart_Fragment extends Fragment {
         obj.fetch();
         while (obj.parsingComplete) ;
         List<Data> elements = obj.elements;
+        List<Data> elementsArrivals = new ArrayList<>();
+        for (int i = 0; i < elements.size(); i++) {
+            if (selectedStop.equalsIgnoreCase(elements.get(i).getDestination())) {
+                elementsArrivals.add(elements.get(i));
+                elements.remove(i);
+            }
+        }
         if (!elements.isEmpty()) {
             adapter2 = new Adapter2(this.getActivity(), elements);
+            adapter3 = new Adapter3(this.getActivity(), elementsArrivals);
             ry3.setAdapter(adapter2);
+            ry0.setAdapter(adapter3);
             adapter2.notifyDataSetChanged();
+            adapter3.notifyDataSetChanged();
 
         }
     }

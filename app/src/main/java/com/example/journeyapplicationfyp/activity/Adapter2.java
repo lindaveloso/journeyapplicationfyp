@@ -37,11 +37,8 @@ public class Adapter2 extends RecyclerView.Adapter<Adapter2.MyViewHolder> {
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         final Data data = elements.get(position);
-        holder.textview_1destination.setText(data.getDestination()); //DESTINATION
+        holder.textview_1destination.setText(data.getDestination());
         holder.textview_2due.setText(data.getDueIn());
-        // holder.textview_1origintime.setText(data.getOrigintime());
-        //holder.origin_info.setText(data.getOrigin());
-
 
     }
 
@@ -51,15 +48,13 @@ public class Adapter2 extends RecyclerView.Adapter<Adapter2.MyViewHolder> {
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView textview_1destination, textview_2due, textview_1origintime, from, origin_info;
+        TextView textview_1destination, textview_2due;
 
         public MyViewHolder(View view) {
             super(view);
-            textview_1destination = view.findViewById(R.id.textview_1destination);//stationfullname
-            textview_2due = view.findViewById(R.id.textview_2due);//duetime
-            // textview_1origintime = view.findViewById(R.id.textview_1origintime); //origintime
-            //from = view.findViewById(R.id.from);//simple text
-            //origin_info = view.findViewById(R.id.origin_info);
+            textview_1destination = view.findViewById(R.id.textview_1destination);
+            textview_2due = view.findViewById(R.id.textview_2due);
+
         }
     }
 }

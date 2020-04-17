@@ -191,15 +191,15 @@ public class MainActivityHome extends AppCompatActivity implements NavigationVie
     public void onMapReady(@NonNull final MapboxMap mapboxMap) {
         MainActivityHome.this.mapboxMap = mapboxMap;
 
-        mapboxMap.setStyle(Style.TRAFFIC_NIGHT, new Style.OnStyleLoaded() {
+        mapboxMap.setStyle(Style.OUTDOORS, new Style.OnStyleLoaded() {
             @Override
             public void onStyleLoaded(@NonNull Style style) {
                 enableLocationComponent(style);
-                Toast.makeText(
+               /* Toast.makeText(
                         MainActivityHome.this,
                         getString(R.string.tap_on_map_instruction),
                         Toast.LENGTH_LONG
-                ).show();
+                ).show();*/
 
                 origin = Point.fromLngLat(-3.588098, 37.176164);
 
@@ -459,7 +459,7 @@ public class MainActivityHome extends AppCompatActivity implements NavigationVie
     @Override
     public void onPermissionResult(boolean granted) {
         if (granted) {
-            mapboxMap.setStyle(Style.MAPBOX_STREETS,
+            mapboxMap.setStyle(Style.LIGHT,
                     new Style.OnStyleLoaded() {
                         @Override
                         public void onStyleLoaded(@NonNull Style style) {

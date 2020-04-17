@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.journeyapplicationfyp.R;
 import com.example.journeyapplicationfyp.activity.Adapter2;
+import com.example.journeyapplicationfyp.activity.Adapter3;
 import com.example.journeyapplicationfyp.activity.Handlexml;
 import com.example.journeyapplicationfyp.activity.SearchActivity;
 import com.example.journeyapplicationfyp.object.Data;
@@ -37,6 +38,11 @@ public class Suburban_Fragment extends Fragment {
     private String url = "http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc=";
     private Adapter2 adapter2;
     private List<Data> elements;
+
+    //Arrivals Data
+
+    private RecyclerView ry2;
+    private Adapter3 adapter3;
 
     public Suburban_Fragment() {
 
@@ -59,6 +65,10 @@ public class Suburban_Fragment extends Fragment {
         ry4.setHasFixedSize(true);
         ry4.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         ry4.addItemDecoration(new DividerItemDecoration(ry4.getContext(), DividerItemDecoration.VERTICAL));
+        ry2 = rootView.findViewById(R.id.ry2);
+        ry2.setHasFixedSize(true);
+        ry2.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        ry2.addItemDecoration(new DividerItemDecoration(ry2.getContext(), DividerItemDecoration.VERTICAL));
         return rootView;
     }
 
@@ -71,11 +81,9 @@ public class Suburban_Fragment extends Fragment {
                 String selectedItem = parent.getItemAtPosition(position).toString();
                 switch (parent.getId()) {
                     case R.id.suburban_spinner:
-                        if (selectedStop != null) {
-                            fullurl = url + selectedItem;
-                            suburbanRail();
-                        }
                         selectedStop = selectedItem;
+                        fullurl = url + selectedItem;
+                        suburbanRail();
                         break;
                 }
             }
@@ -94,9 +102,20 @@ public class Suburban_Fragment extends Fragment {
         obj.fetch();
         while (obj.parsingComplete) ;
         List<Data> elements = obj.elements;
+        List<Data> elementsArrivals = new ArrayList<>();
+        for (int i = 0; i < elements.size(); i++) {
+            if (selectedStop.equalsIgnoreCase(elements.get(i).getDestination())) {
+                elementsArrivals.add(elements.get(i));
+                elements.remove(i);
+            }
+        }
+
         if (!elements.isEmpty()) {
             adapter2 = new Adapter2(this.getActivity(), elements);
+            adapter3 = new Adapter3(this.getActivity(), elementsArrivals);
             ry4.setAdapter(adapter2);
+            ry2.setAdapter(adapter3);
+            adapter3.notifyDataSetChanged();
             adapter2.notifyDataSetChanged();
         }
     }

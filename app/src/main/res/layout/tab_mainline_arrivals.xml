@@ -9,11 +9,13 @@
         android:layout_width="182dp"
         android:layout_height="38dp"
         android:gravity="center"
+        android:textColor="@android:color/black"
         android:textSize="18sp" />
 
 
     <TextView
         android:id="@+id/textview_2dueA"
+        android:textColor="@android:color/black"
         android:layout_width="111dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="70dp"
@@ -27,6 +29,7 @@
         android:layout_marginTop="0dp"
         android:layout_toRightOf="@id/textview_2dueA"
         android:text="mins"
+        android:textColor="@android:color/black"
         android:textSize="18sp" />
 
 

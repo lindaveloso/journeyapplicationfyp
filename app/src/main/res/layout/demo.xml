@@ -29,11 +29,11 @@
                 android:id="@+id/textview1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/luas_purple"
+                android:background="@color/bus"
                 android:padding="3dp"
                 android:text="Route\t\t\t"
                 android:textColor="@color/navtextcolor"
-                android:textSize="16sp"
+                android:textSize="15dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -41,11 +41,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/textview1"
-                android:background="@color/luas_purple"
+                android:background="@color/bus"
                 android:padding="3dp"
                 android:text="Destination\t\t\t\t\t\t\t"
                 android:textColor="@color/navtextcolor"
-                android:textSize="16sp"
+                android:textSize="15dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -54,11 +54,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="-22dp"
                 android:layout_toRightOf="@id/textview2"
-                android:background="@color/luas_purple"
+                android:background="@color/bus"
                 android:padding="3dp"
                 android:text="Expected Time\t\t\t\t"
                 android:textColor="@color/navtextcolor"
-                android:textSize="16sp"
+                android:textSize="15dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -66,18 +66,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/textview3"
-                android:background="@color/luas_purple"
+                android:background="@color/bus"
                 android:padding="3dp"
                 android:text="Note\t\t\t\t"
                 android:textColor="@color/navtextcolor"
-                android:textSize="16sp"
+                android:textSize="15dp"
                 android:textStyle="bold" />
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="462dp"
                 android:layout_above="@+id/BNV"
+                android:layout_marginBottom="94dp"
                 android:scrollbars="vertical" />
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -85,7 +87,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="5dp"
                 android:background="@color/nav"
                 app:itemTextColor="@color/navtextcolor"
                 app:labelVisibilityMode="labeled"
