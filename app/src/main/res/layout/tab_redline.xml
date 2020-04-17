@@ -1,24 +1,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/linearlayout_fragment_redline"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="2dp" />
-
-    <ProgressBar
-        android:id="@+id/redline_progressbar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:indeterminateOnly="true" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="2dp" />
+        android:layout_height="100dp" />
 
     <com.example.journeyapplicationfyp.view.SpinnerCardView
         android:id="@+id/redline_spinner_card_view"
@@ -27,16 +14,16 @@
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="12dp" />
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/redline_swiperefreshlayout"
+    <LinearLayout
+        android:id="@+id/greenline_scrollview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
 
-        <ScrollView
+        <LinearLayout
             android:id="@+id/redline_scrollview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -49,11 +36,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingBottom="300dp">
-
-                <com.example.journeyapplicationfyp.view.StatusCardView
-                    android:id="@+id/redline_statuscardview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -100,7 +82,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="10dp" />
             </LinearLayout>
-        </ScrollView>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

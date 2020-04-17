@@ -35,7 +35,7 @@ public final class Preferences {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
         return prefs.getString(
-                context.getString(R.string.pref_key_default_stop),
+                context.getString(R.string.access_token),
                 context.getString(R.string.none)
         );
     }

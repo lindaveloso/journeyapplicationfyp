@@ -4,51 +4,27 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="system">#2B548B</color>
     <color name="colorAccent">#D81B60</color>
+
+
     <color name="nav">#FFFFFF</color>
+
+
     <color name="navtextcolor">#020202</color>
+
+
     <color name="tool">#292929</color>
-    <color name="HOME">#FFEB3B</color>
-    <color name="SEARCH">#000000</color>
     <color name="ROUTE">#673AB7</color>
-    <color name="PROFILE">#C76868</color>
-    <color name="FARE">#FF9800</color>
-    <color name="NAV">#FFFFFF</color>
-    <color name="border">#156919</color>
-
-
-    <color name="red_100">#F44336</color>
-    <color name="red_300">#3F51B5</color>
-    <color name="red_500">#9C27B0</color>
-    <color name="red_700">#2196F3</color>
-    <color name="blue_100">#00BCD4</color>
-    <color name="blue_300">#7BAAF7</color>
-    <color name="blue_500">#009688</color>
-    <color name="blue_700">#3367D6</color>
-    <color name="green_100">#CDDC39</color>
-    <color name="green_300">#57BB8A</color>
-    <color name="green_500">#673AB7</color>
-    <color name="green_700">#0B8043</color>
-
-
-    <color name="favourites_yellow">#fffdd835</color>
-    <color name="listview_divider">#ffe0e0e0</color>
     <color name="luas_purple">#3373CA</color>
 
 
-    <color name="luas_purple_statusbar">#131313</color>
     <color name="message_success">#ff006600</color>
-    <color name="message_warning">#fff1A82e</color>
-    <color name="message_error">#ffe00000</color>
     <color name="off_white">#fffafafa</color>
     <color name="stop_forecast_border_grey">#fff5f5f5</color>
-    <color name="tab_red_line">#020202</color>
     <color name="TEXTCOLOR">#020202</color>
-    <color name="tab_green_line">#0A0A0A</color>
     <color name="text_grey">#ff757575</color>
-    <color name="text_link">#ff80cbc4</color>
+
 
     <color name="bus">#FFCC00</color>
-    <color name="line">#ededed</color>
 
 
 

@@ -8,21 +8,11 @@
 
 
     <!-- Navigation Top -->
-    <string name="profile">Profile</string>
-    <string name="Explore">Explore</string>
     <string name="Fare">Fare</string>
     <string name="Route">Route</string>
     <string name="tab_text_1">Main Line</string>
     <string name="tab_text_2">DART</string>
     <string name="tab_text_3">Suburban</string>
-
-
-
-    <!-- Navigation Top -->
-    <string name="Notifications">Notifications</string>
-    <string name="Favourites">Favourites</string>
-    <string name="Settings">Settings</string>
-    <string name="Help">Help</string>
 
     <!-- Map ActivitySearch -->
     <string name="Searchbar">Search here</string>
@@ -34,17 +24,6 @@
     <string name="user_location_permission_explanation">This app needs location permissions to show its functionality.</string>
     <string name="user_location_permission_not_granted">You didn\'t grant location permissions.</string>
     <string name="directions_activity_toast_message">You didn\'t grant location permissions.</string>
-
-    <!-- tram -->
-
-
-    <string name="text_1">GREEN LINE</string>
-    <string name="text_2">RED LINE</string>
-    <string name="text_3"> MAP "</string>
-
-
-    <!-- Search -->
-
 
     <!--
        Main UI
@@ -77,55 +56,15 @@
         (\u2605) button at the bottom of the screen? That lets you save your favourite stops for
         quick access. Try tapping it now.
     </string>
-    <string name="inbound">INBOUND</string>
-    <string name="outbound">OUTBOUND</string>
+    <string name="inbound">Inbound</string>
+    <string name="outbound">Outbound</string>
     <string name="due">DUE</string>
     <string name="min">min</string>
     <string name="mins">mins</string>
     <string name="no_trams_forecast"><b>NO TRAMS TO FORCAST</b></string>
-    <string name="no_trams_forecast_short"><b>No trams</b></string>
-    <string name="bottomnav_map_short">Map</string>
-    <string name="bottomnav_favourites_short">Fav\'s</string>
-    <string name="tap_to_load_times"><b>Tap to load times</b></string>
-    <string name="cannot_schedule_notification">Tram is due shortly. Cannot schedule notification.
-    </string>
-
-    <!--
-        Actions
-    -->
-    <string name="action_about">About</string>
     <string name="action_favourites">Favourites</string>
     <string name="action_favourites_edit">Edit</string>
     <string name="action_favourites_save">Save</string>
-    <string name="action_news">Luas News</string>
-    <string name="action_news_alert">Alerts</string>
-    <string name="action_reload">Reload</string>
-    <string name="action_settings">Settings</string>
-
-    <!--
-        About
-    -->
-    <string name="about_title_version">Version</string>
-    <string name="about_title_description">Description</string>
-    <string name="about_description">Android and Wear OS app providing real-time tram stop
-        information for Dublin\'s Luas light rail service.</string>
-    <string name="about_title_license">Open Source License</string>
-    <string name="about_license"><u>GNU General Public License (GPLv3)</u></string>
-    <string name="about_title_source_bugs_features">Source code, bugs and feature requests</string>
-    <string name="about_source_bugs_features">github.com/thecosmicfrog/luasataglance</string>
-    <string name="about_title_privacypolicy">Privacy Policy</string>
-    <string name="about_privacypolicy" translatable="false">luasataglance.thecosmicfrog.org/privacy"
-    </string>
-
-    <!--
-        Content descriptions
-    -->
-    <string name="content_desc_action_bar_up_description">Navigate up</string>
-    <string name="content_desc_bottomnav_alerts">Alerts button</string>
-    <string name="content_desc_bottomnav_fares">Fares button</string>
-    <string name="content_desc_bottomnav_favourites">Favourites button</string>
-    <string name="content_desc_bottomnav_map">Luas Map button</string>
-    <string name="content_desc_map_close">Close Luas Map</string>
 
     <!--
         Fares
@@ -155,117 +94,10 @@
         in the top-right corner of this dialog to start adding your most frequently-used Luas stops.
     </string>
 
-    <!--
-        Notification
-    -->
-    <string name="notification_title">Time to leave!</string>
-    <string name="notification_tram_expected">Your tram is expected in\u0020</string>
-    <string name="notification_minute">\u0020minute.</string>
-    <string name="notification_minutes">\u0020minutes.</string>
 
     <!--
-        Notify dialog
-    -->
-    <string name="notify_set">Schedule</string>
-    <string name="notify_title">Schedule tram notification</string>
-    <string name="notify_when">When would you like to be notified about this tram?</string>
-    <string name="notify_successful">Notification scheduled.</string>
-    <string name="notify_invalid_time">Invalid time: Tram expected before then.</string>
-
-    <!--
-        Permissions
-    -->
-    <string name="rationale_ask_accept" translatable="false">Grant permission</string>
-    <string name="rationale_ask_decline" translatable="false">No thanks</string>
-    <string name="rationale_location" translatable="false">Luas at a Glance can optionally show your
-        location on the map, making it easier for you to find your nearest Luas stop.</string>
-
-    <!--
-        Settings
-    -->
-    <string name="pref_title_notifications">Notifications</string>
-    <string name="pref_summary_notifications">Receive push notifications</string>
-    <string name="pref_key_notifications" translatable="false">notifications</string>
-    <string name="pref_title_default_stop">Default Stop</string>
-    <string name="pref_key_default_stop" translatable="false">default_stop</string>
-
-    <!--
-        What's New
-    -->
-    <string name="whatsnew_title_current" translatable="false">Version %s (%s)</string>
-    <string name="whatsnew_content_current" translatable="false">
-        \u2022 The <b>Luas Map</b> now shows your current location, making it easier for you to find
-        your nearest Luas stop.\n\n
-        \u2022 Improvements for larger screen sizes - now even more trams will be displayed on
-        taller screens! Tweaked text size to aid readability.\n\n
-        \u2022 Other misc. interface tweaks.\n\n
-        \u2022 Updates to privacy policy regarding crash and performance reporting service.
-    </string>
-
-    <!--
-        Widget
-    -->
-    <string name="widget_arrow_left">\u25C0</string>
-    <string name="widget_arrow_right">\u25B6</string>
-    <string name="widget_message_error"> Network error.\n\nPlease check your network connection.
-    </string>
-    <string name="widget_retrieving_stop_forecast" translatable="false">Retrieving stop forecast for
-        widget.</string>
-
-    <string-array name="query_suggestions">
-        <item>Select a route\u2026</item>
-        <item>1</item>
-        <item>1c</item>
-        <item>4</item>
-        <item>7</item>
-        <item>7a</item>
-        <item>7b</item>
-        <item>9</item>
-        <item>11</item>
-        <item>13</item>
-        <item>7a</item>
-        <item>14</item>
-        <item>14c</item>
-        <item>15</item>
-        <item>15a</item>
-        <item>15d</item>
-        <item>15e</item>
-        <item>16</item>
-        <item>16c</item>
-        <item>16d</item>
-        <item>25</item>
-        <item>25a</item>
-        <item>25b</item>
-        <item>25d</item>
-        <item>25x</item>
-        <item>26</item>
-        <item>27</item>
-        <item>27a</item>
-        <item>27x</item>
-        <item>27b</item>
-        <item>29a</item>
-        <item>31</item>
-        <item>31a</item>
-        <item>31b</item>
-        <item>31d</item>
-        <item>33</item>
-        <item>33e</item>
-        <item>31d</item>
-        <item>33x</item>
-        <item>37</item>
-        <item>38</item>
-        <item>38a</item>
-        <item>38b</item>
-        <item>38d</item>
-        <item>39</item>
-        <item>39a</item>
-        <item>39x</item>
-        <item>40</item>
-        <item>40b</item>
-        <item>40e</item>
-        <item>41</item>
-    </string-array>
-
+     Irish Rail
+  -->
     <string-array name="array_dart_stops">
         <item>Select a stop\u2026</item>
         <item>Bayside</item>
@@ -288,15 +120,12 @@
         <item>Portmarnock</item>
         <item>Raheny</item>
         <item>Bayside</item>
-        <item>Bayside</item>
-        <item>Bayside</item>
         <item>Shankill</item>
         <item>Sutton</item>
         <item>Sydney Parade</item>
         <item>Tara Street</item>
 
     </string-array>
-
 
     <string-array name="array_suburban_stops">
         <item>Select a stop\u2026</item>
@@ -356,7 +185,6 @@
         <item>Tara Street</item>
         <item>Woodbrook</item>
     </string-array>
-
 
     <string-array name="array_mainline_stops">
         <item>Select a stop\u2026</item>
@@ -502,93 +330,6 @@
         <item>Bride\'s Glen</item>
     </string-array>
 
-    <string-array name="array_stops_all">
-        <item>None</item>
-        <item>The Point</item>
-        <item>Spencer Dock</item>
-        <item>Mayor Square - NCI</item>
-        <item>George\'s Dock</item>
-        <item>Connolly</item>
-        <item>Busáras</item>
-        <item>Abbey Street</item>
-        <item>Jervis</item>
-        <item>Four Courts</item>
-        <item>Smithfield</item>
-        <item>Museum</item>
-        <item>Heuston</item>
-        <item>James\'s</item>
-        <item>Fatima</item>
-        <item>Rialto</item>
-        <item>Suir Road</item>
-        <item>Goldenbridge</item>
-        <item>Drimnagh</item>
-        <item>Blackhorse</item>
-        <item>Bluebell</item>
-        <item>Kylemore</item>
-        <item>Red Cow</item>
-        <item>Kingswood</item>
-        <item>Belgard</item>
-        <item>Cookstown</item>
-        <item>Hospital</item>
-        <item>Tallaght</item>
-        <item>Fettercairn</item>
-        <item>Cheeverstown</item>
-        <item>Citywest Campus</item>
-        <item>Fortunestown</item>
-        <item>Saggart</item>
-        <item>Broombridge</item>
-        <item>Cabra</item>
-        <item>Phibsborough</item>
-        <item>Grangegorman</item>
-        <item>Broadstone - DIT</item>
-        <item>Dominick</item>
-        <item>Parnell</item>
-        <item>O\'Connell - Upper</item>
-        <item>O\'Connell - GPO</item>
-        <item>Marlborough</item>
-        <item>Westmoreland</item>
-        <item>Trinity</item>
-        <item>Dawson</item>
-        <item>St. Stephen\'s Green</item>
-        <item>Harcourt</item>
-        <item>Charlemont</item>
-        <item>Ranelagh</item>
-        <item>Beechwood</item>
-        <item>Cowper</item>
-        <item>Milltown</item>
-        <item>Windy Arbour</item>
-        <item>Dundrum</item>
-        <item>Balally</item>
-        <item>Kilmacud</item>
-        <item>Stillorgan</item>
-        <item>Sandyford</item>
-        <item>Central Park</item>
-        <item>Glencairn</item>
-        <item>The Gallops</item>
-        <item>Leopardstown Valley</item>
-        <item>Ballyogan Wood</item>
-        <item>Carrickmines</item>
-        <item>Laughanstown</item>
-        <item>Cherrywood</item>
-        <item>Bride\'s Glen</item>
-    </string-array>
-
-    <string-array name="array_notifytime_mins">
-        <item>2 mins before arrival</item>
-        <item>3 mins before arrival</item>
-        <item>4 mins before arrival</item>
-        <item>5 mins before arrival</item>
-        <item>6 mins before arrival</item>
-        <item>7 mins before arrival</item>
-        <item>8 mins before arrival</item>
-        <item>9 mins before arrival</item>
-        <item>10 mins before arrival</item>
-        <item>11 mins before arrival</item>
-        <item>12 mins before arrival</item>
-        <item>13 mins before arrival</item>
-        <item>14 mins before arrival</item>
-        <item>15 mins before arrival</item>
-    </string-array>
 </resources>
 
 

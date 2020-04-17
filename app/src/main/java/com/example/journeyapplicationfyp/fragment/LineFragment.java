@@ -1,30 +1,17 @@
 package com.example.journeyapplicationfyp.fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.ScrollView;
-import android.widget.TableRow;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.journeyapplicationfyp.Constant;
 import com.example.journeyapplicationfyp.R;
-import com.example.journeyapplicationfyp.activity.NotifyTimeActivity;
-import com.example.journeyapplicationfyp.activity.NotifyTimesMap;
 import com.example.journeyapplicationfyp.api.ApiMethods;
 import com.example.journeyapplicationfyp.api.ApiTimes;
 import com.example.journeyapplicationfyp.object.EnglishGaeilgeMap;
@@ -32,10 +19,8 @@ import com.example.journeyapplicationfyp.object.StopForecast;
 import com.example.journeyapplicationfyp.object.StopNameIdMap;
 import com.example.journeyapplicationfyp.util.Analytics;
 import com.example.journeyapplicationfyp.util.Preferences;
-import com.example.journeyapplicationfyp.util.Settings;
 import com.example.journeyapplicationfyp.util.StopForecastUtil;
 import com.example.journeyapplicationfyp.view.SpinnerCardView;
-import com.example.journeyapplicationfyp.view.StatusCardView;
 import com.example.journeyapplicationfyp.view.StopForecastCardView;
 import com.google.android.material.tabs.TabLayout;
 
@@ -54,15 +39,12 @@ import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
+//import com.example.journeyapplicationfyp.view.StatusCardView;
+
 public class LineFragment extends Fragment {
 
     private static int resLayoutFragmentLine;
-    private static int resMenuLine;
-    private static int resProgressBar;
     private static int resSpinnerCardView;
-    private static int resStatusCardView;
-    private static int resSwipeRefreshLayout;
-    private static int resScrollView;
     private static int resInboundStopForecastCardView;
     private static int resOutboundStopForecastCardView;
     private static int resArrayStopsRedLine;
@@ -72,17 +54,10 @@ public class LineFragment extends Fragment {
     private final String LOG_TAG = LineFragment.class.getSimpleName();
     private Context context;
     private View rootView = null;
-    private Menu menu;
     private TabLayout tabLayout;
-    private ProgressBar progressBar;
     private SpinnerCardView spinnerCardView;
-    private SwipeRefreshLayout swipeRefreshLayout;
-    private ScrollView scrollView;
-    private StatusCardView statusCardView;
     private StopForecastCardView inboundStopForecastCardView;
     private StopForecastCardView outboundStopForecastCardView;
-    private ImageView imageViewBottomNavAlerts;
-    private TextView textViewBottomNavAlerts;
     private boolean isInitialised;
     private TimerTask timerTaskReload;
     private boolean shouldAutoReload = false;
@@ -90,7 +65,6 @@ public class LineFragment extends Fragment {
     private boolean isVisibleToUser = false;
 
     public LineFragment() {
-        /* Required empty public constructor. */
     }
 
     public static LineFragment newInstance(String line) {
@@ -103,11 +77,7 @@ public class LineFragment extends Fragment {
             case Constant.RED_LINE:
                 bundle.putString(Constant.LINE, Constant.RED_LINE);
                 bundle.putInt(Constant.RES_LAYOUT_FRAGMENT_LINE, R.layout.tab_redline);
-                bundle.putInt(Constant.RES_MENU_LINE, R.menu.menu_red_line);
-                bundle.putInt(Constant.RES_PROGRESSBAR, R.id.redline_progressbar);
                 bundle.putInt(Constant.RES_SPINNER_CARDVIEW, R.id.redline_spinner_card_view);
-                bundle.putInt(Constant.RES_STATUS_CARDVIEW, R.id.redline_statuscardview);
-                bundle.putInt(Constant.RES_SWIPEREFRESHLAYOUT, R.id.redline_swiperefreshlayout);
                 bundle.putInt(Constant.RES_SCROLLVIEW, R.id.redline_scrollview);
                 bundle.putInt(
                         Constant.RES_INBOUND_STOPFORECASTCARDVIEW,
@@ -122,10 +92,7 @@ public class LineFragment extends Fragment {
             case Constant.GREEN_LINE:
                 bundle.putString(Constant.LINE, Constant.GREEN_LINE);
                 bundle.putInt(Constant.RES_LAYOUT_FRAGMENT_LINE, R.layout.tab_greenline);
-                bundle.putInt(Constant.RES_MENU_LINE, R.menu.menu_green_line);
-                bundle.putInt(Constant.RES_PROGRESSBAR, R.id.greenline_progressbar);
                 bundle.putInt(Constant.RES_SPINNER_CARDVIEW, R.id.greenline_spinner_card_view);
-                bundle.putInt(Constant.RES_STATUS_CARDVIEW, R.id.greenline_statuscardview);
                 bundle.putInt(Constant.RES_SWIPEREFRESHLAYOUT, R.id.greenline_swiperefreshlayout);
                 bundle.putInt(Constant.RES_SCROLLVIEW, R.id.greenline_scrollview);
                 bundle.putInt(
@@ -157,7 +124,6 @@ public class LineFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         initFragmentVariables();
-        setHasOptionsMenu(true);
     }
 
     @Override
@@ -233,9 +199,9 @@ public class LineFragment extends Fragment {
                     getActivity().getIntent().removeExtra(Constant.NOTIFY_STOP_NAME);
                 }
             } else if (getActivity().getIntent().hasExtra(INTENT_EXTRA_ACTIVITY_TO_OPEN)) {
-                activityRouter(
-                        getActivity().getIntent().getStringExtra(INTENT_EXTRA_ACTIVITY_TO_OPEN)
-                );
+                // activityRouter(
+                // getActivity().getIntent().getStringExtra(INTENT_EXTRA_ACTIVITY_TO_OPEN)
+                // );
 
                 /* Clear the Extra to avoid opening the same Activity on every start. */
                 getActivity().getIntent().removeExtra(INTENT_EXTRA_ACTIVITY_TO_OPEN);
@@ -292,30 +258,20 @@ public class LineFragment extends Fragment {
         }
     }
 
-    @Override
+  /*  @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         this.menu = menu;
         inflater.inflate(resMenuLine, menu);
-    }
+    }*/
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Settings.getSettings(context, item);
-        return super.onOptionsItemSelected(item);
-    }
 
     private void initFragmentVariables() {
         resArrayStopsRedLine = getArguments().getInt(Constant.RES_ARRAY_STOPS_RED_LINE);
         resArrayStopsGreenLine = getArguments().getInt(Constant.RES_ARRAY_STOPS_GREEN_LINE);
         line = getArguments().getString(Constant.LINE);
         resLayoutFragmentLine = getArguments().getInt(Constant.RES_LAYOUT_FRAGMENT_LINE);
-        resMenuLine = getArguments().getInt(Constant.RES_MENU_LINE);
-        resProgressBar = getArguments().getInt(Constant.RES_PROGRESSBAR);
         resSpinnerCardView = getArguments().getInt(Constant.RES_SPINNER_CARDVIEW);
-        resStatusCardView = getArguments().getInt(Constant.RES_STATUS_CARDVIEW);
-        resSwipeRefreshLayout = getArguments().getInt(Constant.RES_SWIPEREFRESHLAYOUT);
-        resScrollView = getArguments().getInt(Constant.RES_SCROLLVIEW);
         resInboundStopForecastCardView =
                 getArguments().getInt(Constant.RES_INBOUND_STOPFORECASTCARDVIEW);
         resOutboundStopForecastCardView =
@@ -327,12 +283,8 @@ public class LineFragment extends Fragment {
      */
     private boolean initFragment() {
         tabLayout = getActivity().findViewById(R.id.tablayout);
-        progressBar = rootView.findViewById(resProgressBar);
         setIsLoading(false);
-
-        /* Set up Spinner and onItemSelectedListener. */
-        spinnerCardView =
-                rootView.findViewById(resSpinnerCardView);
+        spinnerCardView = rootView.findViewById(resSpinnerCardView);
         spinnerCardView.setLine(line);
 
         spinnerCardView.getSpinnerStops().setOnItemSelectedListener(
@@ -340,26 +292,22 @@ public class LineFragment extends Fragment {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position,
                                                long id) {
-                        /*
-                         * onItemSelected() is triggered on creation of the tab. Prevent this by
-                         * only triggering when the tab is visible to user. This is to prevent the
-                         * Alerts button changing colour out of sync with the currently-visible tab.
-                         */
+
                         if (isVisibleToUser) {
                             /*
                              * If the Spinner's selected item is "Select a stop...", we don't need
                              * to do anything. Just clear the stop forecast and get out of here.
                              */
                             if (position == 0) {
-                                shouldAutoReload = false;
+                                shouldAutoReload = true;
 
-                                swipeRefreshLayout.setEnabled(false);
+                                //  swipeRefreshLayout.setEnabled(false);
 
-                                clearStopForecast();
+                                //  clearStopForecast();
 
                                 return;
-                            } else {
-                                swipeRefreshLayout.setEnabled(true);
+                                // } else {
+                                //      swipeRefreshLayout.setEnabled(true);
                             }
 
                             shouldAutoReload = true;
@@ -406,30 +354,10 @@ public class LineFragment extends Fragment {
                 });
 
         /* Set up Status CardView. */
-        statusCardView =
-                rootView.findViewById(resStatusCardView);
+        //   statusCardView =
+        // rootView.findViewById(resStatusCardView);
 
-        /* Set up SwipeRefreshLayout. */
-        swipeRefreshLayout =
-                rootView.findViewById(resSwipeRefreshLayout);
-        swipeRefreshLayout.setOnRefreshListener(
-                new SwipeRefreshLayout.OnRefreshListener() {
-                    @Override
-                    public void onRefresh() {
-                        /* Start by clearing the currently-displayed stop forecast. */
-                        clearStopForecast();
 
-                        /* Start the refresh animation. */
-                        swipeRefreshLayout.setRefreshing(true);
-                        loadStopForecast(
-                                Preferences.selectedStopName(context, line),
-                                true
-                        );
-                    }
-                }
-        );
-
-        scrollView = rootView.findViewById(resScrollView);
 
         /* Set up stop forecast CardViews. */
         inboundStopForecastCardView =
@@ -448,166 +376,9 @@ public class LineFragment extends Fragment {
                 getString(R.string.outbound)
         );
 
-        /* Set up onClickListeners for stop forecasts in both tabs. */
-        initStopForecastOnClickListeners();
-
         return true;
     }
 
-    /**
-     * Initialise OnClickListeners for a stop forecast.
-     */
-    private void initStopForecastOnClickListeners() {
-        TableRow[] tableRowInboundStops = inboundStopForecastCardView.getTableRowStops();
-        TableRow[] tableRowOutboundStops = outboundStopForecastCardView.getTableRowStops();
-
-        for (int i = 0; i < 6; i++) {
-            final int index = i;
-
-            tableRowInboundStops[i].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showNotifyTimeDialog(
-                            spinnerCardView.getSpinnerStops().getSelectedItem().toString(),
-                            inboundStopForecastCardView.getTextViewStopTimes(),
-                            index
-                    );
-                }
-            });
-
-            tableRowOutboundStops[i].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showNotifyTimeDialog(
-                            spinnerCardView.getSpinnerStops().getSelectedItem().toString(),
-                            outboundStopForecastCardView.getTextViewStopTimes(),
-                            index
-                    );
-                }
-            });
-        }
-    }
-
-    /**
-     * Utility method to open an Activity based on a passed tag value.
-     *
-     * @param activityToOpen Value of Activity to open.
-     */
-    private void activityRouter(String activityToOpen) {
-        Log.i(LOG_TAG, "Intent received to open Activity.");
-
-        switch (activityToOpen) {
-            case Constant.REMOTEMESSAGE_VALUE_ACTIVITY_FARES:
-                Log.i(LOG_TAG, "Routing to Activity: " + Constant.CLASS_FARES_ACTIVITY);
-                startActivity(
-                        new Intent(context, Constant.CLASS_FARES_ACTIVITY)
-                );
-
-                break;
-
-          /*  case Constant.REMOTEMESSAGE_VALUE_ACTIVITY_FAVOURITES:
-                Log.i(LOG_TAG, "Routing to Activity: " + Constant.CLASS_FAVOURITES_ACTIVITY);
-                startActivity(
-                        new Intent(context, Constant.CLASS_FAVOURITES_ACTIVITY)
-                );
-                break;*/
-
-            case Constant.REMOTEMESSAGE_VALUE_ACTIVITY_MAIN:
-                /* We're already in MainActivity. Nothing to do here. */
-               /* Log.i(LOG_TAG, "Already on MainActivity. Not routing anywhere.");
-                break;
-            case Constant.REMOTEMESSAGE_VALUE_ACTIVITY_MAPS:
-                Log.i(LOG_TAG, "Routing to Activity: " + Constant.CLASS_MAPS_ACTIVITY);
-                startActivity(
-                        new Intent(context, Constant.CLASS_MAPS_ACTIVITY)
-                );
-                break;
-            case Constant.REMOTEMESSAGE_VALUE_ACTIVITY_NEWS:
-                Log.i(LOG_TAG, "Routing to Activity: " + Constant.CLASS_NEWS_ACTIVITY);
-                startActivity(
-                        new Intent(context, Constant.CLASS_NEWS_ACTIVITY)
-                );
-                break;
-            case Constant.REMOTEMESSAGE_VALUE_ACTIVITY_SETTINGS:
-                Log.i(LOG_TAG, "Routing to Activity: " + Constant.CLASS_SETTINGS_ACTIVITY);
-                startActivity(
-                        new Intent(context, Constant.CLASS_SETTINGS_ACTIVITY)
-                );
-                break;
-            default:
-                /*
-                 * We should have never gotten to this point, as NotificationUtil should
-                 * pass MainActivity as its default case.
-                 */
-              /*  Log.wtf(
-                        LOG_TAG,
-                        "activityToOpen key does not correspond to any known value."
-                );
-                */
-        }
-    }
-
-    /**
-     * Show dialog for choosing notification times.
-     *
-     * @param stopName          Stop name to notify for.
-     * @param textViewStopTimes Array of TextViews for times in a stop forecast.
-     * @param index             Index representing which specific tram to notify for.
-     */
-    private void showNotifyTimeDialog(String stopName, TextView[] textViewStopTimes, int index) {
-        String localeDefault = Locale.getDefault().toString();
-        String notifyStopTimeStr = textViewStopTimes[index].getText().toString();
-        NotifyTimesMap mapNotifyTimes = new NotifyTimesMap(localeDefault, Constant.STOP_FORECAST);
-
-        if (notifyStopTimeStr.equals(""))
-            return;
-
-        if (notifyStopTimeStr.matches(
-                getString(R.string.due) + "|" + "1 .*|2 .*")) {
-            Toast.makeText(
-                    context,
-                    getString(R.string.cannot_schedule_notification),
-                    Toast.LENGTH_LONG
-            ).show();
-
-            return;
-        }
-
-        /*
-         * When the user opens the notification dialog as part of the tutorial, scroll back up to
-         * the top so that the next tutorial is definitely visible. This should only ever run once.
-         */
-        if (!Preferences.hasRunOnce(rootView.getContext(), Constant.TUTORIAL_NOTIFICATIONS)) {
-            if (scrollView != null) {
-                scrollView.setScrollY(0);
-            }
-        }
-
-        Preferences.saveHasRunOnce(rootView.getContext(), Constant.TUTORIAL_NOTIFICATIONS, true);
-
-        /* We're done with the notifications tutorial. Hide it. */
-        StopForecastUtil.displayTutorial(rootView, line, Constant.TUTORIAL_NOTIFICATIONS, false);
-
-        /* Then, display the final tutorial. */
-        StopForecastUtil.displayTutorial(rootView, line, Constant.TUTORIAL_FAVOURITES, true);
-
-        Preferences.saveNotifyStopName(
-                context,
-                stopName
-        );
-
-        Preferences.saveNotifyStopTimeExpected(
-                context,
-                mapNotifyTimes.get(notifyStopTimeStr)
-        );
-
-        context.startActivity(
-                new Intent(
-                        context,
-                        NotifyTimeActivity.class
-                )
-        );
-    }
 
     /**
      * Make progress bar animate or not.
@@ -624,9 +395,9 @@ public class LineFragment extends Fragment {
                 @Override
                 public void run() {
                     if (loading) {
-                        progressBar.setVisibility(View.VISIBLE);
+                        //      progressBar.setVisibility(View.VISIBLE);
                     } else {
-                        progressBar.setVisibility(View.INVISIBLE);
+                        //  progressBar.setVisibility(View.INVISIBLE);
                     }
                 }
             });
@@ -754,10 +525,6 @@ public class LineFragment extends Fragment {
         final String API_VER = "3";
 
         setIsLoading(true);
-
-        /*
-         * Prepare Retrofit API call.
-         */
         final RestAdapter restAdapter = new RestAdapter.Builder()
                 .setEndpoint(API_URL)
                 .build();
@@ -767,21 +534,14 @@ public class LineFragment extends Fragment {
         Callback<ApiTimes> callback = new Callback<ApiTimes>() {
             @Override
             public void success(ApiTimes apiTimes, Response response) {
-                /* Check Fragment is attached to Activity to avoid NullPointerExceptions. */
                 if (isAdded()) {
-                    /* If the server returned times. */
                     if (apiTimes != null) {
-                        /* Then create a stop forecast with this data. */
                         StopForecast stopForecast = StopForecastUtil.createStopForecast(apiTimes);
 
                         clearStopForecast();
-
-                        /* Update the stop forecast. */
                         updateStopForecast(stopForecast);
-
-                        /* Stop the refresh animations. */
                         setIsLoading(false);
-                        swipeRefreshLayout.setRefreshing(false);
+
 
                         if (shouldShowSnackbar) {
                             String apiCreatedTime = getApiCreatedTime(apiTimes);
@@ -907,68 +667,6 @@ public class LineFragment extends Fragment {
         String mins = " " + getString(R.string.mins);
         String minOrMins;
 
-        /* If a valid stop forecast exists... */
-        if (stopForecast != null) {
-            String status;
-            boolean operatingNormally = false;
-
-            if (stopForecast.getStopForecastStatusDirectionInbound().getOperatingNormally()
-                    && stopForecast.getStopForecastStatusDirectionOutbound().getOperatingNormally()) {
-                operatingNormally = true;
-            }
-
-            if (localeDefault.startsWith(GAEILGE)) {
-                status = getString(R.string.message_success);
-            } else {
-                status = stopForecast.getMessage();
-            }
-
-            /* A lot of Luas status messages relate to lifts being out of service. Ignore these. */
-            if (operatingNormally || status.toLowerCase().contains("lift")) {
-                /*
-                 * No error message on server. Change the message title TextView to
-                 * green and set a default success message.
-                 */
-                statusCardView.setStatus(status);
-                statusCardView.setStatusColor(R.color.message_success);
-
-                /* Change the alerts image to the default white image. */
-                //  imageViewBottomNavAlerts.setImageResource(
-                //    R.drawable.ic_error_alerts
-                //);
-
-                /* Change the color of the Alerts TextView to white (default). */
-                // textViewBottomNavAlerts.setTextColor(
-                //ContextCompat.getColor(context, android.R.color.white)
-                // );
-            } else {
-                if (status.equals("")) {
-                    /*
-                     * If the server returns no status message, the Luas RTPI system is
-                     * probably down.
-                     */
-                    statusCardView.setStatus(
-                            getString(R.string.message_no_status)
-                    );
-                } else {
-                    /* Set the error message from the server. */
-                    statusCardView.setStatus(status);
-                }
-
-                /* Change the color of the message title TextView to red. */
-                statusCardView.setStatusColor(R.color.message_error);
-
-                /* Change the Alerts image to the red version. */
-                // imageViewBottomNavAlerts.setImageResource(
-                // R.drawable.ic_error_alerts_red
-                // );
-
-                /* Change the color of the Alerts TextView to red. */
-                // textViewBottomNavAlerts.setTextColor(
-                // ContextCompat.getColor(context, R.color.message_error)
-                // );
-            }
-
             /*
              * Pull in all trams from the StopForecast, but only display up to five
              * inbound and outbound trams.
@@ -997,10 +695,6 @@ public class LineFragment extends Fragment {
                             }
 
                             if (dueMinutes.equalsIgnoreCase(DUE)) {
-                                if (localeDefault.startsWith(GAEILGE)) {
-                                    dueMinutes = mapEnglishGaeilge.get(dueMinutes);
-                                }
-
                                 minOrMins = "";
                             } else if (Integer.parseInt(dueMinutes) > 1) {
                                 minOrMins = mins;
@@ -1070,11 +764,6 @@ public class LineFragment extends Fragment {
                     }
                 }
             }
-        } else {
-            statusCardView.setStatus(
-                    getString(R.string.message_error)
-            );
-            statusCardView.setStatusColor(R.color.message_error);
         }
-    }
 }
+

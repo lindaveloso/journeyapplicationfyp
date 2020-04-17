@@ -11,13 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="2dp" />
 
-    <ProgressBar
-        android:id="@+id/greenline_progressbar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:indeterminateOnly="true" />
-
     <Space
         android:layout_width="match_parent"
         android:layout_height="2dp" />
@@ -52,10 +45,6 @@
                 android:orientation="vertical"
                 android:paddingBottom="80dp">
 
-                <com.example.journeyapplicationfyp.view.StatusCardView
-                    android:id="@+id/greenline_statuscardview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
 
                 <Space
                     android:layout_width="match_parent"
