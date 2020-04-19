@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"> </string>
+    <string name="app_name">My Journey App </string>
     <string name="dublinbs">Bus</string>
     <string name="T">Train</string>
     <string name="Tm">Luas</string>
