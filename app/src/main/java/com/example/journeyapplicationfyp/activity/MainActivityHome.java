@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -47,7 +46,6 @@ import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.mapboxsdk.plugins.places.autocomplete.PlaceAutocomplete;
-import com.mapbox.mapboxsdk.plugins.places.autocomplete.model.PlaceOptions;
 import com.mapbox.mapboxsdk.style.layers.LineLayer;
 import com.mapbox.mapboxsdk.style.layers.Property;
 import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
@@ -98,46 +96,46 @@ public class MainActivityHome extends AppCompatActivity implements NavigationVie
     private DrawerLayout drawer;
 
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                    final int previousItem = bottomNavigationView1.getSelectedItemId();
-                    final int nextItem = menuItem.getItemId();
-                    Fragment selectedFragment = null;
-                    Intent intent;
-                    if (previousItem != nextItem) {
-                        switch (nextItem) {
-                            case R.id.rtpi:
-                                intent = new Intent(MainActivityHome.this, SearchActivity.class);
-                                startActivity(intent);
-                                break;
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener;
 
-                            case R.id.timetable:
-                                intent = new Intent(MainActivityHome.this, TimetableActivity.class);
-                                startActivity(intent);
-                                finish();
-                                break;
+    {
+        navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                final int previousItem = bottomNavigationView1.getSelectedItemId();
+                final int nextItem = menuItem.getItemId();
+                Fragment selectedFragment = null;
+                Intent intent;
+                if (previousItem != nextItem) {
+                    switch (nextItem) {
+                        case R.id.rtpi:
+                            intent = new Intent(MainActivityHome.this, SearchActivity.class);
+                            startActivity(intent);
+                            break;
+
+                        case R.id.timetable:
+                            intent = new Intent(MainActivityHome.this, TimetableActivity.class);
+                            startActivity(intent);
+                            finish();
+                            break;
 
                          /*   case R.id.farenav:
                                 selectedFragment = new Fragment_Faresv();
                                 getSupportFragmentManager().beginTransaction().replace(R.id.Frame_container,
                                         selectedFragment).commit();
                                 break;*/
-                        }
                     }
-                    return true;
                 }
-            };
+                return true;
+            }
+        };
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Mapbox.getInstance(this, getString(R.string.access_token));
         setContentView(R.layout.activity_master);
-        // drawer = findViewById(R.id.drawer_layout);
-        // NavigationView navigationView = findViewById(R.id.nav_view);
-        // navigationView.setNavigationItemSelectedListener(this);
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
@@ -151,10 +149,6 @@ public class MainActivityHome extends AppCompatActivity implements NavigationVie
 
     }
 
-    private void initbottomva() {
-
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolsbarmenu,menu);
@@ -164,16 +158,7 @@ public class MainActivityHome extends AppCompatActivity implements NavigationVie
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch ((item.getItemId())) {
-           /* case R.id.signmeout:
-                FirebaseAuth.getInstance().signOut();
-                finish();
-                startActivity(new Intent(this, MainActivityLogin.class));
-                break;*/
 
-            // case R.id.action_profile:
-
-
-            // break;
         }
         return true;
     }
@@ -187,6 +172,8 @@ public class MainActivityHome extends AppCompatActivity implements NavigationVie
             super.onBackPressed();
         }
     }
+
+
     @Override
     public void onMapReady(@NonNull final MapboxMap mapboxMap) {
         MainActivityHome.this.mapboxMap = mapboxMap;
@@ -195,11 +182,6 @@ public class MainActivityHome extends AppCompatActivity implements NavigationVie
             @Override
             public void onStyleLoaded(@NonNull Style style) {
                 enableLocationComponent(style);
-               /* Toast.makeText(
-                        MainActivityHome.this,
-                        getString(R.string.tap_on_map_instruction),
-                        Toast.LENGTH_LONG
-                ).show();*/
 
                 origin = Point.fromLngLat(-3.588098, 37.176164);
 
@@ -207,7 +189,7 @@ public class MainActivityHome extends AppCompatActivity implements NavigationVie
 
                 mapboxMap.addOnMapClickListener(MainActivityHome.this);
 
-                initSearchDirections();
+                // initSearchDirections();
                 initSearchFab();
                 addUserLocations();
 
@@ -272,7 +254,7 @@ public class MainActivityHome extends AppCompatActivity implements NavigationVie
     }
 
 
-    private void initSearchDirections() {
+    /*private void initSearchDirections() {
         findViewById(R.id.fab_direction_search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -281,10 +263,11 @@ public class MainActivityHome extends AppCompatActivity implements NavigationVie
             }
 
         });
-    }
+    }*/
 
 
     private void initSearchFab() {
+/*
         findViewById(R.id.fab_location_search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -300,6 +283,7 @@ public class MainActivityHome extends AppCompatActivity implements NavigationVie
                 startActivityForResult(intent, REQUEST_CODE_AUTOCOMPLETE);
             }
         });
+*/
     }
 
     private void addUserLocations() {

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.journeyapplicationfyp">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -22,7 +21,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activity.MainActivityMap">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activity.MainActivityHome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,45 +36,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activity.SearchActivity_Train"
-            android:label="Train"
-            android:exported="true">
-
-        </activity>
-
+            android:exported="true"
+            android:label="Train"></activity>
         <activity
             android:name=".activity.SearchActivity_Bus"
             android:exported="true"
-            android:label="Search">
-
-        </activity>
-
+            android:label="Search"></activity>
         <activity
             android:name=".activity.SearchActivity_Tram"
-            android:label="Tram"
-            android:exported="true">
-
-        </activity>
-
-        <activity android:name=".activity.TimetableActivity">
-
-        </activity>
-
-
+            android:exported="true"
+            android:label="Tram"></activity>
+        <activity android:name=".activity.TimetableActivity"></activity>
         <activity
             android:name=".activity.Activity_busresults"
-            android:label="Dublin Bus">
-
-        </activity>
-
+            android:label="Dublin Bus"></activity>
         <activity
             android:name=".activity.SearchActivity"
-            android:label="Dublin Bus">
-
-        </activity>
-
+            android:label="Dublin Bus"></activity>
     </application>
 
 </manifest>

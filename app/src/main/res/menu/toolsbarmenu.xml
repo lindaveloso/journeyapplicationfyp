@@ -14,5 +14,11 @@
             app:showAsAction="never"
             android:title="favourites" />
 
+    <item
+        android:id="@+id/refresh"
+        android:icon="@drawable/refresh2"
+        android:title="Refresh"
+        app:showAsAction="always" />
+
 
 </menu>

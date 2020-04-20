@@ -24,7 +24,6 @@ import com.android.volley.toolbox.Volley;
 import com.example.journeyapplicationfyp.R;
 import com.example.journeyapplicationfyp.object.Bus;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,7 +39,7 @@ public class Activity_busresults extends AppCompatActivity {
     private Adapter adapter;
     private RequestQueue mRequestQueue;
     private EditText editText;
-    private FloatingActionButton refreshbutton;
+
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -91,13 +90,14 @@ public class Activity_busresults extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(mRecyclerView.getContext(), DividerItemDecoration.VERTICAL));
-       /* refreshbutton = findViewById(R.id.refreshbutton);
+      /*  refresh = findViewById(R.id.refresh);
         refreshbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(Activity_busresults.this, "REFRESH ME", Toast.LENGTH_SHORT).show();
             }
         });*/
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
@@ -142,12 +142,14 @@ public class Activity_busresults extends AppCompatActivity {
         mRequestQueue.add(request);
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.toolsbarmenu, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -156,6 +158,14 @@ public class Activity_busresults extends AppCompatActivity {
                 onBackPressed();
                 finish();
                 return true;
+
+
+            case R.id.refresh:
+                Toast.makeText(getApplicationContext(), "Hello Javatpoint", Toast.LENGTH_SHORT).show();
+                return true;
+
+
+
 
            /* case R.id.signmeout:
                 FirebaseAuth.getInstance().signOut();

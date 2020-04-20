@@ -15,37 +15,25 @@
         <com.mapbox.mapboxsdk.maps.MapView
             android:id="@+id/mapView"
             android:layout_width="match_parent"
-            android:layout_height="509dp"
+            android:layout_height="678dp"
             mapbox:mapbox_cameraTargetLat="51.50325"
             mapbox:mapbox_cameraTargetLng="-0.11968"
             mapbox:mapbox_cameraZoom="12">
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
+            <!--<com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab_location_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end|bottom"
+                android:layout_gravity="center|right"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 android:tint="@android:color/white"
                 app:backgroundTint="@color/colorPrimary"
-                app:srcCompat="@android:drawable/ic_search_category_default" />
+                app:srcCompat="@android:drawable/ic_search_category_default" />-->
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_direction_search"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end|top"
 
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="380dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                android:tint="@android:color/white"
-                app:backgroundTint="@color/colorPrimary"
-                app:srcCompat="@drawable/post" />
         </com.mapbox.mapboxsdk.maps.MapView>
     </FrameLayout>
 

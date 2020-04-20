@@ -1,8 +1,6 @@
 package com.example.journeyapplicationfyp.fragment;
 
-import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -32,8 +30,6 @@ import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
-import com.mapbox.mapboxsdk.plugins.places.autocomplete.PlaceAutocomplete;
-import com.mapbox.mapboxsdk.plugins.places.autocomplete.model.PlaceOptions;
 import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 
@@ -248,6 +244,7 @@ public class demo extends Fragment implements OnMapReadyCallback, PermissionsLis
     }
 
     private void initSearchFab() {
+/*
         getActivity().findViewById(R.id.fab_location_search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -263,6 +260,7 @@ public class demo extends Fragment implements OnMapReadyCallback, PermissionsLis
                 startActivityForResult(intent, REQUEST_CODE_AUTOCOMPLETE);
             }
         });
+*/
     }
 
     private void setUpSource(@NonNull Style loadedMapStyle) {
