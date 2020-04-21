@@ -1,33 +1,103 @@
 package com.example.journeyapplicationfyp.activity;
 
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Toast;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.journeyapplicationfyp.Constant;
 import com.example.journeyapplicationfyp.R;
-import com.example.journeyapplicationfyp.fragment.TimetableFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-public class SearchActivity_Tram extends AppCompatActivity {
+public class SearchActivity_Tram extends Fragment {
 
     private final String LOG_TAG = SearchActivity_Tram.class.getSimpleName();
     ViewPager viewpager;
     TabLayout tablayout;
 
-    BottomNavigationView bottomNavigationView1;
+
+    public SearchActivity_Tram() {
+        // Required empty public constructor
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.activity_tram_master, container, false);
+    }
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initTabLayout(view);
+
+    }
+
+    private void initTabLayout(View view) {
+        final ViewPager viewPager = view.findViewById(R.id.viewpager);
+        final TabLayout tabLayout = view.findViewById(R.id.tablayout);
+
+        if (tabLayout != null && viewPager != null) {
+            tabLayout.addTab(
+                    tabLayout.newTab().setTag(Constant.RED_LINE).setText(
+                            getString(R.string.tab_red_line)
+                    )
+            );
+            tabLayout.addTab(
+                    tabLayout.newTab().setTag(Constant.GREEN_LINE).setText(
+                            getString(R.string.tab_green_line)
+                    )
+            );
+            tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+            tabLayout.setBackgroundColor(
+                    ContextCompat.getColor(requireContext(), R.color.colorPrimary)
+            );
+
+            tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                @Override
+                public void onTabSelected(TabLayout.Tab tab) {
+                    viewPager.setCurrentItem(tab.getPosition());
+                }
+
+                @Override
+                public void onTabUnselected(TabLayout.Tab tab) {
+                }
+
+                @Override
+                public void onTabReselected(TabLayout.Tab tab) {
+                }
+            });
+
+            final PageAdapterClass pagerAdapter = new PageAdapterClass(
+                    requireContext(),
+                    requireActivity().getSupportFragmentManager(),
+                    tabLayout.getTabCount()
+            );
+
+            viewPager.setAdapter(pagerAdapter);
+            viewPager.addOnPageChangeListener(
+                    new TabLayout.TabLayoutOnPageChangeListener(tabLayout)
+            );
+
+        } else {
+            Log.wtf(LOG_TAG, "tabLayout or viewPager is null.");
+        }
+    }
+
+
+}
+
+
+
+ /*   BottomNavigationView bottomNavigationView1;
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -51,9 +121,9 @@ public class SearchActivity_Tram extends AppCompatActivity {
 
                             case R.id.farenav:
                                 Toast.makeText(SearchActivity_Tram.this, "HELLOOO WORLD", Toast.LENGTH_SHORT).show();
-                                /* selectedFragment = new Fragment_Faresv();
+                                *//* selectedFragment = new Fragment_Faresv();
                                 getSupportFragmentManager().beginTransaction().replace(R.id.Frame_container,
-                                        selectedFragment).commit();*/
+                                        selectedFragment).commit();*//*
                                 break;
 
                         }
@@ -170,7 +240,7 @@ public class SearchActivity_Tram extends AppCompatActivity {
 
 }
 
-
+*/
 
 
 

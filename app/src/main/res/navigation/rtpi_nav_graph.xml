@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_RTPINavFragment_to_busSearchFragment"
             app:destination="@id/busSearchFragment" />
+        <action
+            android:id="@+id/action_RTPINavFragment_to_searchActivity_Train"
+            app:destination="@id/searchActivity_Train" />
     </fragment>
     <fragment
         android:id="@+id/busSearchFragment"
@@ -32,4 +35,9 @@
             android:name="url"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/searchActivity_Train"
+        android:name="com.example.journeyapplicationfyp.activity.SearchActivity_Train"
+        android:label="SearchActivity_Train" />
+
 </navigation>

@@ -58,9 +58,6 @@ public class BusSearchFragment extends Fragment {
                     fullURL = url1 + busstop + url2;
                     BusSearchFragmentDirections.ActionBusSearchFragmentToSearchActivityBusResults action = BusSearchFragmentDirections.actionBusSearchFragmentToSearchActivityBusResults(fullURL);
                     Navigation.findNavController(v).navigate(action);
-                    //Intent i = new Intent(.t, SearchActivityBus_results.class);
-                    //i.putExtra("link", fullURL);
-                    //this.startActivity(i);
                 }
             }
         });

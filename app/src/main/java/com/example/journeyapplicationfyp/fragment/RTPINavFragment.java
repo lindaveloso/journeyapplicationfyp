@@ -53,15 +53,12 @@ public class RTPINavFragment extends Fragment implements  View.OnClickListener {
                 break;
             case R.id.card2:
 
-
+                //   Navigation.findNavController(v).navigate(R.id.searchActivity_Tram);
 
                 break;
-
             case R.id.card3:
-
-
+                Navigation.findNavController(v).navigate(R.id.searchActivity_Train);
                 break;
-
         }
 
     }
