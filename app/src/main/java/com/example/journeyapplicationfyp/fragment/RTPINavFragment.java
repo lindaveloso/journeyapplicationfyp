@@ -1,20 +1,18 @@
-package com.example.journeyapplicationfyp;
+package com.example.journeyapplicationfyp.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.example.journeyapplicationfyp.activity.SearchActivity_Bus;
-import com.example.journeyapplicationfyp.activity.SearchActivity_Train;
-import com.example.journeyapplicationfyp.activity.SearchActivity_Tram;
+import com.example.journeyapplicationfyp.R;
 
 
 /**
@@ -51,9 +49,7 @@ public class RTPINavFragment extends Fragment implements  View.OnClickListener {
         Intent intent;
         switch (v.getId()) {
             case R.id.card1:
-
-
-
+                Navigation.findNavController(v).navigate(R.id.busSearchFragment);
                 break;
             case R.id.card2:
 

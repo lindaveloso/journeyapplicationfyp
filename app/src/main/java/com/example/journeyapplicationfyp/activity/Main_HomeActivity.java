@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,17 +38,19 @@ public class Main_HomeActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.timetable:
-                    fm.beginTransaction().hide(active).show(fragment3).commit();
+                    fm.beginTransaction().replace(R.id.main_container, fragment3).commit();
                     active = fragment3;
                     return true;
 
-               /* case R.id.rtpi:
-                    fm.beginTransaction().hide(active).show(fragment2).commit();
+                case R.id.rtpi:
+                    //fm.beginTransaction().hide(active).show(fragment2).commit();
+                    fm.beginTransaction().replace(R.id.main_container, fragment2).commit();
                     active = fragment2;
-                    return true;*/
+                    return true;
 
                 case R.id.homehere:
-                    fm.beginTransaction().hide(active).show(fragment1).commit();
+                    //fm.beginTransaction().show(fragment1).commit();
+                    fm.beginTransaction().replace(R.id.main_container, fragment1).commit();
                     active = fragment1;
                     return true;
             }
@@ -65,8 +68,8 @@ public class Main_HomeActivity extends AppCompatActivity {
         BadgeDrawable badge = navigation.getOrCreateBadge(R.id.rtpi);
         badge.setVisible(true);
 
-        fm.beginTransaction().add(R.id.main_container, fragment2, "3").hide(fragment2).commit();
-        fm.beginTransaction().add(R.id.main_container, fragment3, "2").hide(fragment3).commit();
+        //fm.beginTransaction().add(R.id.main_container, fragment2, "3").commit();
+        //fm.beginTransaction().add(R.id.main_container, fragment3, "2").hide(fragment3).commit();
         // fm.beginTransaction().add(R.id.main_container, fragment1, "1").hide(fragment1).commit(); FARES
         fm.beginTransaction().add(R.id.main_container, fragment1, "1").commit();
         getSupportActionBar().setElevation(0);
@@ -113,5 +116,11 @@ public class Main_HomeActivity extends AppCompatActivity {
 
         }
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Toast.makeText(this, getPackageName(), Toast.LENGTH_SHORT).show();
     }
 }
