@@ -47,7 +47,7 @@ public final class StopForecastUtil {
     public static void displayTutorial(View rootView, String line, String tutorial,
                                        boolean shouldDisplay) {
         /* Only display tutorials on the Red Line tab. */
-        if (line.equals(Constant.RED_LINE)) {
+       if (line.equals(Constant.RED_LINE)) {
             switch (tutorial) {
                 case Constant.TUTORIAL_SELECT_STOP:
                     TutorialCardView tutorialCardViewSelectStop =
@@ -72,93 +72,16 @@ public final class StopForecastUtil {
 
                             Preferences.saveHasRunOnce(rootView.getContext(), tutorial, true);
 
-                            Analytics.tutorialBegin(
-                                    rootView.getContext(),
-                                    "tutorial_begin",
-                                    "select_stop_begin"
-                            );
                         }
                     } else {
                         tutorialCardViewSelectStop.setVisibility(View.GONE);
                     }
 
                     break;
-
-                case Constant.TUTORIAL_NOTIFICATIONS:
-                    TutorialCardView tutorialCardViewNotifications =
-                            rootView.findViewById(
-                                    R.id.tutorialcardview_notifications
-                            );
-
-                    tutorialCardViewNotifications.setTutorial(
-                            rootView.getContext().getResources().getText(
-                                    R.string.notifications_tutorial
-                            )
-                    );
-
-                    if (shouldDisplay) {
-                        if (!Preferences.hasRunOnce(rootView.getContext(), tutorial)) {
-                            Log.i(
-                                    LOG_TAG,
-                                    "First time launching. Displaying notifications tutorial."
-                            );
-
-                            tutorialCardViewNotifications.setVisibility(View.VISIBLE);
-
-                            Analytics.tutorialBegin(
-                                    rootView.getContext(),
-                                    "tutorial_begin",
-                                    "notifications_begin"
-                            );
-                        }
-                    } else {
-                        tutorialCardViewNotifications.setVisibility(View.GONE);
-                    }
-
-                    break;
-
-                case Constant.TUTORIAL_FAVOURITES:
-                    TutorialCardView tutorialCardViewFavourites =
-                            rootView.findViewById(
-                                    R.id.tutorialcardview_favourites
-                            );
-
-                    tutorialCardViewFavourites.setTutorial(
-                            rootView.getContext().getResources().getText(
-                                    R.string.favourites_tutorial
-                            )
-                    );
-
-                    if (shouldDisplay) {
-                        if (!Preferences.hasRunOnce(rootView.getContext(), tutorial)) {
-                            Log.i(LOG_TAG, "First time launching. Displaying favourites tutorial.");
-
-                            tutorialCardViewFavourites.setVisibility(View.VISIBLE);
-
-                            Analytics.tutorialBegin(
-                                    rootView.getContext(),
-                                    "tutorial_begin",
-                                    "favourites_begin"
-                            );
-                        }
-                    } else {
-                        tutorialCardViewFavourites.setVisibility(View.GONE);
-                    }
-
-                    break;
-
-                default:
-                    /* If for some reason the specified tutorial doesn't make sense. */
-                    Log.wtf(LOG_TAG, "Invalid tutorial specified.");
             }
         }
     }
 
-    /**
-     * Create a usable stop forecast with the data returned from the server.
-     * @param apiTimes ApiTimes object created by Retrofit, containing raw stop forecast data.
-     * @return Usable stop forecast.
-     */
     public static StopForecast createStopForecast(ApiTimes apiTimes) {
         StopForecast stopForecast = new StopForecast();
 
@@ -217,26 +140,11 @@ public final class StopForecastUtil {
 
                         break;
 
-                    default:
-                        /* If for some reason the direction doesn't make sense. */
-                        Log.wtf(LOG_TAG, "Invalid direction: " + tram.getDirection());
+
                 }
             }
         }
 
         return stopForecast;
-    }
-
-    /**
-     * Show Snackbar.
-     * @param activity Activity on which to display Snackbar.
-     * @param message Message to display on Snackbar.
-     */
-    public static void showSnackbar(Activity activity, String message) {
-        Snackbar.make(
-                activity.findViewById(android.R.id.content),
-                message,
-                Snackbar.LENGTH_LONG
-        ).show();
     }
 }

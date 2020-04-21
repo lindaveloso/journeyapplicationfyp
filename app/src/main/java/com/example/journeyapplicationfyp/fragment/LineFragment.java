@@ -17,7 +17,6 @@ import com.example.journeyapplicationfyp.api.ApiTimes;
 import com.example.journeyapplicationfyp.object.EnglishGaeilgeMap;
 import com.example.journeyapplicationfyp.object.StopForecast;
 import com.example.journeyapplicationfyp.object.StopNameIdMap;
-import com.example.journeyapplicationfyp.util.Analytics;
 import com.example.journeyapplicationfyp.util.Preferences;
 import com.example.journeyapplicationfyp.util.StopForecastUtil;
 import com.example.journeyapplicationfyp.view.SpinnerCardView;
@@ -353,12 +352,6 @@ public class LineFragment extends Fragment {
                     }
                 });
 
-        /* Set up Status CardView. */
-        //   statusCardView =
-        // rootView.findViewById(resStatusCardView);
-
-
-
         /* Set up stop forecast CardViews. */
         inboundStopForecastCardView =
                 rootView.findViewById(
@@ -547,18 +540,9 @@ public class LineFragment extends Fragment {
                             String apiCreatedTime = getApiCreatedTime(apiTimes);
 
                             if (apiCreatedTime != null) {
-                                StopForecastUtil.showSnackbar(
-                                        getActivity(),
-                                        "Times updated at " + apiCreatedTime
-                                );
+
                             }
                         }
-                    } else {
-                        Analytics.nullApitimes(
-                                context,
-                                "null",
-                                "null_apitimes_mobile"
-                        );
                     }
                 }
             }
@@ -599,12 +583,6 @@ public class LineFragment extends Fragment {
                 if (retrofitError.getKind() != null) {
                     Log.e(LOG_TAG, "Kind: " + retrofitError.getKind().toString());
                 }
-
-                Analytics.httpError(
-                        context,
-                        "http_error",
-                        "http_error_general_mobile"
-                );
             }
         };
 
@@ -642,11 +620,6 @@ public class LineFragment extends Fragment {
         } catch (ParseException e) {
             Log.e(LOG_TAG, "Failed to parse created time from API.");
 
-            Analytics.apiCreatedParseError(
-                    context,
-                    "api_error",
-                    "api_created_parse_error_mobile"
-            );
         }
 
         return null;

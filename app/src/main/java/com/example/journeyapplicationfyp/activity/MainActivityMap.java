@@ -2,13 +2,24 @@ package com.example.journeyapplicationfyp.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.journeyapplicationfyp.R;
 import com.google.android.material.badge.BadgeDrawable;
@@ -32,6 +43,8 @@ import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 import com.mapbox.mapboxsdk.utils.BitmapUtils;
 
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,7 +60,7 @@ import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineColor;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineJoin;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineWidth;
 
-public class MainActivityMap extends AppCompatActivity implements OnMapReadyCallback {
+public class MainActivityMap extends Fragment implements OnMapReadyCallback {
 
     private static final String ROUTE_LAYER_ID = "route-layer-id";
     private static final String ROUTE_SOURCE_ID = "route-source-id";
@@ -59,63 +72,20 @@ public class MainActivityMap extends AppCompatActivity implements OnMapReadyCall
     private Point destination;
     private DirectionsRoute currentRoute;
     private MapboxDirections client;
-    private BottomNavigationView bottomNavigationView;
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener;
-
-    {
-        navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                final int previousItem = bottomNavigationView.getSelectedItemId();
-                final int nextItem = menuItem.getItemId();
-                Fragment selectedFragment = null;
-                Intent intent;
-                if (previousItem != nextItem) {
-                    switch (nextItem) {
-                        case R.id.rtpi:
-                            intent = new Intent(MainActivityMap.this, SearchActivity.class);
-                            startActivity(intent);
-                            break;
-
-                        case R.id.timetable:
-                            intent = new Intent(MainActivityMap.this, TimetableActivity.class);
-                            startActivity(intent);
-                            finish();
-                            break;
-
-
-                         /*   case R.id.farenav:
-                                selectedFragment = new Fragment_Faresv();
-                                getSupportFragmentManager().beginTransaction().replace(R.id.Frame_container,
-                                        selectedFragment).commit();
-                                break;*/
-                    }
-                }
-                return true;
-            }
-        };
-    }
-
-
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Mapbox.getInstance(this, getString(R.string.access_token));
-        setContentView(R.layout.activity_main_map);
-        mapView = findViewById(R.id.mapView);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Mapbox.getInstance(getActivity(), getString(R.string.access_token));
+        View rootView = inflater.inflate(R.layout.activity_main_map, container, false);
+        mapView = rootView.findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
-        initializeBottomNavigation();
+        Settings();
+        return rootView;
     }
 
-    private void initializeBottomNavigation() {
-        bottomNavigationView = findViewById(R.id.BNV);
-        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
-        bottomNavigationView.setSelectedItemId(R.id.homehere);
-        BadgeDrawable badge = bottomNavigationView.getOrCreateBadge(R.id.rtpi);
-        badge.setVisible(true);
-    }
+
 
     @Override
     public void onMapReady(@NonNull MapboxMap mapboxMap) {
@@ -198,7 +168,7 @@ public class MainActivityMap extends AppCompatActivity implements OnMapReadyCall
                 currentRoute = response.body().routes().get(0);
 
 // Make a toast which displays the route's distance
-                Toast.makeText(MainActivityMap.this, "Response: " + currentRoute.distance(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Response: " + currentRoute.distance(), Toast.LENGTH_SHORT).show();
 
                 if (mapboxMap != null) {
                     mapboxMap.getStyle(new Style.OnStyleLoaded() {
@@ -221,44 +191,44 @@ public class MainActivityMap extends AppCompatActivity implements OnMapReadyCall
             @Override
             public void onFailure(Call<DirectionsResponse> call, Throwable throwable) {
                 Timber.e("Error: " + throwable.getMessage());
-                Toast.makeText(MainActivityMap.this, "Error: " + throwable.getMessage(),
+                Toast.makeText(getActivity(), "Error: " + throwable.getMessage(),
                         Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         mapView.onResume();
     }
 
     @Override
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
         mapView.onStart();
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
         mapView.onStop();
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         mapView.onPause();
     }
 
     @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         mapView.onSaveInstanceState(outState);
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         mapView.onDestroy();
     }
@@ -268,4 +238,20 @@ public class MainActivityMap extends AppCompatActivity implements OnMapReadyCall
         super.onLowMemory();
         mapView.onLowMemory();
     }
+
+    private void Settings() {
+        if (Build.VERSION.SDK_INT >= 21) {
+            Window window = getActivity().getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(
+                    ContextCompat.getColor(
+                            getActivity(),
+                            R.color.system
+                    )
+            );
+
+        }
+    }
+
 }

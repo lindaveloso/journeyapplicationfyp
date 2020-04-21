@@ -17,7 +17,9 @@
             android:id="@+id/tablayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:tabIndicatorColor="@android:color/holo_red_dark"
             android:background="?attr/colorPrimary"
+            app:elevation="0dp"
             app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
             app:tabTextColor="@android:color/black" />
 

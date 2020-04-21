@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context="com.example.journeyapplicationfyp.activity.SearchActivity_Tram">
 
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
@@ -16,9 +17,9 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tablayout"
             android:layout_width="match_parent"
-            app:tabSelectedTextColor="@color/ROUTE"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
+            app:tabIndicatorColor="@color/tab_selected_color"
             app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
             app:tabTextColor="@android:color/black" />
 
@@ -29,7 +30,6 @@
         android:id="@+id/BNV"
         android:layout_width="match_parent"
         android:layout_height="54dp"
-        android:layout_alignParentBottom="true"
         android:background="@color/nav"
         app:itemTextColor="@color/navtextcolor"
         app:labelVisibilityMode="labeled"

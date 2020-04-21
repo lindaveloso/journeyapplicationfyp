@@ -21,14 +21,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivityMap">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activity.MainActivityHome">
+        <activity android:name=".activity.Main_HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -36,25 +29,44 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<!--        <activity android:name=".activity.MainActivityHome">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
         <activity
             android:name=".activity.SearchActivity_Train"
             android:exported="true"
-            android:label="Train"></activity>
+            android:label="Train">
+
+        </activity>
         <activity
             android:name=".activity.SearchActivity_Bus"
             android:exported="true"
-            android:label="Search"></activity>
+            android:label="Search">
+
+        </activity>
         <activity
             android:name=".activity.SearchActivity_Tram"
             android:exported="true"
-            android:label="Tram"></activity>
-        <activity android:name=".activity.TimetableActivity"></activity>
+            android:label="Tram">
+
+        </activity>
+        <activity android:name=".fragment.TimetableFragment">
+
+        </activity>
         <activity
-            android:name=".activity.Activity_busresults"
-            android:label="Dublin Bus"></activity>
+            android:name=".activity.SearchActivityBus_results"
+            android:label="Dublin Bus">
+
+        </activity>
         <activity
-            android:name=".activity.SearchActivity"
-            android:label="Dublin Bus"></activity>
+            android:name=".fragment.SearchFragment"
+            android:label="Dublin Bus">
+
+        </activity>
     </application>
 
 </manifest>

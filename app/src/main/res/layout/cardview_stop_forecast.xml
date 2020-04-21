@@ -14,11 +14,12 @@
         <TextView
             android:id="@+id/textview_direction"
             android:textStyle="bold"
+            android:textSize="17sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/luas_purple"
             android:gravity="center_horizontal"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/black" />
 
         <TableLayout
             android:id="@+id/tablelayout"

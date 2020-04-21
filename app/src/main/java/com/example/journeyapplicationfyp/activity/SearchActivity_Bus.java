@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.example.journeyapplicationfyp.R;
+import com.example.journeyapplicationfyp.fragment.TimetableFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
@@ -49,7 +50,7 @@ public class SearchActivity_Bus extends AppCompatActivity {
                             break;
 
                         case R.id.timetable:
-                            Intent i = new Intent(SearchActivity_Bus.this, TimetableActivity.class);
+                            Intent i = new Intent(SearchActivity_Bus.this, TimetableFragment.class);
                             startActivity(i);
                             break;
 
@@ -75,7 +76,7 @@ public class SearchActivity_Bus extends AppCompatActivity {
             public void onClick(View v) {
                 if (validationDetails()) {
                     fullURL = url1 + busstop + url2;
-                    Intent i = new Intent(SearchActivity_Bus.this, Activity_busresults.class);
+                    Intent i = new Intent(SearchActivity_Bus.this, SearchActivityBus_results.class);
                     i.putExtra("link", fullURL);
                     SearchActivity_Bus.this.startActivity(i);
                 }
@@ -122,12 +123,6 @@ public class SearchActivity_Bus extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.toolsbarmenu, menu);
-        return true;
-    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

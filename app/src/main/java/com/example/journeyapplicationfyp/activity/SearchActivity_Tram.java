@@ -1,21 +1,23 @@
 package com.example.journeyapplicationfyp.activity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.journeyapplicationfyp.Constant;
 import com.example.journeyapplicationfyp.R;
+import com.example.journeyapplicationfyp.fragment.TimetableFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
@@ -24,7 +26,7 @@ public class SearchActivity_Tram extends AppCompatActivity {
     private final String LOG_TAG = SearchActivity_Tram.class.getSimpleName();
     ViewPager viewpager;
     TabLayout tablayout;
-    Toolbar toolbar;
+
     BottomNavigationView bottomNavigationView1;
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -43,7 +45,7 @@ public class SearchActivity_Tram extends AppCompatActivity {
                                 break;
 
                             case R.id.timetable:
-                                intent = new Intent(SearchActivity_Tram.this, TimetableActivity.class);
+                                intent = new Intent(SearchActivity_Tram.this, TimetableFragment.class);
                                 startActivity(intent);
                                 break;
 
@@ -71,11 +73,14 @@ public class SearchActivity_Tram extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tram);
+        setContentView(R.layout.activity_tram_master);
         bottomNavigationView1 = findViewById(R.id.BNV);
         bottomNavigationView1.setSelectedItemId(R.id.rtpi);
-
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setElevation(0);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        System1();
 
 
         final ViewPager viewPager = findViewById(R.id.viewpager);
@@ -128,11 +133,27 @@ public class SearchActivity_Tram extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolsbarmenu, menu);
-        return true;
+    private void System1() {
+        if (Build.VERSION.SDK_INT >= 21) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(
+                    ContextCompat.getColor(
+                            getApplicationContext(),
+                            R.color.system
+                    )
+            );
+
+            window.setNavigationBarColor(
+                    ContextCompat.getColor(
+                            getApplicationContext(),
+                            R.color.system
+                    ));
+        }
+
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

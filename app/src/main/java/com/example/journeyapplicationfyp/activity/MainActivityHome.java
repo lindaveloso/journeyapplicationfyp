@@ -17,6 +17,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.journeyapplicationfyp.R;
+import com.example.journeyapplicationfyp.fragment.SearchFragment;
+import com.example.journeyapplicationfyp.fragment.TimetableFragment;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -109,12 +111,12 @@ public class MainActivityHome extends AppCompatActivity implements NavigationVie
                 if (previousItem != nextItem) {
                     switch (nextItem) {
                         case R.id.rtpi:
-                            intent = new Intent(MainActivityHome.this, SearchActivity.class);
+                            intent = new Intent(MainActivityHome.this, SearchFragment.class);
                             startActivity(intent);
                             break;
 
                         case R.id.timetable:
-                            intent = new Intent(MainActivityHome.this, TimetableActivity.class);
+                            intent = new Intent(MainActivityHome.this, TimetableFragment.class);
                             startActivity(intent);
                             finish();
                             break;

@@ -20,7 +20,6 @@ import com.example.journeyapplicationfyp.R;
 import com.example.journeyapplicationfyp.activity.Adapter2;
 import com.example.journeyapplicationfyp.activity.Adapter3;
 import com.example.journeyapplicationfyp.activity.Handlexml;
-import com.example.journeyapplicationfyp.activity.SearchActivity;
 import com.example.journeyapplicationfyp.object.Data;
 
 import java.util.ArrayList;
@@ -97,7 +96,7 @@ public class Mainline_Fragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                startActivity(new Intent(getActivity(), SearchActivity.class));
+                startActivity(new Intent(getActivity(), SearchFragment.class));
                 return true;
         }
         return super.onOptionsItemSelected(item);

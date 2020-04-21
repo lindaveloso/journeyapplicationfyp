@@ -12,17 +12,20 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.journeyapplicationfyp.R;
+import com.example.journeyapplicationfyp.fragment.TimetableFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-public class SearchActivity_Train extends AppCompatActivity {
+public class SearchActivity_Train extends AppCompatActivity{
 
+    Toolbar toolsbarmenu;
     ViewPager viewpager;
     TabLayout tablayout;
     FragmentManager childFragmentManager;
@@ -45,7 +48,7 @@ public class SearchActivity_Train extends AppCompatActivity {
 
 
                             case R.id.timetable:
-                                intent = new Intent(SearchActivity_Train.this, TimetableActivity.class);
+                                intent = new Intent(SearchActivity_Train.this, TimetableFragment.class);
                                 startActivity(intent);
                                 break;
 
@@ -65,9 +68,13 @@ public class SearchActivity_Train extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_train_master);
+       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setElevation(0);
         bottomNavigationView1 = findViewById(R.id.BNV);
         bottomNavigationView1.setOnNavigationItemSelectedListener(navListener);
         bottomNavigationView1.setSelectedItemId(R.id.rtpi);
+
         Settings();
     }
 

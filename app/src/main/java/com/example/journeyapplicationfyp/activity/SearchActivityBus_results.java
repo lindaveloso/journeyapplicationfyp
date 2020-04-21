@@ -1,15 +1,19 @@
 package com.example.journeyapplicationfyp.activity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +26,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.journeyapplicationfyp.R;
+import com.example.journeyapplicationfyp.fragment.TimetableFragment;
 import com.example.journeyapplicationfyp.object.Bus;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -31,7 +36,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class Activity_busresults extends AppCompatActivity {
+public class SearchActivityBus_results extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView1;
     private ArrayList<Bus> bList;
@@ -51,17 +56,17 @@ public class Activity_busresults extends AppCompatActivity {
                     if (previousItem != nextItem) {
                         switch (nextItem) {
                             case R.id.homehere:
-                                intent = new Intent(Activity_busresults.this, MainActivityHome.class);
+                                intent = new Intent(SearchActivityBus_results.this, MainActivityHome.class);
                                 startActivity(intent);
                                 break;
 
                             case R.id.timetable:
-                                intent = new Intent(Activity_busresults.this, TimetableActivity.class);
+                                intent = new Intent(SearchActivityBus_results.this, TimetableFragment.class);
                                 startActivity(intent);
                                 break;
 
                             case R.id.farenav:
-                                Toast.makeText(Activity_busresults.this, "HELLOOO WORLD", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SearchActivityBus_results.this, "HELLOOO WORLD", Toast.LENGTH_SHORT).show();
                                 /* selectedFragment = new Fragment_Faresv();
                                 getSupportFragmentManager().beginTransaction().replace(R.id.Frame_container,
                                         selectedFragment).commit();*/
@@ -84,6 +89,8 @@ public class Activity_busresults extends AppCompatActivity {
         bottomNavigationView1 = findViewById(R.id.BNV);
         bottomNavigationView1.setOnNavigationItemSelectedListener(navListener);
         bottomNavigationView1.setSelectedItemId(R.id.rtpi);
+        getSupportActionBar().setElevation(0);
+        Settings();
         bList = new ArrayList<>();
         mRequestQueue = Volley.newRequestQueue(this);
         mRecyclerView = findViewById(R.id.recyclerView);
@@ -115,7 +122,7 @@ public class Activity_busresults extends AppCompatActivity {
                                 String dueT = result.getString("duetime");
                                 bList.add(new Bus(routE, destinatioN, dueT));
                             }
-                            adapter = new Adapter(Activity_busresults.this, bList);
+                            adapter = new Adapter(SearchActivityBus_results.this, bList);
                             mRecyclerView.setAdapter(adapter);
                             adapter.notifyDataSetChanged();
 
@@ -140,6 +147,27 @@ public class Activity_busresults extends AppCompatActivity {
         );
 
         mRequestQueue.add(request);
+    }
+
+    private void Settings() {
+        if (Build.VERSION.SDK_INT >= 21) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(
+                    ContextCompat.getColor(
+                            getApplicationContext(),
+                            R.color.system
+                    )
+            );
+
+            window.setNavigationBarColor(
+                    ContextCompat.getColor(
+                            getApplicationContext(),
+                            R.color.system
+                    ));
+        }
+
     }
 
 

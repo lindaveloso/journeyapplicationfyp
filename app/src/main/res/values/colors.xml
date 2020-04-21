@@ -15,6 +15,7 @@
     <color name="tool">#292929</color>
     <color name="ROUTE">#673AB7</color>
     <color name="luas_purple">#3373CA</color>
+    <color name="tab_selected_color">#ED0101</color>
 
 
     <color name="message_success">#ff006600</color>

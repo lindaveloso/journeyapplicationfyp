@@ -46,6 +46,7 @@
 
             <TextView
                 android:id="@+id/text0"
+                android:textSize="17sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/luas_purple"
@@ -66,6 +67,7 @@
 
             <TextView
                 android:id="@+id/text0z"
+                android:textSize="17sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/luas_purple"
