@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -37,6 +38,9 @@ public class Suburban_Fragment extends Fragment {
     private String url = "http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc=";
     private Adapter2 adapter2;
     private List<Data> elements;
+    private TextView tv_no_data;
+    private TextView tv_no_data2;
+
 
     //Arrivals Data
 
@@ -68,6 +72,8 @@ public class Suburban_Fragment extends Fragment {
         ry2.setHasFixedSize(true);
         ry2.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         ry2.addItemDecoration(new DividerItemDecoration(ry2.getContext(), DividerItemDecoration.VERTICAL));
+        tv_no_data = rootView.findViewById(R.id.tv_no_data);
+        tv_no_data2 = rootView.findViewById(R.id.tv_no_data2);
         return rootView;
     }
 
@@ -108,6 +114,28 @@ public class Suburban_Fragment extends Fragment {
                 elements.remove(i);
             }
         }
+
+        if (elements.isEmpty()) {
+            tv_no_data.setVisibility(View.VISIBLE);
+            ry4.setVisibility(View.GONE);
+
+
+        } else {
+            tv_no_data.setVisibility(View.GONE);
+            ry4.setVisibility(View.VISIBLE);
+
+
+        }
+        if (elementsArrivals.isEmpty()) {
+            tv_no_data2.setVisibility(View.VISIBLE);
+            ry2.setVisibility(View.GONE);
+
+
+        } else {
+            tv_no_data2.setVisibility(View.GONE);
+            ry2.setVisibility(View.VISIBLE);
+        }
+
 
         if (!elements.isEmpty()) {
             adapter2 = new Adapter2(this.getActivity(), elements);

@@ -57,6 +57,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="153dp" />
 
+            <TextView
+                android:id="@+id/tv_no_data"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="No Trains available"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="invisible" />
+
+
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="10dp" />
@@ -77,6 +89,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="153dp" />
 
+            <TextView
+                android:id="@+id/tv_no_data2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="No Trains available"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="invisible" />
 
 
         </LinearLayout>

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -37,6 +38,8 @@ public class Dart_Fragment extends Fragment {
     private RecyclerView ry3;
     private RecyclerView ry0;
     private Adapter3 adapter3;
+    private TextView tv_no_data;
+    private TextView tv_no_data2;
 
     public Dart_Fragment() {
 
@@ -70,6 +73,8 @@ public class Dart_Fragment extends Fragment {
         ry0.setHasFixedSize(true);
         ry0.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         ry0.addItemDecoration(new DividerItemDecoration(ry0.getContext(), DividerItemDecoration.VERTICAL));
+        tv_no_data = rootView.findViewById(R.id.tv_no_data);
+        tv_no_data2 = rootView.findViewById(R.id.tv_no_data2);
         return rootView;
     }
 
@@ -106,6 +111,28 @@ public class Dart_Fragment extends Fragment {
                 elements.remove(i);
             }
         }
+
+        if (elements.isEmpty()) {
+            tv_no_data.setVisibility(View.VISIBLE);
+            ry3.setVisibility(View.GONE);
+
+
+        } else {
+            tv_no_data.setVisibility(View.GONE);
+            ry3.setVisibility(View.VISIBLE);
+
+
+        }
+        if (elementsArrivals.isEmpty()) {
+            tv_no_data2.setVisibility(View.VISIBLE);
+            ry0.setVisibility(View.GONE);
+
+
+        } else {
+            tv_no_data2.setVisibility(View.GONE);
+            ry0.setVisibility(View.VISIBLE);
+        }
+
         if (!elements.isEmpty()) {
             adapter2 = new Adapter2(this.getActivity(), elements);
             adapter3 = new Adapter3(this.getActivity(), elementsArrivals);
