@@ -36,6 +36,7 @@ public class Mainline_Fragment extends Fragment {
     private Adapter2 adapter2;
     private List<Data> elements;
     private RecyclerView ry2;
+
     private Adapter3 adapter3;
 
 
