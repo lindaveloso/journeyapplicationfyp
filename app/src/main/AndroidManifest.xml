@@ -49,7 +49,7 @@
 
         </activity>
         <activity
-            android:name=".activity.SearchActivity_Tram"
+            android:name=".fragment.SearchActivity_Tram"
             android:exported="true"
             android:label="Tram">
 

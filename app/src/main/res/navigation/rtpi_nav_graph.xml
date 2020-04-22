@@ -16,6 +16,10 @@
         <action
             android:id="@+id/action_RTPINavFragment_to_searchActivity_Train"
             app:destination="@id/searchActivity_Train" />
+        <action
+            android:id="@+id/action_RTPINavFragment_to_luas_Fragment"
+            app:destination="@id/luas_Fragment" />
+
     </fragment>
     <fragment
         android:id="@+id/busSearchFragment"
@@ -39,5 +43,10 @@
         android:id="@+id/searchActivity_Train"
         android:name="com.example.journeyapplicationfyp.activity.SearchActivity_Train"
         android:label="SearchActivity_Train" />
+    <fragment
+        android:id="@+id/luas_Fragment"
+        android:name="com.example.journeyapplicationfyp.Luas_Fragment"
+        android:label="fragment_luas_"
+        tools:layout="@layout/fragment_luas_" />
 
 </navigation>

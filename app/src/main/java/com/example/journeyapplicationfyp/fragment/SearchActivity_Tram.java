@@ -1,4 +1,5 @@
-package com.example.journeyapplicationfyp.activity;
+/*
+package com.example.journeyapplicationfyp.fragment;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -14,11 +15,12 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.journeyapplicationfyp.Constant;
 import com.example.journeyapplicationfyp.R;
+import com.example.journeyapplicationfyp.activity.PageAdapterClass;
 import com.google.android.material.tabs.TabLayout;
 
 public class SearchActivity_Tram extends Fragment {
 
-    private final String LOG_TAG = SearchActivity_Tram.class.getSimpleName();
+    //private final String LOG_TAG = SearchActivity_Tram.class.getSimpleName();
     ViewPager viewpager;
     TabLayout tablayout;
 
@@ -88,7 +90,7 @@ public class SearchActivity_Tram extends Fragment {
             );
 
         } else {
-            Log.wtf(LOG_TAG, "tabLayout or viewPager is null.");
+           // Log.wtf(LOG_TAG, "tabLayout or viewPager is null.");
         }
     }
 
@@ -97,7 +99,8 @@ public class SearchActivity_Tram extends Fragment {
 
 
 
- /*   BottomNavigationView bottomNavigationView1;
+ */
+/*   BottomNavigationView bottomNavigationView1;
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -121,9 +124,13 @@ public class SearchActivity_Tram extends Fragment {
 
                             case R.id.farenav:
                                 Toast.makeText(SearchActivity_Tram.this, "HELLOOO WORLD", Toast.LENGTH_SHORT).show();
-                                *//* selectedFragment = new Fragment_Faresv();
+                                *//*
+ */
+/* selectedFragment = new Fragment_Faresv();
                                 getSupportFragmentManager().beginTransaction().replace(R.id.Frame_container,
                                         selectedFragment).commit();*//*
+ */
+/*
                                 break;
 
                         }
@@ -240,7 +247,7 @@ public class SearchActivity_Tram extends Fragment {
 
 }
 
-*/
+*//*
 
 
 
@@ -250,3 +257,5 @@ public class SearchActivity_Tram extends Fragment {
 
 
 
+
+ */
