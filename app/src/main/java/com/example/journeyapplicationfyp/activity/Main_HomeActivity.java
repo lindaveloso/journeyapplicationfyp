@@ -28,7 +28,6 @@ public class Main_HomeActivity extends AppCompatActivity {
     final Fragment fragment1 = new MainActivityMap();
     final Fragment fragment2 = new SearchFragment();
     final Fragment fragment3 = new TimetableFragment();
-    // final Fragment fragment4 = new Fragment_Faresv(); //FARES
     final FragmentManager fm = getSupportFragmentManager();
     Fragment active = fragment1;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -43,13 +42,11 @@ public class Main_HomeActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.rtpi:
-                    //fm.beginTransaction().hide(active).show(fragment2).commit();
                     fm.beginTransaction().replace(R.id.main_container, fragment2).commit();
                     active = fragment2;
                     return true;
 
                 case R.id.homehere:
-                    //fm.beginTransaction().show(fragment1).commit();
                     fm.beginTransaction().replace(R.id.main_container, fragment1).commit();
                     active = fragment1;
                     return true;
@@ -68,9 +65,6 @@ public class Main_HomeActivity extends AppCompatActivity {
         BadgeDrawable badge = navigation.getOrCreateBadge(R.id.rtpi);
         badge.setVisible(true);
 
-        //fm.beginTransaction().add(R.id.main_container, fragment2, "3").commit();
-        //fm.beginTransaction().add(R.id.main_container, fragment3, "2").hide(fragment3).commit();
-        // fm.beginTransaction().add(R.id.main_container, fragment1, "1").hide(fragment1).commit(); FARES
         fm.beginTransaction().add(R.id.main_container, fragment1, "1").commit();
         getSupportActionBar().setElevation(0);
 

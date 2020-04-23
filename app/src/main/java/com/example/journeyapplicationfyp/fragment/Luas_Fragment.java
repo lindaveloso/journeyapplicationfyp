@@ -1,4 +1,4 @@
-package com.example.journeyapplicationfyp;
+package com.example.journeyapplicationfyp.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +11,8 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.journeyapplicationfyp.Constant;
+import com.example.journeyapplicationfyp.R;
 import com.example.journeyapplicationfyp.activity.PageAdapterClass;
 import com.google.android.material.tabs.TabLayout;
 

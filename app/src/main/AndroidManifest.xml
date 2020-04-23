@@ -58,7 +58,7 @@
 
         </activity>
         <activity
-            android:name=".activity.SearchActivityBus_results"
+            android:name=".fragment.SearchFragmentBus_results"
             android:label="Dublin Bus">
 
         </activity>

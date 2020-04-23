@@ -2,7 +2,7 @@ package com.example.journeyapplicationfyp;
 
 //import com.example.journeyapplicationfyp.activity.FaresActivity;
 
-import com.example.journeyapplicationfyp.fragment.Fragment_Faresv;
+//import com.example.journeyapplicationfyp.fragment.Fragment_Faresv;
 
 public final class Constant {
 
@@ -20,7 +20,7 @@ public final class Constant {
     /*
      * Classes.
      */
-    public static final Class CLASS_FARES_ACTIVITY = Fragment_Faresv.class;
+    //  public static final Class CLASS_FARES_ACTIVITY = Fragment_Faresv.class;
     public static final String REMOTEMESSAGE_VALUE_ACTIVITY_FARES = "fares";
     public static final String REMOTEMESSAGE_VALUE_ACTIVITY_MAIN = "main";
 

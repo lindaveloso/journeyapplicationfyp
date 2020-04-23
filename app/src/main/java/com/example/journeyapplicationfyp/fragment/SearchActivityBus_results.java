@@ -1,4 +1,4 @@
-package com.example.journeyapplicationfyp.activity;
+/*package com.example.journeyapplicationfyp.fragment;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -7,10 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.EditText;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
+import android.widget.EditText;*/
+/*import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -26,6 +24,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.journeyapplicationfyp.R;
+import com.example.journeyapplicationfyp.activity.Adapter;
+import com.example.journeyapplicationfyp.activity.SearchActivityBus_resultsArgs;
 import com.example.journeyapplicationfyp.object.Bus;
 
 import org.json.JSONArray;
@@ -34,11 +34,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-//import com.example.journeyapplicationfyp.fragment.SearchActivityBus_resultsArgs;
-
 public class SearchActivityBus_results extends Fragment {
 
-    //BottomNavigationView bottomNavigationView1;
+
     private ArrayList<Bus> bList;
     private RecyclerView mRecyclerView;
     private Adapter adapter;
@@ -52,11 +50,10 @@ public class SearchActivityBus_results extends Fragment {
         Bundle bundle = getArguments();
         SearchActivityBus_resultsArgs args = SearchActivityBus_resultsArgs.fromBundle(bundle);
         url = args.getUrl();
-        Toast.makeText(requireContext(), url, Toast.LENGTH_SHORT).show();
         return inflater.inflate(R.layout.activity_busresults, container, false);
-    }
+    }*/
 
-    @Override
+  /*  @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         bList = new ArrayList<>();
@@ -110,10 +107,10 @@ public class SearchActivityBus_results extends Fragment {
         );
 
         mRequestQueue.add(request);
-    }
+    }*/
 
 
-    //    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+//    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
 //            new BottomNavigationView.OnNavigationItemSelectedListener() {
 //                @Override
 //                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -173,7 +170,7 @@ public class SearchActivityBus_results extends Fragment {
 //            }
 //        });*/
 
-    //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
 //        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -216,6 +213,7 @@ public class SearchActivityBus_results extends Fragment {
 //
 //        mRequestQueue.add(request);
 //    }
+/*
 
     private void Settings() {
         if (Build.VERSION.SDK_INT >= 21) {
@@ -237,6 +235,7 @@ public class SearchActivityBus_results extends Fragment {
         }
 
     }
+*/
 
 
 //    @Override
@@ -274,4 +273,5 @@ public class SearchActivityBus_results extends Fragment {
 //    }
 
 
-}
+
+
