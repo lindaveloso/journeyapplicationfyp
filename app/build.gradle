@@ -79,6 +79,13 @@ dependencies {
     //Navigation Components
     implementation 'androidx.navigation:navigation-fragment:2.2.2'
     implementation 'androidx.navigation:navigation-ui:2.2.2'
+
+    //Navigation Components
+    implementation 'androidx.navigation:navigation-fragment:2.2.2'
+    implementation 'androidx.navigation:navigation-ui:2.2.2'
+    //RXJava for composing asynchronous and event-based programs using observable sequences for the Java VM
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

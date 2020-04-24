@@ -13,62 +13,66 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import com.example.journeyapplicationfyp.R;
-import com.example.journeyapplicationfyp.fragment.SearchFragment;
-import com.example.journeyapplicationfyp.fragment.TimetableFragment;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Main_HomeActivity extends AppCompatActivity {
     Toolbar toolsbarmenu;
     BottomNavigationView navigation;
-    final Fragment fragment1 = new MainActivityMap();
-    final Fragment fragment2 = new SearchFragment();
-    final Fragment fragment3 = new TimetableFragment();
-    final FragmentManager fm = getSupportFragmentManager();
-    Fragment active = fragment1;
+    private NavController navController;
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.timetable:
-                    fm.beginTransaction().replace(R.id.main_container, fragment3).commit();
-                    active = fragment3;
-                    return true;
-
-                case R.id.rtpi:
-                    fm.beginTransaction().replace(R.id.main_container, fragment2).commit();
-                    active = fragment2;
-                    return true;
-
-                case R.id.homehere:
-                    fm.beginTransaction().replace(R.id.main_container, fragment1).commit();
-                    active = fragment1;
-                    return true;
-            }
+//            switch (item.getItemId()) {
+//                case R.id.timetable:
+//                    navController.navigate(R.id.timetableFragment);
+//                    return true;
+//
+//                case R.id.rtpi:
+//                    navController.navigate(R.id.RTPINavFragment);
+//
+//                    return true;
+//
+//                case R.id.homehere:
+//                    navController.navigate(R.id.mainActivityMap);
+//                    return true;
+//            }
             return false;
         }
     };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Settings();
-        BottomNavigationView navigation = findViewById(R.id.BNV);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation = findViewById(R.id.BNV);
+        //navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         BadgeDrawable badge = navigation.getOrCreateBadge(R.id.rtpi);
         badge.setVisible(true);
+        initializeViews();
 
-        fm.beginTransaction().add(R.id.main_container, fragment1, "1").commit();
         getSupportActionBar().setElevation(0);
 
 
+    }
+
+    private void initializeViews() {
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.rtpi_nav_host);
+        navController = navHostFragment.getNavController();
+        NavigationUI.setupWithNavController(navigation, navHostFragment.getNavController());
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.map_search_fragment, R.id.rtpi_nav_fragment).build();
+        NavigationUI.setupActionBarWithNavController(this, navHostFragment.getNavController(), appBarConfiguration);
     }
 
     private void Settings() {

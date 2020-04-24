@@ -23,12 +23,6 @@
         app:cardCornerRadius="4dp"
         app:cardElevation="3dp">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:hint="@string/Searchbar"
-            android:textSize="24sp" />
 
     </androidx.cardview.widget.CardView>
 

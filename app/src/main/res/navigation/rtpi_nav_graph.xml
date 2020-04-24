@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rtpi_nav_fragments"
-    app:startDestination="@id/RTPINavFragment">
+    app:startDestination="@id/map_search_fragment">
 
     <fragment
-        android:id="@+id/RTPINavFragment"
+        android:id="@+id/rtpi_nav_fragment"
         android:name="com.example.journeyapplicationfyp.fragment.RTPINavFragment"
         android:label="fragment_r_t_p_i_nav"
         tools:layout="@layout/fragment_r_t_p_i_nav">
@@ -33,7 +33,7 @@
     <fragment
         android:id="@+id/searchActivityBus_results"
         android:name="com.example.journeyapplicationfyp.activity.SearchActivityBus_results"
-        android:label="fragment_search_activity_bus_results">
+        android:label="SearchActivityBus_results">
         <argument
             android:name="url"
             app:argType="string" />
@@ -47,6 +47,10 @@
         android:name="com.example.journeyapplicationfyp.fragment.Luas_Fragment"
         android:label="fragment_luas_"
         tools:layout="@layout/fragment_luas_" />
+    <fragment
+        android:id="@+id/map_search_fragment"
+        android:name="com.example.journeyapplicationfyp.navigation.MainActivityMap"
+        android:label="MainActivityMap" />
 
 
 </navigation>

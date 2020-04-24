@@ -1,5 +1,4 @@
-/*
-package com.example.journeyapplicationfyp.activity;
+package com.example.journeyapplicationfyp.navigation;
 
 import android.graphics.Color;
 import android.os.Build;
@@ -15,8 +14,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.journeyapplicationfyp.R;
+import com.mapbox.android.core.permissions.PermissionsListener;
+import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.api.directions.v5.DirectionsCriteria;
 import com.mapbox.api.directions.v5.MapboxDirections;
 import com.mapbox.api.directions.v5.models.DirectionsResponse;
@@ -26,6 +28,13 @@ import com.mapbox.geojson.FeatureCollection;
 import com.mapbox.geojson.LineString;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.camera.CameraPosition;
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
+import com.mapbox.mapboxsdk.geometry.LatLng;
+import com.mapbox.mapboxsdk.location.LocationComponent;
+import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions;
+import com.mapbox.mapboxsdk.location.modes.CameraMode;
+import com.mapbox.mapboxsdk.location.modes.RenderMode;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
@@ -35,6 +44,8 @@ import com.mapbox.mapboxsdk.style.layers.Property;
 import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 import com.mapbox.mapboxsdk.utils.BitmapUtils;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,18 +62,23 @@ import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineColor;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineJoin;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineWidth;
 
-public class MainActivityMap extends Fragment implements OnMapReadyCallback {
+public class MainActivityMap extends Fragment implements OnMapReadyCallback, PermissionsListener, MapboxMap.OnMapClickListener {
 
+    private static final int REQUEST_CODE_AUTOCOMPLETE = 1;
     private static final String ROUTE_LAYER_ID = "route-layer-id";
     private static final String ROUTE_SOURCE_ID = "route-source-id";
     private static final String ICON_LAYER_ID = "icon-layer-id";
     private static final String ICON_SOURCE_ID = "icon-source-id";
     private static final String RED_PIN_ICON_ID = "red-pin-icon-id";
+    private PermissionsManager permissionsManager;
     private MapView mapView;
     private Point origin;
     private Point destination;
     private DirectionsRoute currentRoute;
     private MapboxDirections client;
+    private SearchDialogFragment searchDialogFragment;
+    private NavigationViewModel viewModel;
+    private MapboxMap mapBox;
 
     @Nullable
     @Override
@@ -72,22 +88,37 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback {
         mapView = rootView.findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
+        searchDialogFragment = new SearchDialogFragment();
+        searchDialogFragment.show(getChildFragmentManager(), SearchDialogFragment.class.getSimpleName());
         Settings();
         return rootView;
     }
 
-
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        viewModel = new ViewModelProvider(requireActivity()).get(NavigationViewModel.class);
+        viewModel.selected.observe(requireActivity(), navigationState -> {
+            Toast.makeText(requireContext(), "" + mapBox, Toast.LENGTH_SHORT).show();
+            if (mapBox != null) {
+                Toast.makeText(requireContext(), "" + mapBox, Toast.LENGTH_SHORT).show();
+                //getRoute(mapBox, navigationState.origin, navigationState.destination);
+            }
+        });
+    }
 
     @Override
     public void onMapReady(@NonNull MapboxMap mapboxMap) {
+        this.mapBox = mapboxMap;
         mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
             @Override
             public void onStyleLoaded(@NonNull Style style) {
 // Set the origin location to the Alhambra landmark in Granada, Spain.
-                origin = Point.fromLngLat(-3.588098, 37.176164);
+                enableLocationComponent(style);
+                origin = Point.fromLngLat(53.3938952, -6.3942532);
 
 // Set the destination location to the Plaza del Triunfo in Granada, Spain
-                destination = Point.fromLngLat(-3.601845, 37.184080);
+                destination = Point.fromLngLat(53.3973931, -6.4003374);
 
                 initSource(style);
 
@@ -106,11 +137,9 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback {
         loadedMapStyle.addSource(iconGeoJsonSource);
     }
 
-    */
-/**
- * Add the route and marker icon layers to the map
- *//*
-
+    /**
+     * Add the route and marker icon layers to the map
+     */
     private void initLayers(@NonNull Style loadedMapStyle) {
         LineLayer routeLayer = new LineLayer(ROUTE_LAYER_ID, ROUTE_SOURCE_ID);
 
@@ -144,6 +173,7 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback {
                 .accessToken(getString(R.string.access_token))
                 .build();
 
+
         client.enqueueCall(new Callback<DirectionsResponse>() {
             @Override
             public void onResponse(Call<DirectionsResponse> call, Response<DirectionsResponse> response) {
@@ -161,7 +191,7 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback {
                 currentRoute = response.body().routes().get(0);
 
 // Make a toast which displays the route's distance
-                //     Toast.makeText(getActivity(), "Response: " + currentRoute.distance(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Response: " + currentRoute.distance(), Toast.LENGTH_SHORT).show();
 
                 if (mapboxMap != null) {
                     mapboxMap.getStyle(new Style.OnStyleLoaded() {
@@ -175,11 +205,32 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback {
 // reset the GeoJSON source for the route LineLayer source
                             if (source != null) {
                                 source.setGeoJson(LineString.fromPolyline(currentRoute.geometry(), PRECISION_6));
+                              /*  CameraPosition position = new CameraPosition.Builder()
+                                        .target(new LatLng(origin.longitude(), origin.latitude())) // Sets the new camera position
+                                        .zoom(17) // Sets the zoom
+                                        .bearing(180) // Rotate the camera
+                                        .tilt(30) // Set the camera tilt
+                                        .build(); // Creates a CameraPosition from the builder
+
+                                mapBox.animateCamera(CameraUpdateFactory
+                                        .newCameraPosition(position), 7000);*/
                             }
+
                         }
                     });
+                    CameraPosition position = new CameraPosition.Builder()
+                            .target(new LatLng(origin.longitude(), origin.latitude())) // Sets the new camera position
+                            .zoom(17) // Sets the zoom
+                            .bearing(180) // Rotate the camera
+                            .tilt(30) // Set the camera tilt
+                            .build(); // Creates a CameraPosition from the builder
+
+                    mapBox.animateCamera(CameraUpdateFactory
+                            .newCameraPosition(position), 7000);
                 }
+
             }
+
 
             @Override
             public void onFailure(Call<DirectionsResponse> call, Throwable throwable) {
@@ -188,6 +239,50 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback {
                         Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @SuppressWarnings({"MissingPermission"})
+    private void enableLocationComponent(@NonNull Style loadedMapStyle) {
+        if (PermissionsManager.areLocationPermissionsGranted(requireContext())) {
+            LocationComponent locationComponent = mapBox.getLocationComponent();
+
+            locationComponent.activateLocationComponent(
+                    LocationComponentActivationOptions.builder(requireContext(), loadedMapStyle).build());
+
+            locationComponent.setLocationComponentEnabled(true);
+            locationComponent.setCameraMode(CameraMode.TRACKING);
+            locationComponent.setRenderMode(RenderMode.NORMAL);
+
+        } else {
+            permissionsManager = new PermissionsManager(this);
+            permissionsManager.requestLocationPermissions(requireActivity());
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        permissionsManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    public void onExplanationNeeded(List<String> permissionsToExplain) {
+        Toast.makeText(requireContext(), R.string.user_location_permission_explanation, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onPermissionResult(boolean granted) {
+        if (granted) {
+            mapBox.setStyle(Style.LIGHT,
+                    new Style.OnStyleLoaded() {
+                        @Override
+                        public void onStyleLoaded(@NonNull Style style) {
+                            enableLocationComponent(style);
+                        }
+                    });
+        } else {
+            Toast.makeText(requireContext(), R.string.user_location_permission_not_granted, Toast.LENGTH_LONG).show();
+            requireActivity().finish();
+        }
     }
 
     @Override
@@ -247,5 +342,24 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback {
         }
     }
 
+    @Override
+    public boolean onMapClick(@NonNull LatLng point) {
+        return false;
+    }
+
+     /*   CameraPosition position = new CameraPosition.Builder()
+                .target(new LatLng(origin.longitude(), origin.latitude())) // Sets the new camera position
+                .zoom(17) // Sets the zoom
+                .bearing(180) // Rotate the camera
+                .tilt(30) // Set the camera tilt
+                .build(); // Creates a CameraPosition from the builder
+
+        mapBox.animateCamera(CameraUpdateFactory
+                .newCameraPosition(position), 7000);
+
+
+       return true;
+    }
+
+      */
 }
-*/
