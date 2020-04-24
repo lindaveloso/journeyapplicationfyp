@@ -1,5 +1,6 @@
 package com.example.journeyapplicationfyp.fragment;
 
+import android.app.ProgressDialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,12 +21,14 @@ import androidx.navigation.Navigation;
 
 import com.example.journeyapplicationfyp.R;
 
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class BusSearchFragment extends Fragment {
 
     ProgressBar progressBar;
+    ProgressDialog progressDialog;
     String url1 = "https://data.smartdublin.ie/cgi-bin/rtpi/realtimebusinformation?stopid=";
     String busstop = "";
     String url2 = "&format=json";
@@ -62,6 +65,7 @@ public class BusSearchFragment extends Fragment {
         });
 
     }
+
 
     private boolean validationDetails(View view) {
         EditText editText = view.findViewById(R.id.editText);

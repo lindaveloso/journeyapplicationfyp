@@ -1,13 +1,11 @@
 package com.example.journeyapplicationfyp.activity;
 
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -107,9 +105,7 @@ public class Main_HomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch ((item.getItemId())) {
             case R.id.refresh:
-                Intent intent = getIntent();
-                finish();
-                startActivity(intent);
+
                 break;
 
         }
@@ -119,6 +115,5 @@ public class Main_HomeActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Toast.makeText(this, getPackageName(), Toast.LENGTH_SHORT).show();
     }
 }

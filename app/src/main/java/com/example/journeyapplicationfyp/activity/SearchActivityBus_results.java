@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -45,6 +46,7 @@ public class SearchActivityBus_results extends Fragment {
     private RequestQueue mRequestQueue;
     private EditText editText;
     private String url;
+    TextView tv_no_data3;
 
     @Nullable
     @Override
@@ -65,9 +67,24 @@ public class SearchActivityBus_results extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(mRecyclerView.getContext(), DividerItemDecoration.VERTICAL));
+        tv_no_data3 = view.findViewById(R.id.tv_no_data3);
+
         jsonparsemethod();
         Settings();
     }
+
+ /*   public void vaildation() {
+        bList = new ArrayList<>();
+        if (bList.isEmpty()) {
+            tv_no_data3.setVisibility(View.VISIBLE);
+            mRecyclerView.setVisibility(View.GONE);
+
+
+        } else {
+            tv_no_data3.setVisibility(View.GONE);
+            mRecyclerView.setVisibility(View.VISIBLE);
+        }
+    }*/
 
     private void jsonparsemethod() {
 
@@ -88,6 +105,7 @@ public class SearchActivityBus_results extends Fragment {
                             adapter = new Adapter(requireActivity(), bList);
                             mRecyclerView.setAdapter(adapter);
                             adapter.notifyDataSetChanged();
+
 
                         } catch (JSONException e) {
 
@@ -112,110 +130,6 @@ public class SearchActivityBus_results extends Fragment {
         mRequestQueue.add(request);
     }
 
-
-    //    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-//            new BottomNavigationView.OnNavigationItemSelectedListener() {
-//                @Override
-//                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-//                    final int previousItem = bottomNavigationView1.getSelectedItemId();
-//                    final int nextItem = menuItem.getItemId();
-//                    Intent intent;
-//
-//                    if (previousItem != nextItem) {
-//                        switch (nextItem) {
-//                            case R.id.homehere:
-//                                intent = new Intent(SearchActivityBus_results.this, MainActivityHome.class);
-//                                startActivity(intent);
-//                                break;
-//
-//                            case R.id.timetable:
-//                                intent = new Intent(SearchActivityBus_results.this, TimetableFragment.class);
-//                                startActivity(intent);
-//                                break;
-//
-//                            case R.id.farenav:
-//                                Toast.makeText(SearchActivityBus_results.this, "HELLOOO WORLD", Toast.LENGTH_SHORT).show();
-//                                /* selectedFragment = new Fragment_Faresv();
-//                                getSupportFragmentManager().beginTransaction().replace(R.id.Frame_container,
-//                                        selectedFragment).commit();*/
-//                                break;
-//
-//                        }
-//
-//                    }
-//                    return true;
-//                }
-//            };
-
-
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_busresults);
-//        Intent intent = getIntent();
-//        String url = intent.getStringExtra("link");
-//        bottomNavigationView1 = findViewById(R.id.BNV);
-//        bottomNavigationView1.setOnNavigationItemSelectedListener(navListener);
-//        bottomNavigationView1.setSelectedItemId(R.id.rtpi);
-//        getSupportActionBar().setElevation(0);
-//        Settings();
-//        bList = new ArrayList<>();
-//        mRequestQueue = Volley.newRequestQueue(this);
-//        mRecyclerView = findViewById(R.id.recyclerView);
-//        mRecyclerView.setHasFixedSize(true);
-//        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        mRecyclerView.addItemDecoration(new DividerItemDecoration(mRecyclerView.getContext(), DividerItemDecoration.VERTICAL));
-//      /*  refresh = findViewById(R.id.refresh);
-//        refreshbutton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(Activity_busresults.this, "REFRESH ME", Toast.LENGTH_SHORT).show();
-//            }
-//        });*/
-
-    //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-//        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-//                new Response.Listener<JSONObject>() {
-//                    @Override
-//                    public void onResponse(JSONObject response) {
-//                        try {
-//                            bList.clear();
-//                            JSONArray jsonArray = response.getJSONArray("results");
-//                            for (int i = 0; i < jsonArray.length(); i++) {
-//                                JSONObject result = jsonArray.getJSONObject(i);
-//                                String routE = result.getString("route");
-//                                String destinatioN = result.getString("destination");
-//                                String dueT = result.getString("duetime");
-//                                bList.add(new Bus(routE, destinatioN, dueT));
-//                            }
-//                            adapter = new Adapter(SearchActivityBus_results.this, bList);
-//                            mRecyclerView.setAdapter(adapter);
-//                            adapter.notifyDataSetChanged();
-//
-//                        } catch (JSONException e) {
-//
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }, new Response.ErrorListener() {
-//
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                error.printStackTrace();
-//            }
-//
-//        });
-//
-//        request.setRetryPolicy(new DefaultRetryPolicy(
-//                5000,
-//                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-//                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
-//        );
-//
-//        mRequestQueue.add(request);
-//    }
 
     private void Settings() {
         if (Build.VERSION.SDK_INT >= 21) {
@@ -256,22 +170,4 @@ public class SearchActivityBus_results extends Fragment {
 //                return true;
 //
 //
-//            case R.id.refresh:
-//                Toast.makeText(getApplicationContext(), "Hello Javatpoint", Toast.LENGTH_SHORT).show();
-//                return true;
-//
-//
-//
-//
-//           /* case R.id.signmeout:
-//                FirebaseAuth.getInstance().signOut();
-//                finish();
-//                //startActivity(new Intent(this, MainActivityLogin.class));
-//                return true;*/
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-
-
 }

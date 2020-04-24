@@ -1,6 +1,8 @@
+/*
 package com.example.journeyapplicationfyp.activity;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,7 +26,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SearchActivity_Bus extends AppCompatActivity {
 
-    ProgressBar progressBar;
+    ProgressDialog progressDialog;
     String url1 = "https://data.smartdublin.ie/cgi-bin/rtpi/realtimebusinformation?stopid=";
     String busstop = "";
     String url2 = "&format=json";
@@ -84,6 +86,7 @@ public class SearchActivity_Bus extends AppCompatActivity {
 
     }
 
+
     private boolean validationDetails() {
         EditText editText = findViewById(R.id.editText);
         busstop = "";
@@ -135,3 +138,4 @@ public class SearchActivity_Bus extends AppCompatActivity {
 
 }
 
+*/

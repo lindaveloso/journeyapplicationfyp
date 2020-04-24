@@ -8,7 +8,6 @@
 
 
     <!-- Navigation Top -->
-    <string name="Fare">Fare</string>
     <string name="Route">Route</string>
     <string name="tab_text_1">Main Line</string>
     <string name="tab_text_2">DART</string>

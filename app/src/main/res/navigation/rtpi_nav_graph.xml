@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/rtpi_nav_fragment"
         android:name="com.example.journeyapplicationfyp.fragment.RTPINavFragment"
-        android:label="fragment_r_t_p_i_nav"
+        android:label="RTPI "
         tools:layout="@layout/fragment_r_t_p_i_nav">
         <action
             android:id="@+id/action_RTPINavFragment_to_busSearchFragment"
@@ -51,6 +51,10 @@
         android:id="@+id/map_search_fragment"
         android:name="com.example.journeyapplicationfyp.navigation.MainActivityMap"
         android:label="MainActivityMap" />
+    <fragment
+        android:id="@+id/activity_timetables"
+        android:name="com.example.journeyapplicationfyp.fragment.TimetableFragment"
+        android:label="Profile" />
 
 
 </navigation>
