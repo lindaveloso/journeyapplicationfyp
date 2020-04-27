@@ -28,8 +28,6 @@ import com.mapbox.geojson.FeatureCollection;
 import com.mapbox.geojson.LineString;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
-import com.mapbox.mapboxsdk.camera.CameraPosition;
-import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.location.LocationComponent;
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions;
@@ -78,6 +76,7 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
     private MapboxDirections client;
     private SearchDialogFragment searchDialogFragment;
     private NavigationViewModel viewModel;
+    private String myurl = "mapbox://styles/lindavelsoo1/ck9h89utr56031io7aier7s7u";
     private MapboxMap mapBox;
 
     @Nullable
@@ -111,6 +110,7 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
     public void onMapReady(@NonNull MapboxMap mapboxMap) {
         this.mapBox = mapboxMap;
         mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
+            //   mapboxMap.setStyle(new Style.Builder().fromUri("https://api.mapbox.com/styles/v1/lindavelsoo1/ck9h89utr56031io7aier7s7u?access_token=pk.eyJ1IjoibGluZGF2ZWxzb28xIiwiYSI6ImNrNjhlbmpsajA0YTAzbXFlemFhd25zNmUifQ.3X7UXh9OlTaN1M0lygbyyg"), new Style.OnStyleLoaded() {
             @Override
             public void onStyleLoaded(@NonNull Style style) {
 // Set the origin location to the Alhambra landmark in Granada, Spain.
@@ -205,28 +205,11 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
 // reset the GeoJSON source for the route LineLayer source
                             if (source != null) {
                                 source.setGeoJson(LineString.fromPolyline(currentRoute.geometry(), PRECISION_6));
-                              /*  CameraPosition position = new CameraPosition.Builder()
-                                        .target(new LatLng(origin.longitude(), origin.latitude())) // Sets the new camera position
-                                        .zoom(17) // Sets the zoom
-                                        .bearing(180) // Rotate the camera
-                                        .tilt(30) // Set the camera tilt
-                                        .build(); // Creates a CameraPosition from the builder
-
-                                mapBox.animateCamera(CameraUpdateFactory
-                                        .newCameraPosition(position), 7000);*/
                             }
 
                         }
-                    });
-                    CameraPosition position = new CameraPosition.Builder()
-                            .target(new LatLng(origin.longitude(), origin.latitude())) // Sets the new camera position
-                            .zoom(17) // Sets the zoom
-                            .bearing(180) // Rotate the camera
-                            .tilt(30) // Set the camera tilt
-                            .build(); // Creates a CameraPosition from the builder
 
-                    mapBox.animateCamera(CameraUpdateFactory
-                            .newCameraPosition(position), 7000);
+                    });
                 }
 
             }
@@ -272,8 +255,7 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
     @Override
     public void onPermissionResult(boolean granted) {
         if (granted) {
-            mapBox.setStyle(Style.LIGHT,
-                    new Style.OnStyleLoaded() {
+            mapBox.setStyle(Style.LIGHT, new Style.OnStyleLoaded() {
                         @Override
                         public void onStyleLoaded(@NonNull Style style) {
                             enableLocationComponent(style);
@@ -344,22 +326,7 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
 
     @Override
     public boolean onMapClick(@NonNull LatLng point) {
+
         return false;
     }
-
-     /*   CameraPosition position = new CameraPosition.Builder()
-                .target(new LatLng(origin.longitude(), origin.latitude())) // Sets the new camera position
-                .zoom(17) // Sets the zoom
-                .bearing(180) // Rotate the camera
-                .tilt(30) // Set the camera tilt
-                .build(); // Creates a CameraPosition from the builder
-
-        mapBox.animateCamera(CameraUpdateFactory
-                .newCameraPosition(position), 7000);
-
-
-       return true;
-    }
-
-      */
 }

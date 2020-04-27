@@ -45,16 +45,17 @@
     <fragment
         android:id="@+id/luas_Fragment"
         android:name="com.example.journeyapplicationfyp.fragment.Luas_Fragment"
-        android:label="fragment_luas_"
+        android:label="Luas"
         tools:layout="@layout/fragment_luas_" />
     <fragment
         android:id="@+id/map_search_fragment"
         android:name="com.example.journeyapplicationfyp.navigation.MainActivityMap"
-        android:label="MainActivityMap" />
+        android:label="Home" />
     <fragment
         android:id="@+id/activity_timetables"
         android:name="com.example.journeyapplicationfyp.fragment.TimetableFragment"
-        android:label="Profile" />
+        android:label="Profile"
+        tools:layout="@layout/activity_timetables" />
 
 
 </navigation>

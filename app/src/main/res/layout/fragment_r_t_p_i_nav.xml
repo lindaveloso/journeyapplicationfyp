@@ -9,6 +9,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
+        android:paddingBottom="60dp"
         android:layout_height="wrap_content">
 
         <LinearLayout
@@ -23,14 +24,14 @@
 
             <GridLayout
                 android:id="@+id/mainGrid"
-                android:layout_width="340dp"
+                android:layout_width="400dp"
                 android:layout_height="531dp"
                 android:layout_weight="1"
                 android:alignmentMode="alignMargins"
                 android:columnCount="1"
                 android:columnOrderPreserved="false"
                 android:padding="0dp"
-                android:rowCount="2">
+                android:rowCount="3">
 
 
                 <androidx.cardview.widget.CardView
@@ -39,10 +40,12 @@
                     android:layout_height="0dp"
                     android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
-                    android:layout_marginLeft="16dp"
+
                     android:layout_marginTop="20dp"
-                    android:layout_marginRight="16dp"
+
                     android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:clickable="true"
                     android:elevation="10dp"
                     android:focusable="true"
@@ -88,8 +91,8 @@
                     android:layout_height="0dp"
                     android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="14dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/shadow"
                     android:clickable="true"
@@ -136,11 +139,12 @@
                     android:layout_height="0dp"
                     android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="14dp"
-                    android:layout_marginBottom="16dp"
+
+                    android:layout_marginLeft="5dp"
                     android:clickable="true"
                     android:elevation="10dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="6dp"
                     android:focusable="true"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="15dp">

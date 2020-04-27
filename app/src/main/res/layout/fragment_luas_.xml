@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.journeyapplicationfyp.fragment.SearchActivity_Tram">
+    tools:context="com.example.journeyapplicationfyp.fragment.Luas_Fragment">
 
 
     <androidx.viewpager.widget.ViewPager
@@ -25,15 +25,4 @@
 
 
     </androidx.viewpager.widget.ViewPager>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/BNV"
-        android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:background="@color/nav"
-        app:itemTextColor="@color/navtextcolor"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/navigationbottom_menu" />
-
-
 </LinearLayout>

@@ -12,9 +12,9 @@
         android:title="RTPI" />
 
     <item
-        android:id="@+id/timetableFragment"
-        android:icon="@drawable/mappp"
-        android:title="Timetable" />
+        android:id="@+id/activity_timetables"
+        android:icon="@drawable/heart"
+        android:title="Favorites" />
 
 </menu>
 

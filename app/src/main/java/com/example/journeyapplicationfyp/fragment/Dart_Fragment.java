@@ -148,7 +148,7 @@ public class Dart_Fragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                startActivity(new Intent(getActivity(), SearchFragment.class));
+                startActivity(new Intent(getActivity(), BusSearchFragment.class));
                 return true;
         }
 

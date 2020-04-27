@@ -9,22 +9,18 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="2dp" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="2dp" />
+        android:layout_height="20dp" />
 
     <com.example.journeyapplicationfyp.view.SpinnerCardView
         android:id="@+id/greenline_spinner_card_view"
-        android:layout_width="match_parent"
+        android:layout_width="384dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin" />
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="54dp" />
+        android:layout_height="10dp" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/greenline_swiperefreshlayout"
@@ -44,33 +40,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingBottom="80dp">
-
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="7.2dp" />
-
-                <com.example.journeyapplicationfyp.view.TutorialCardView
-                    android:id="@+id/tutorialcardview_select_stop"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone" />
-
-                <com.example.journeyapplicationfyp.view.TutorialCardView
-                    android:id="@+id/tutorialcardview_notifications"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone" />
-
-                <com.example.journeyapplicationfyp.view.TutorialCardView
-                    android:id="@+id/tutorialcardview_favourites"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone" />
-
-                <Space
-                    android:layout_width="403dp"
-                    android:layout_height="27dp" />
 
                 <com.example.journeyapplicationfyp.view.StopForecastCardView
                     android:id="@+id/greenline_inbound_stopforecastcardview"
