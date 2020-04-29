@@ -65,6 +65,8 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.google.android.gms:play-services-tasks:17.0.2'
+  /*  implementation 'com.airbnb.android:lottie:2.5.5'*/
+    implementation 'com.airbnb.android:lottie:3.0.3'
 
     implementation 'androidx.viewpager2:viewpager2:1.0.0-beta04'
     implementation 'androidx.fragment:fragment-ktx:1.2.0-alpha04'

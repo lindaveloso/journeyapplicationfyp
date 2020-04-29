@@ -9,10 +9,6 @@
             android:visible="true"
             app:showAsAction="never"
             android:title="Profile" />
-        <item
-            android:id="@+id/nav_chat"
-            app:showAsAction="never"
-            android:title="favourites" />
 
     <item
         android:id="@+id/refresh"

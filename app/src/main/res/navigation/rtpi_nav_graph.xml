@@ -41,7 +41,7 @@
     <fragment
         android:id="@+id/searchActivity_Train"
         android:name="com.example.journeyapplicationfyp.activity.SearchActivity_Train"
-        android:label="SearchActivity_Train" />
+        android:label="Irish Rail" />
     <fragment
         android:id="@+id/luas_Fragment"
         android:name="com.example.journeyapplicationfyp.fragment.Luas_Fragment"
@@ -56,6 +56,11 @@
         android:name="com.example.journeyapplicationfyp.fragment.TimetableFragment"
         android:label="Profile"
         tools:layout="@layout/activity_timetables" />
+    <fragment
+        android:id="@+id/profile2"
+        android:name="com.example.journeyapplicationfyp.fragment.Profile"
+        android:label="Profile"
+        tools:layout="@layout/nav_header" />
 
 
 </navigation>

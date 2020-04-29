@@ -3,20 +3,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/bg"
     tools:context=".fragment.TimetableFragment">
 
-    <FrameLayout
-        android:id="@+id/frag_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|center_horizontal"
-            android:text="              TIMETABLE"
-            android:textSize="34sp" />
-    </FrameLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="96dp" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/text1"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="-4dp"
+        android:layout_marginBottom="0dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/pinwheel" />
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="402dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="No Favourites available"
+        android:textSize="26sp" />
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/text1"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="114dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="Please Sign Up or Log In"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

@@ -10,19 +10,25 @@
         <item name="windowActionBar">true</item>
 
     </style>
+
     <style name="MyTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
         <item name="android:textSize">14sp</item>
         <item name="android:textAllCaps">true</item>
     </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="AppTheme.SplashScreen" parent ="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme.SplashScreen" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="android:windowDisablePreview">true</item>
 
     </style>
 
+    <style name="SplashScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_splash_screen</item>
+
+    </style>
 
 
 </resources>

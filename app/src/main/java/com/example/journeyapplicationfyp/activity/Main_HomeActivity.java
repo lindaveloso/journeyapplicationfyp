@@ -7,7 +7,6 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
@@ -25,7 +24,7 @@ public class Main_HomeActivity extends AppCompatActivity {
     BottomNavigationView navigation;
     private NavController navController;
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+ /*   private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
@@ -46,7 +45,7 @@ public class Main_HomeActivity extends AppCompatActivity {
 //            }
             return false;
         }
-    };
+    };*/
 
 
     @Override
@@ -69,7 +68,7 @@ public class Main_HomeActivity extends AppCompatActivity {
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.rtpi_nav_host);
         navController = navHostFragment.getNavController();
         NavigationUI.setupWithNavController(navigation, navHostFragment.getNavController());
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.map_search_fragment, R.id.rtpi_nav_fragment).build();
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.map_search_fragment, R.id.rtpi_nav_fragment, R.id.profile).build();
         NavigationUI.setupActionBarWithNavController(this, navHostFragment.getNavController(), appBarConfiguration);
     }
 
@@ -104,12 +103,18 @@ public class Main_HomeActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch ((item.getItemId())) {
-            case R.id.refresh:
+            case R.id.profile:
 
+          /*      Fragment fr = new Profile();
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+              //  fragmentTransaction.replace(R.id.fragment_place, fr);
+                fragmentTransaction.commit();*/
                 break;
 
+
         }
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

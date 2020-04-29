@@ -12,8 +12,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.journeyapplicationfyp.R;
@@ -95,7 +93,6 @@ public class MainActivityHome extends AppCompatActivity implements NavigationVie
     private MapboxDirections client;
     private Point origin;
     private Point destination;
-    private DrawerLayout drawer;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener;
@@ -164,17 +161,6 @@ public class MainActivityHome extends AppCompatActivity implements NavigationVie
         }
         return true;
     }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
 
     @Override
     public void onMapReady(@NonNull final MapboxMap mapboxMap) {
