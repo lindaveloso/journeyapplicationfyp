@@ -136,7 +136,7 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
         });
     }
 
-    public void GeoJSONToMap(String sourceId, String layerId, String asset_id) {
+    private void GeoJSONToMap(String sourceId, String layerId, String asset_id) {
         mapBox.getStyle(new Style.OnStyleLoaded() {
             @Override
             public void onStyleLoaded(@NonNull Style style) {
@@ -168,7 +168,7 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
         });
     }
 
-    public void GeoJSONToMap2(String sourceId, String layerId, String asset_id) {
+    private void GeoJSONToMap2(String sourceId, String layerId, String asset_id) {
         mapBox.getStyle(new Style.OnStyleLoaded() {
             @Override
             public void onStyleLoaded(@NonNull Style style) {
@@ -203,7 +203,7 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
         });
     }
 
-    public void GeoJSONToMap3(String sourceId, String layerId, String asset_id) {
+    private void GeoJSONToMap3(String sourceId, String layerId, String asset_id) {
         mapBox.getStyle(new Style.OnStyleLoaded() {
             @Override
             public void onStyleLoaded(@NonNull Style style) {
