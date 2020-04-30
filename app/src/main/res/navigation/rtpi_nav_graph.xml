@@ -24,7 +24,7 @@
     <fragment
         android:id="@+id/busSearchFragment"
         android:name="com.example.journeyapplicationfyp.fragment.BusSearchFragment"
-        android:label="fragment_bus_search"
+        android:label="Dublin Bus Services"
         tools:layout="@layout/fragment_bus_search">
         <action
             android:id="@+id/action_busSearchFragment_to_searchActivityBus_results"
@@ -33,7 +33,7 @@
     <fragment
         android:id="@+id/searchActivityBus_results"
         android:name="com.example.journeyapplicationfyp.activity.SearchActivityBus_results"
-        android:label="SearchActivityBus_results">
+        android:label="Dublin Bus services">
         <argument
             android:name="url"
             app:argType="string" />

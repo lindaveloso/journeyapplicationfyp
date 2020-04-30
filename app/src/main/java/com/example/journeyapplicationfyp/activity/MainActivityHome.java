@@ -1,3 +1,4 @@
+/*
 package com.example.journeyapplicationfyp.activity;
 
 import android.app.Activity;
@@ -118,11 +119,13 @@ public class MainActivityHome extends AppCompatActivity implements NavigationVie
                             finish();
                             break;
 
-                         /*   case R.id.farenav:
+                         */
+/*   case R.id.farenav:
                                 selectedFragment = new Fragment_Faresv();
                                 getSupportFragmentManager().beginTransaction().replace(R.id.Frame_container,
                                         selectedFragment).commit();
-                                break;*/
+                                break;*//*
+
                     }
                 }
                 return true;
@@ -242,7 +245,8 @@ public class MainActivityHome extends AppCompatActivity implements NavigationVie
     }
 
 
-    /*private void initSearchDirections() {
+    */
+/*private void initSearchDirections() {
         findViewById(R.id.fab_direction_search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -251,10 +255,12 @@ public class MainActivityHome extends AppCompatActivity implements NavigationVie
             }
 
         });
-    }*/
+    }*//*
+
 
 
     private void initSearchFab() {
+*/
 /*
         findViewById(R.id.fab_location_search).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -271,7 +277,8 @@ public class MainActivityHome extends AppCompatActivity implements NavigationVie
                 startActivityForResult(intent, REQUEST_CODE_AUTOCOMPLETE);
             }
         });
-*/
+*//*
+
     }
 
     private void addUserLocations() {
@@ -333,14 +340,16 @@ public class MainActivityHome extends AppCompatActivity implements NavigationVie
         }
     }
 
-    /**
-     * Make a request to the Mapbox Directions API. Once successful, pass the route to the
-     * route layer.
-     *
-     * @param mapboxMap   the Mapbox map object that the route will be drawn on
-     * @param origin      the starting point of the route
-     * @param destination the desired finish point of the route
-     */
+    */
+/**
+ * Make a request to the Mapbox Directions API. Once successful, pass the route to the
+ * route layer.
+ *
+ * @param mapboxMap   the Mapbox map object that the route will be drawn on
+ * @param origin      the starting point of the route
+ * @param destination the desired finish point of the route
+ *//*
+
     private void getRoute(MapboxMap mapboxMap, Point origin, Point destination) {
         client = MapboxDirections.builder()
                 .origin(origin)
@@ -367,9 +376,11 @@ public class MainActivityHome extends AppCompatActivity implements NavigationVie
                 currentRoute = response.body().routes().get(0);
 
 // Make a toast which displays the route's distance
-              /*  Toast.makeText(MainActivityHome.this, String.format(
+              */
+/*  Toast.makeText(MainActivityHome.this, String.format(
                         getString(R.string.directions_activity_toast_message),
-                        currentRoute.distance()), Toast.LENGTH_SHORT).show();*/
+                        currentRoute.distance()), Toast.LENGTH_SHORT).show();*//*
+
 
                 if (mapboxMap != null) {
                     mapboxMap.getStyle(new Style.OnStyleLoaded() {
@@ -489,7 +500,8 @@ public class MainActivityHome extends AppCompatActivity implements NavigationVie
 
     @Override
     public boolean onMapClick(@NonNull LatLng point) {
-       /* CameraPosition position = new CameraPosition.Builder()
+       */
+/* CameraPosition position = new CameraPosition.Builder()
                 .target(new LatLng(51.50550, -0.07520))
                 .zoom(30)
                 .bearing(180)
@@ -497,7 +509,8 @@ public class MainActivityHome extends AppCompatActivity implements NavigationVie
                 .build();
 
         mapboxMap.animateCamera(CameraUpdateFactory
-                .newCameraPosition(position), 7000);*/
+                .newCameraPosition(position), 7000);*//*
+
         return true;
     }
 
@@ -509,3 +522,4 @@ public class MainActivityHome extends AppCompatActivity implements NavigationVie
         return false;
     }
 }
+*/

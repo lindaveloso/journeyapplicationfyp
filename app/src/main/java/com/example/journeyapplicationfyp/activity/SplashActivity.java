@@ -15,10 +15,10 @@ import com.example.journeyapplicationfyp.R;
 
 public class SplashActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash_gif);
         initDisplay();
 
         Intent i = new Intent(SplashActivity.this, Main_HomeActivity.class);

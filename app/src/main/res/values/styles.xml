@@ -24,10 +24,8 @@
         <item name="android:windowDisablePreview">true</item>
 
     </style>
-
     <style name="SplashScreen" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/background_splash_screen</item>
-
     </style>
 
 

@@ -30,9 +30,11 @@ import com.mapbox.geojson.FeatureCollection;
 import com.mapbox.geojson.LineString;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.location.LocationComponent;
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions;
+import com.mapbox.mapboxsdk.location.LocationComponentOptions;
 import com.mapbox.mapboxsdk.location.modes.CameraMode;
 import com.mapbox.mapboxsdk.location.modes.RenderMode;
 import com.mapbox.mapboxsdk.maps.MapView;
@@ -65,7 +67,7 @@ import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineJoin;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineWidth;
 
 
-public class MainActivityMap extends Fragment implements OnMapReadyCallback, PermissionsListener, MapboxMap.OnMapClickListener {
+public class MainActivityMap extends Fragment implements OnMapReadyCallback, PermissionsListener, MapboxMap.OnMapClickListener, MapboxMap.OnMarkerClickListener {
 
     private static final int REQUEST_CODE_AUTOCOMPLETE = 1;
     private static final String ROUTE_LAYER_ID = "route-layer-id";
@@ -116,6 +118,7 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
         mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
             @Override
             public void onStyleLoaded(@NonNull Style style) {
+
 // Set the origin location to the Alhambra landmark in Granada, Spain.
                 enableLocationComponent(style);
                 origin = Point.fromLngLat(53.3938952, -6.3942532);
@@ -135,6 +138,7 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
             }
         });
     }
+
 
     private void GeoJSONToMap(String sourceId, String layerId, String asset_id) {
         mapBox.getStyle(new Style.OnStyleLoaded() {
@@ -339,6 +343,13 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
     @SuppressWarnings({"MissingPermission"})
     private void enableLocationComponent(@NonNull Style loadedMapStyle) {
         if (PermissionsManager.areLocationPermissionsGranted(requireContext())) {
+
+            LocationComponentOptions customLocationComponentOptions = LocationComponentOptions.builder(requireActivity())
+                    .elevation(5)
+                    .accuracyAlpha(.6f)
+                    .accuracyColor(Color.RED)
+                    .foregroundDrawable(R.drawable.current_location)
+                    .build();
             LocationComponent locationComponent = mapBox.getLocationComponent();
 
             locationComponent.activateLocationComponent(
@@ -414,7 +425,6 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
         super.onDestroy();
         mapView.onDestroy();
     }
-
     @Override
     public void onLowMemory() {
         super.onLowMemory();
@@ -440,6 +450,11 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
     @Override
     public boolean onMapClick(@NonNull LatLng point) {
 
+        return false;
+    }
+
+    @Override
+    public boolean onMarkerClick(@NonNull Marker marker) {
         return false;
     }
 }

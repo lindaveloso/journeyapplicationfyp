@@ -117,8 +117,8 @@ public class Main_HomeActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
+  /*  @Override
     public void onBackPressed() {
         super.onBackPressed();
-    }
+    }*/
 }

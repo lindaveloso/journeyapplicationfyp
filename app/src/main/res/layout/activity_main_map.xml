@@ -11,7 +11,21 @@
         android:layout_height="match_parent"
         mapbox:mapbox_cameraTargetLat="37.1792"
         mapbox:mapbox_cameraTargetLng="-3.5953"
-        mapbox:mapbox_cameraZoom="14" />
+        mapbox:mapbox_cameraZoom="14">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_location_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:tint="@android:color/white"
+            app:backgroundTint="@color/colorPrimary"
+            app:srcCompat="@android:drawable/ic_search_category_default" />
+    </com.mapbox.mapboxsdk.maps.MapView>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -25,5 +39,6 @@
 
 
     </androidx.cardview.widget.CardView>
+
 
 </RelativeLayout>
