@@ -1,0 +1,39 @@
+{
+"type": "FeatureCollection",
+
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "Name": "Tallaght", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.37458888888889, 53.287494444444398 ] } },
+{ "type": "Feature", "properties": { "Name": "Hospital", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.37885, 53.289369444444397 ] } },
+{ "type": "Feature", "properties": { "Name": "Cookstown", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.38439722222222, 53.293505555555598 ] } },
+{ "type": "Feature", "properties": { "Name": "Belgard", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.37488611111111, 53.299286111111101 ] } },
+{ "type": "Feature", "properties": { "Name": "Kingswood", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.36525, 53.303694444444403 ] } },
+{ "type": "Feature", "properties": { "Name": "Red Cow", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.36987222222222, 53.3168333333333 ] } },
+{ "type": "Feature", "properties": { "Name": "Kylemore", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.34344444444444, 53.326655555555597 ] } },
+{ "type": "Feature", "properties": { "Name": "Bluebell", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.33379166666667, 53.329297222222202 ] } },
+{ "type": "Feature", "properties": { "Name": "Blackhorse", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.32739444444444, 53.334258333333302 ] } },
+{ "type": "Feature", "properties": { "Name": "Drimnagh", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.31816111111111, 53.335361111111098 ] } },
+{ "type": "Feature", "properties": { "Name": "Goldenbridge", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.31356944444444, 53.335891666666697 ] } },
+{ "type": "Feature", "properties": { "Name": "Suir Road", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.30721111111111, 53.3366166666667 ] } },
+{ "type": "Feature", "properties": { "Name": "Rialto", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.29724166666667, 53.337908333333303 ] } },
+{ "type": "Feature", "properties": { "Name": "Fatima", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.29254722222222, 53.338438888888902 ] } },
+{ "type": "Feature", "properties": { "Name": "James's", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.29336111111111, 53.341941666666699 ] } },
+{ "type": "Feature", "properties": { "Name": "Heuston", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.29180833333333, 53.346647222222202 ] } },
+{ "type": "Feature", "properties": { "Name": "Museum", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.28671388888889, 53.347866666666697 ] } },
+{ "type": "Feature", "properties": { "Name": "Smithfield", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.27772777777778, 53.347133333333304 ] } },
+{ "type": "Feature", "properties": { "Name": "Four Courts", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.27343611111111, 53.346863888888898 ] } },
+{ "type": "Feature", "properties": { "Name": "Jervis", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.26533333333333, 53.347686111111102 ] } },
+{ "type": "Feature", "properties": { "Name": "Abbey Street", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.25817222222222, 53.348588888888898 ] } },
+{ "type": "Feature", "properties": { "Name": "Busáras", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.25145, 53.350075 ] } },
+{ "type": "Feature", "properties": { "Name": "Connolly", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.24994166666667, 53.350922222222202 ] } },
+{ "type": "Feature", "properties": { "Name": "Citywest Campus", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.418914583333, 53.28783255 ] } },
+{ "type": "Feature", "properties": { "Name": "Fortunestown", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.42460165, 53.284250633333002 ] } },
+{ "type": "Feature", "properties": { "Name": "Saggart", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.43776255, 53.28467885 ] } },
+{ "type": "Feature", "properties": { "Name": "George's Dock", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.247575, 53.349528 ] } },
+{ "type": "Feature", "properties": { "Name": "Mayor Square - NCI", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.24339444444444, 53.349247222222203 ] } },
+{ "type": "Feature", "properties": { "Name": "Spencer Dock", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.23714722222222, 53.348822222222203 ] } },
+{ "type": "Feature", "properties": { "Name": "The Point", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.22925833333333, 53.34835 ] } },
+{ "type": "Feature", "properties": { "Name": "Fettercairn", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.395553516667, 53.29351885 ] } },
+{ "type": "Feature", "properties": { "Name": "Cheeverstown", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.4068485, 53.290982416666999 ] } }
+]
+}

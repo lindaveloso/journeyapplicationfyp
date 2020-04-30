@@ -1,0 +1,24 @@
+{
+"type": "FeatureCollection",
+
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "Name": "Manorfields Drive, stop 7020", "Description": "" }, "geometry": { "type": "Point", "coordinates": [-6.4457369, 53.3963027] } },
+ { "type": "Feature", "properties": { "Name": "Camden Street Lower, stop 1352", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.2833121, 53.3392237 ] } },
+  { "type": "Feature", "properties": { "Name": "Airside Ind. Estate, stop 7210", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.2398896, 53.4511214 ] } },
+  { "type": "Feature", "properties": { "Name": "The Square, stop 4340", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.3776705, 53.2875766 ] } },
+  { "type": "Feature", "properties": { "Name": "Scoil Mhuire NS, stop 2219", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.4730992, 53.3497112 ] } },
+  { "type": "Feature", "properties": { "Name": "Ashleigh Green, stop 1675", "Description": "" }, "geometry": { "type": "Point", "coordinates": [-6.3793645, 53.3816038 ] } },
+  { "type": "Feature", "properties": { "Name": "Stephen's Green East, stop 842", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.2591963, 53.3371256 ] } },
+  { "type": "Feature", "properties": { "Name": "Wellington Quay, stop 135101", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.264406, 53.3458074 ] } },
+  { "type": "Feature", "properties": { "Name": "D'Olier Street, stop 334", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.2600071, 53.3465632 ] } },
+  { "type": "Feature", "properties": { "Name": "Eden Quay, stop 297", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.2596102, 53.347463 ] } },
+  { "type": "Feature", "properties": { "Name": "O'Connell St Upper, stop 277", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.2616433, 53.3504379 ] } },
+  { "type": "Feature", "properties": { "Name": "O'Connell St Upper, stop 274", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.2629096, 53.3503523] } },
+  { "type": "Feature", "properties": { "Name": "Warrenstown Green, stop 4999", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.388182, 53.4009349 ] } },
+  { "type": "Feature", "properties": { "Name": "Castlecurragh Heath, stop 4998", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.3915947, 53.402943 ] } },
+
+{ "type": "Feature", "properties": { "Name": "Navan Road, stop 1806", "Description": "" }, "geometry": { "type": "Point", "coordinates": [ -6.3395727,53.3758603 ] } }
+]
+}
+
