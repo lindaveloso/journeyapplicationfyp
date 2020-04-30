@@ -130,6 +130,7 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
 
                 GeoJSONToMap("luas-points-greenline", "luas-points-greenline", "asset://luas_greenline.geojson");
                 GeoJSONToMap2("luas-points-redline", "luas-points-redline", "asset://luas_redline.geojson");
+                GeoJSONToMap3("demo-data-dubin-bus-points", "demo-data-dubin-bus-points", "asset://dublin_bus_points.geojson");
 
             }
         });
@@ -202,6 +203,40 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
         });
     }
 
+    public void GeoJSONToMap3(String sourceId, String layerId, String asset_id) {
+        mapBox.getStyle(new Style.OnStyleLoaded() {
+            @Override
+            public void onStyleLoaded(@NonNull Style style) {
+
+                try {
+                    GeoJsonSource source4 = new GeoJsonSource(sourceId, new URI("asset://dublin_bus_points.geojson"));
+                    style.addSource(source4);
+                    Bitmap icon;
+                    if (layerId.equals("demo-data-dubin-bus-points")) {
+                        icon = BitmapFactory.decodeResource(getResources(), R.drawable.bus_marker_pin);
+                    } else {
+                        icon = BitmapFactory.decodeResource(getResources(), R.drawable.bus_marker_pin);
+                    }
+                    style.addImage(layerId + " marker", icon);
+                    SymbolLayer symbolLayer = new SymbolLayer(layerId, sourceId);
+
+                    symbolLayer.setProperties(
+                            iconImage(layerId + " marker"),
+                            iconAllowOverlap(true),
+                            iconIgnorePlacement(true)
+                    );
+
+                    style.addLayer(symbolLayer);
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+        });
+    }
 
 
 
