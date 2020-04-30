@@ -11,8 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.example.journeyapplicationfyp.R;
-
-
 public class SplashActivity extends AppCompatActivity {
 
 
@@ -20,7 +18,6 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initDisplay();
-
         Intent i = new Intent(SplashActivity.this, Main_HomeActivity.class);
         startActivity(i);
         finish();

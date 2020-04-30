@@ -1,12 +1,12 @@
 package com.example.journeyapplicationfyp.object;
 
-public class Bus {
+public class Data3 {
 
     public String dueT;
     public String destinatioN;
     public String routE;
 
-    public Bus(String routE, String destinatioN, String dueT) {
+    public Data3(String routE, String destinatioN, String dueT) {
 
         this.dueT = dueT;
         this.destinatioN = destinatioN;

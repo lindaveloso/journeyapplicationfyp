@@ -12,10 +12,10 @@ import androidx.fragment.app.Fragment;
 
 import com.example.journeyapplicationfyp.Constant;
 import com.example.journeyapplicationfyp.R;
-import com.example.journeyapplicationfyp.api.ApiMethods;
-import com.example.journeyapplicationfyp.api.ApiTimes;
+import com.example.journeyapplicationfyp.api.Api;
 import com.example.journeyapplicationfyp.object.EnglishGaeilgeMap;
-import com.example.journeyapplicationfyp.object.StopForecast;
+import com.example.journeyapplicationfyp.object.Luas;
+import com.example.journeyapplicationfyp.object.Luas_Stop;
 import com.example.journeyapplicationfyp.object.StopNameIdMap;
 import com.example.journeyapplicationfyp.util.Preferences;
 import com.example.journeyapplicationfyp.util.StopForecastUtil;
@@ -30,7 +30,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Timer;
 import java.util.TimerTask;
 
 import retrofit.Callback;
@@ -198,7 +197,6 @@ public class LineFragment extends Fragment {
 
     private boolean initFragment() {
         tabLayout = getActivity().findViewById(R.id.tablayout);
-        // setIsLoading(true);
         spinnerCardView = rootView.findViewById(resSpinnerCardView);
         spinnerCardView.setLine(line);
 
@@ -282,11 +280,11 @@ public class LineFragment extends Fragment {
                 break;
 
             default:
-                Log.wtf(LOG_TAG, "Invalid line specified.");
+                Timber.tag(LOG_TAG).wtf("Invalid line specified.");
         }
 
         if (listStopsThisLine == null) {
-            Log.e(LOG_TAG, "List of stops for this line is null.");
+            Timber.e("List of stops for this line is null.");
 
             return false;
         }
@@ -313,36 +311,6 @@ public class LineFragment extends Fragment {
         outboundStopForecastCardView.clearStopForecast();
     }
 
-    public void autoReloadStopForecast(int delayTimeMillis) {
-        final int RELOAD_TIME_MILLIS = 10000;
-
-        timerTaskReload = new TimerTask() {
-            @Override
-            public void run() {
-                /* Check Fragment is attached to Activity to avoid NullPointerExceptions. */
-                if (isAdded()) {
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (shouldAutoReload) {
-                                loadStopForecast(
-                                        Preferences.selectedStopName(
-                                                getActivity().getApplicationContext(),
-                                                line
-                                        ),
-                                        false
-                                );
-                            }
-                        }
-                    });
-                }
-            }
-        };
-
-        /* Schedule the auto-reload task to run. */
-        new Timer().schedule(timerTaskReload, delayTimeMillis, RELOAD_TIME_MILLIS);
-    }
-
     private void loadStopForecast(String stopName, final boolean shouldShowSnackbar) {
         final String API_URL = "https://api.thecosmicfrog.org/cgi-bin";
         final String API_ACTION = "times";
@@ -352,17 +320,17 @@ public class LineFragment extends Fragment {
                 .setEndpoint(API_URL)
                 .build();
 
-        ApiMethods methods = restAdapter.create(ApiMethods.class);
+        Api methods = restAdapter.create(Api.class);
 
-        Callback<ApiTimes> callback = new Callback<ApiTimes>() {
+        Callback<Luas> callback = new Callback<Luas>() {
             @Override
-            public void success(ApiTimes apiTimes, Response response) {
+            public void success(Luas apiTimes, Response response) {
                 if (isAdded()) {
                     if (apiTimes != null) {
-                        StopForecast stopForecast = StopForecastUtil.createStopForecast(apiTimes);
+                        Luas_Stop luasStop = StopForecastUtil.createStopForecast(apiTimes);
 
                         clearStopForecast();
-                        updateStopForecast(stopForecast);
+                        updateStopForecast(luasStop);
 
                         if (shouldShowSnackbar) {
                             String apiCreatedTime = getApiCreatedTime(apiTimes);
@@ -379,10 +347,6 @@ public class LineFragment extends Fragment {
             public void failure(RetrofitError retrofitError) {
                 Timber.e("Failure during call to server.");
 
-                /*
-                 * If we get a message or a response from the server, there's likely an issue with
-                 * the client request or the server's response itself.
-                 */
                 if (retrofitError.getMessage() != null) {
                     Timber.e("Message: %s", retrofitError.getMessage());
                 }
@@ -420,12 +384,12 @@ public class LineFragment extends Fragment {
         );
     }
 
-    private String getApiCreatedTime(ApiTimes apiTimes) {
+    private String getApiCreatedTime(Luas luas) {
         try {
             Date currentTime = new SimpleDateFormat(
                     "yyyy-MM-dd'T'HH:mm:ss",
                     Locale.getDefault()
-            ).parse(apiTimes.getCreatedTime());
+            ).parse(luas.getCreatedTime());
 
             DateFormat dateFormat =
                     new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
@@ -441,13 +405,9 @@ public class LineFragment extends Fragment {
         return null;
     }
 
-    /**
-     * Draw stop forecast to screen.
-     *
-     * @param stopForecast StopForecast object containing data for requested stop.
-     */
+
     @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
-    private void updateStopForecast(StopForecast stopForecast) {
+    private void updateStopForecast(Luas_Stop luasStop) {
         final String GAEILGE = "ga";
         final String DUE = "DUE";
 
@@ -456,29 +416,25 @@ public class LineFragment extends Fragment {
         String mins = " " + getString(R.string.mins);
         String minOrMins;
 
-            /*
-             * Pull in all trams from the StopForecast, but only display up to five
-             * inbound and outbound trams.
-             */
-            if (stopForecast.getInboundTrams() != null) {
-                if (stopForecast.getInboundTrams().size() == 0) {
+        if (luasStop.getInboundTrams() != null) {
+            if (luasStop.getInboundTrams().size() == 0) {
                     inboundStopForecastCardView.setNoTramsForecast();
                 } else {
                     String inboundTram;
 
-                    for (int i = 0; i < stopForecast.getInboundTrams().size(); i++) {
+                for (int i = 0; i < luasStop.getInboundTrams().size(); i++) {
                         String dueMinutes =
-                                stopForecast.getInboundTrams().get(i).getDueMinutes();
+                                luasStop.getInboundTrams().get(i).getDueMinutes();
 
                         if (i < 8) {
                             if (localeDefault.startsWith(GAEILGE)) {
                                 inboundTram = mapEnglishGaeilge.get(
-                                        stopForecast.getInboundTrams()
+                                        luasStop.getInboundTrams()
                                                 .get(i)
                                                 .getDestination()
                                 );
                             } else {
-                                inboundTram = stopForecast.getInboundTrams()
+                                inboundTram = luasStop.getInboundTrams()
                                         .get(i)
                                         .getDestination();
                             }
@@ -505,26 +461,26 @@ public class LineFragment extends Fragment {
                 }
             }
 
-            if (stopForecast.getOutboundTrams() != null) {
-                if (stopForecast.getOutboundTrams().size() == 0) {
+        if (luasStop.getOutboundTrams() != null) {
+            if (luasStop.getOutboundTrams().size() == 0) {
                     outboundStopForecastCardView.setNoTramsForecast();
                 } else {
                     String outboundTram;
 
-                    for (int i = 0; i < stopForecast.getOutboundTrams().size(); i++) {
+                for (int i = 0; i < luasStop.getOutboundTrams().size(); i++) {
                         String dueMinutes =
-                                stopForecast.getOutboundTrams().get(i).getDueMinutes();
+                                luasStop.getOutboundTrams().get(i).getDueMinutes();
 
                         if (i < 6) {
                             if (localeDefault.startsWith(GAEILGE)) {
                                 outboundTram = mapEnglishGaeilge.get(
-                                        stopForecast.getOutboundTrams()
+                                        luasStop.getOutboundTrams()
                                                 .get(i)
                                                 .getDestination()
                                 );
                             } else {
                                 outboundTram =
-                                        stopForecast.getOutboundTrams()
+                                        luasStop.getOutboundTrams()
                                                 .get(i).getDestination();
                             }
 

@@ -70,19 +70,10 @@ public class Handlexml {
 //                            data.setDueIn(DueIn);
                         }
                         break;
-//                    case XmlPullParser.TEXT:
-//                        text = pullParser.getText();
-//                        break;
+
 
                     case XmlPullParser.END_TAG:
-//                        if (name.equals(("objStationData"))) {
-//                            // Stationfullname = text;
-//                            Stationfullname = pullParser.getAttributeValue(null, "value");
-//                        } else if (name.equals(("DueIn"))) {
-//                            DueIn = pullParser.getAttributeValue(null, "value");
-//                        } else {
-//
-//                        }
+
                         if (flag && pullParser.getName().equalsIgnoreCase("objStationData")) {
                             Data data = new Data();
                             data.setDueIn(DueIn);

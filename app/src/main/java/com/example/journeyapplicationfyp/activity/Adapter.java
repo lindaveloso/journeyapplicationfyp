@@ -9,17 +9,17 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.journeyapplicationfyp.R;
-import com.example.journeyapplicationfyp.object.Bus;
+import com.example.journeyapplicationfyp.object.Data3;
 
 import java.util.ArrayList;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     private Context context;
-    private ArrayList<Bus> bList;
+    private ArrayList<Data3> bList;
     private OnItemClickListener mListener;
 
-    public Adapter(Context context, ArrayList<Bus> bList) {
+    public Adapter(Context context, ArrayList<Data3> bList) {
         this.context = context;
         this.bList = bList;
     }
@@ -28,7 +28,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         mListener = listener;
     }
 
-    public void update(ArrayList<Bus> bList) {
+    public void update(ArrayList<Data3> bList) {
         bList.clear();
         bList.addAll(bList);
         notifyDataSetChanged();
@@ -43,7 +43,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-        final Bus bus = bList.get(position);
+        final Data3 bus = bList.get(position);
         holder.txt1.setText(bus.getRoutE());
         holder.txt2.setText(bus.getDestinatioN());
         holder.txt3.setText(bus.getDueT());

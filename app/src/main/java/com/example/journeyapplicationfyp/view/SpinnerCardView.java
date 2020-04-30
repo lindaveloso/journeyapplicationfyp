@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -74,9 +73,6 @@ public class SpinnerCardView extends CardView {
                 resArrayStops = R.array.array_stops_greenline;
 
                 break;
-
-            default:
-                Log.wtf(LOG_TAG, "Invalid line specified.");
         }
 
         initAdapterStops(resArrayStops);

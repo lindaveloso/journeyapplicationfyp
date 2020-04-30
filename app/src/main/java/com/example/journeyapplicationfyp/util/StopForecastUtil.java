@@ -1,70 +1,70 @@
 package com.example.journeyapplicationfyp.util;
 
 
-import com.example.journeyapplicationfyp.api.ApiTimes;
-import com.example.journeyapplicationfyp.object.StopForecast;
-import com.example.journeyapplicationfyp.object.Tram;
+import com.example.journeyapplicationfyp.object.Data2;
+import com.example.journeyapplicationfyp.object.Luas;
+import com.example.journeyapplicationfyp.object.Luas_Stop;
 
 
 public final class StopForecastUtil {
 
     private static final String LOG_TAG = StopForecastUtil.class.getSimpleName();
 
-    public static StopForecast createStopForecast(ApiTimes apiTimes) {
-        StopForecast stopForecast = new StopForecast();
+    public static Luas_Stop createStopForecast(Luas luas) {
+        Luas_Stop luasStop = new Luas_Stop();
 
-        if (apiTimes.getMessage() != null) {
-            stopForecast.setMessage(apiTimes.getMessage());
+        if (luas.getMessage() != null) {
+            luasStop.setMessage(luas.getMessage());
         }
 
-        if (apiTimes.getStopForecastStatus() != null) {
-            if (apiTimes.getStopForecastStatus().getStopForecastStatusDirectionInbound() != null) {
-                if (apiTimes.getStopForecastStatus().getStopForecastStatusDirectionInbound()
+        if (luas.getStopForecastStatus() != null) {
+            if (luas.getStopForecastStatus().getStopForecastStatusDirectionInbound() != null) {
+                if (luas.getStopForecastStatus().getStopForecastStatusDirectionInbound()
                         .getMessage() != null) {
-                    stopForecast.getStopForecastStatusDirectionInbound().setMessage(
-                            apiTimes.getStopForecastStatus()
+                    luasStop.getStopForecastStatusDirectionInbound().setMessage(
+                            luas.getStopForecastStatus()
                                     .getStopForecastStatusDirectionInbound().getMessage()
                     );
-                    stopForecast.getStopForecastStatusDirectionInbound().setForecastsEnabled(
-                            apiTimes.getStopForecastStatus()
+                    luasStop.getStopForecastStatusDirectionInbound().setForecastsEnabled(
+                            luas.getStopForecastStatus()
                                     .getStopForecastStatusDirectionInbound().getForecastsEnabled()
                     );
-                    stopForecast.getStopForecastStatusDirectionInbound().setOperatingNormally(
-                            apiTimes.getStopForecastStatus()
+                    luasStop.getStopForecastStatusDirectionInbound().setOperatingNormally(
+                            luas.getStopForecastStatus()
                                     .getStopForecastStatusDirectionInbound().getOperatingNormally()
                     );
                 }
             }
 
-            if (apiTimes.getStopForecastStatus().getStopForecastStatusDirectionOutbound() != null) {
-                if (apiTimes.getStopForecastStatus().getStopForecastStatusDirectionOutbound()
+            if (luas.getStopForecastStatus().getStopForecastStatusDirectionOutbound() != null) {
+                if (luas.getStopForecastStatus().getStopForecastStatusDirectionOutbound()
                         .getMessage() != null) {
-                    stopForecast.getStopForecastStatusDirectionOutbound().setMessage(
-                            apiTimes.getStopForecastStatus()
+                    luasStop.getStopForecastStatusDirectionOutbound().setMessage(
+                            luas.getStopForecastStatus()
                                     .getStopForecastStatusDirectionOutbound().getMessage()
                     );
-                    stopForecast.getStopForecastStatusDirectionOutbound().setForecastsEnabled(
-                            apiTimes.getStopForecastStatus()
+                    luasStop.getStopForecastStatusDirectionOutbound().setForecastsEnabled(
+                            luas.getStopForecastStatus()
                                     .getStopForecastStatusDirectionOutbound().getForecastsEnabled()
                     );
-                    stopForecast.getStopForecastStatusDirectionOutbound().setOperatingNormally(
-                            apiTimes.getStopForecastStatus()
+                    luasStop.getStopForecastStatusDirectionOutbound().setOperatingNormally(
+                            luas.getStopForecastStatus()
                                     .getStopForecastStatusDirectionOutbound().getOperatingNormally()
                     );
                 }
             }
         }
 
-        if (apiTimes.getTrams() != null) {
-            for (Tram tram : apiTimes.getTrams()) {
+        if (luas.getTrams() != null) {
+            for (Data2 tram : luas.getTrams()) {
                 switch (tram.getDirection()) {
                     case "Inbound":
-                        stopForecast.addInboundTram(tram);
+                        luasStop.addInboundTram(tram);
 
                         break;
 
                     case "Outbound":
-                        stopForecast.addOutboundTram(tram);
+                        luasStop.addOutboundTram(tram);
 
                         break;
 
@@ -72,6 +72,6 @@ public final class StopForecastUtil {
             }
         }
 
-        return stopForecast;
+        return luasStop;
     }
 }

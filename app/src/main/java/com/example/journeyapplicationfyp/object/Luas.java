@@ -1,21 +1,19 @@
-package com.example.journeyapplicationfyp.api;
+package com.example.journeyapplicationfyp.object;
 
-import com.example.journeyapplicationfyp.object.StopForecastStatus;
-import com.example.journeyapplicationfyp.object.Tram;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ApiTimes {
+public class Luas {
 
     @SerializedName("created")
     private String createdTime;
     private String message;
 
     @SerializedName("status")
-    private StopForecastStatus stopForecastStatus;
+    private Status status;
 
-    private List<Tram> trams;
+    private List<Data2> trams;
 
     public String getCreatedTime() {
         return createdTime;
@@ -33,19 +31,19 @@ public class ApiTimes {
         message = m;
     }
 
-    public StopForecastStatus getStopForecastStatus() {
-        return stopForecastStatus;
+    public Status getStopForecastStatus() {
+        return status;
     }
 
-    public void setStopForecastStatus(StopForecastStatus s) {
-        stopForecastStatus = s;
+    public void setStopForecastStatus(Status s) {
+        status = s;
     }
 
-    public List<Tram> getTrams() {
+    public List<Data2> getTrams() {
         return trams;
     }
 
-    public void setTrams(List<Tram> t) {
+    public void setTrams(List<Data2> t) {
         trams = t;
     }
 }

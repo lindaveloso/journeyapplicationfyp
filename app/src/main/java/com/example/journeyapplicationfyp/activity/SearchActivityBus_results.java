@@ -9,7 +9,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,7 +26,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.journeyapplicationfyp.R;
-import com.example.journeyapplicationfyp.object.Bus;
+import com.example.journeyapplicationfyp.object.Data3;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,12 +34,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-//import com.example.journeyapplicationfyp.fragment.SearchActivityBus_resultsArgs;
-
 public class SearchActivityBus_results extends Fragment {
 
-    //BottomNavigationView bottomNavigationView1;
-    private ArrayList<Bus> bList;
+    private ArrayList<Data3> bList;
     private RecyclerView mRecyclerView;
     private Adapter adapter;
     private RequestQueue mRequestQueue;
@@ -54,7 +50,6 @@ public class SearchActivityBus_results extends Fragment {
         Bundle bundle = getArguments();
         SearchActivityBus_resultsArgs args = SearchActivityBus_resultsArgs.fromBundle(bundle);
         url = args.getUrl();
-        Toast.makeText(requireContext(), url, Toast.LENGTH_SHORT).show();
         return inflater.inflate(R.layout.activity_busresults, container, false);
     }
 
@@ -100,7 +95,7 @@ public class SearchActivityBus_results extends Fragment {
                                 String routE = result.getString("route");
                                 String destinatioN = result.getString("destination");
                                 String dueT = result.getString("duetime");
-                                bList.add(new Bus(routE, destinatioN, dueT));
+                                bList.add(new Data3(routE, destinatioN, dueT));
                             }
                             adapter = new Adapter(requireActivity(), bList);
                             mRecyclerView.setAdapter(adapter);
@@ -122,14 +117,13 @@ public class SearchActivityBus_results extends Fragment {
         });
 
         request.setRetryPolicy(new DefaultRetryPolicy(
-                5000,
+                0,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
         );
 
         mRequestQueue.add(request);
     }
-
 
     private void Settings() {
         if (Build.VERSION.SDK_INT >= 21) {

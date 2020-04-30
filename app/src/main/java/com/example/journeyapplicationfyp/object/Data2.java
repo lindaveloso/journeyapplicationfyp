@@ -2,7 +2,7 @@ package com.example.journeyapplicationfyp.object;
 
 import java.io.Serializable;
 
-public class Tram implements Serializable {
+public class Data2 implements Serializable {
 
     private static final long serialVersionUID = 0L;
 
@@ -10,7 +10,7 @@ public class Tram implements Serializable {
     private String direction;
     private String dueMinutes;
 
-    public Tram(String de, String di, String du) {
+    public Data2(String de, String di, String du) {
         destination = de;
         direction = di;
         dueMinutes = du;

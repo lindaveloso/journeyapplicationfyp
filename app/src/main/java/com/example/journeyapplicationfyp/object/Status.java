@@ -2,7 +2,7 @@ package com.example.journeyapplicationfyp.object;
 
 import com.google.gson.annotations.SerializedName;
 
-public class StopForecastStatus {
+public class Status {
 
     @SerializedName("inbound")
     private StopForecastStatusDirection stopForecastStatusDirectionInbound;
@@ -10,7 +10,7 @@ public class StopForecastStatus {
     @SerializedName("outbound")
     private StopForecastStatusDirection stopForecastStatusDirectionOutbound;
 
-    public StopForecastStatus() {
+    public Status() {
         stopForecastStatusDirectionInbound = new StopForecastStatusDirection();
         stopForecastStatusDirectionOutbound = new StopForecastStatusDirection();
     }

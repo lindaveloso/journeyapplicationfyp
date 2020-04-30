@@ -30,7 +30,6 @@ import com.mapbox.geojson.FeatureCollection;
 import com.mapbox.geojson.LineString;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
-import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.location.LocationComponent;
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions;
@@ -67,7 +66,7 @@ import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineJoin;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineWidth;
 
 
-public class MainActivityMap extends Fragment implements OnMapReadyCallback, PermissionsListener, MapboxMap.OnMapClickListener, MapboxMap.OnMarkerClickListener {
+public class MainActivityMap extends Fragment implements OnMapReadyCallback, PermissionsListener, MapboxMap.OnMapClickListener {
 
     private static final int REQUEST_CODE_AUTOCOMPLETE = 1;
     private static final String ROUTE_LAYER_ID = "route-layer-id";
@@ -119,6 +118,7 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
             @Override
             public void onStyleLoaded(@NonNull Style style) {
 
+
 // Set the origin location to the Alhambra landmark in Granada, Spain.
                 enableLocationComponent(style);
                 origin = Point.fromLngLat(53.3938952, -6.3942532);
@@ -144,7 +144,6 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
         mapBox.getStyle(new Style.OnStyleLoaded() {
             @Override
             public void onStyleLoaded(@NonNull Style style) {
-
                 try {
                     GeoJsonSource source = new GeoJsonSource(sourceId, new URI("asset://luas_redline.geojson"));
                     style.addSource(source);
@@ -452,9 +451,30 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
 
         return false;
     }
-
+/*
     @Override
     public boolean onMarkerClick(@NonNull Marker marker) {
+
+
         return false;
-    }
+    }*/
+
+/*mapboxMap.addOnMapClickListener(new MapboxMap.OnMapClickListener() {
+        @Override
+        public void onMapClick(LatLng point) {
+            PointF screenPoint = mapboxMap.getProjection().toScreenLocation(point);
+            List<Feature> features = mapboxMap.queryRenderedFeatures(screenPoint, "layer-id");
+            if (!features.isEmpty()) {
+                Feature selectedFeature = features.get(0);
+                selectedFeature.getProperties().addProperty("selected", true);
+                String title = selectedFeature.getStringProperty("title");
+                Toast.makeText(MapActivity.this, "You selected " + title, Toast.LENGTH_SHORT).show();
+
+                // This triggers the update of the feature (Point) on the data source so it updates the SymbolLayer and you can see the feature enabled (bigger in this example)
+                geoJsonSource.setGeoJson(selectedFeature);
+            }
+        }
+    });*/
+
+
 }

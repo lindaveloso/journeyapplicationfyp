@@ -4,28 +4,28 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StopForecast implements Serializable {
+public class Luas_Stop implements Serializable {
     private static final long serialVersionUID = 0L;
 
     private String message;
     private StopForecastStatusDirection stopForecastStatusDirectionInbound;
     private StopForecastStatusDirection stopForecastStatusDirectionOutbound;
-    private List<Tram> inboundTrams;
-    private List<Tram> outboundTrams;
+    private List<Data2> inboundTrams;
+    private List<Data2> outboundTrams;
 
-    public StopForecast() {
+    public Luas_Stop() {
         inboundTrams = new ArrayList<>();
         outboundTrams = new ArrayList<>();
         stopForecastStatusDirectionInbound = new StopForecastStatusDirection();
         stopForecastStatusDirectionOutbound = new StopForecastStatusDirection();
     }
 
-    public void addInboundTram(Tram t) {
+    public void addInboundTram(Data2 t) {
         if (t != null)
             inboundTrams.add(t);
     }
 
-    public void addOutboundTram(Tram t) {
+    public void addOutboundTram(Data2 t) {
         if (t != null)
             outboundTrams.add(t);
     }
@@ -46,11 +46,11 @@ public class StopForecast implements Serializable {
         return stopForecastStatusDirectionOutbound;
     }
 
-    public List<Tram> getInboundTrams() {
+    public List<Data2> getInboundTrams() {
         return inboundTrams;
     }
 
-    public List<Tram> getOutboundTrams() {
+    public List<Data2> getOutboundTrams() {
         return outboundTrams;
     }
 
