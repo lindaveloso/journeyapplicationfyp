@@ -1,5 +1,7 @@
 package com.example.journeyapplicationfyp.navigation;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -43,6 +45,8 @@ import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 import com.mapbox.mapboxsdk.utils.BitmapUtils;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 import retrofit2.Call;
@@ -60,6 +64,7 @@ import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineColor;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineJoin;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineWidth;
 
+
 public class MainActivityMap extends Fragment implements OnMapReadyCallback, PermissionsListener, MapboxMap.OnMapClickListener {
 
     private static final int REQUEST_CODE_AUTOCOMPLETE = 1;
@@ -76,7 +81,6 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
     private MapboxDirections client;
     private SearchDialogFragment searchDialogFragment;
     private NavigationViewModel viewModel;
-    private String myurl = "mapbox://styles/lindavelsoo1/ck9h89utr56031io7aier7s7u";
     private MapboxMap mapBox;
 
     @Nullable
@@ -110,7 +114,6 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
     public void onMapReady(@NonNull MapboxMap mapboxMap) {
         this.mapBox = mapboxMap;
         mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
-            //   mapboxMap.setStyle(new Style.Builder().fromUri("https://api.mapbox.com/styles/v1/lindavelsoo1/ck9h89utr56031io7aier7s7u?access_token=pk.eyJ1IjoibGluZGF2ZWxzb28xIiwiYSI6ImNrNjhlbmpsajA0YTAzbXFlemFhd25zNmUifQ.3X7UXh9OlTaN1M0lygbyyg"), new Style.OnStyleLoaded() {
             @Override
             public void onStyleLoaded(@NonNull Style style) {
 // Set the origin location to the Alhambra landmark in Granada, Spain.
@@ -124,9 +127,83 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
 
                 initLayers(style);
                 getRoute(mapboxMap, origin, destination);
+
+                GeoJSONToMap("luas-points-greenline", "luas-points-greenline", "asset://luas_greenline.geojson");
+                GeoJSONToMap2("luas-points-redline", "luas-points-redline", "asset://luas_redline.geojson");
+
             }
         });
     }
+
+    public void GeoJSONToMap(String sourceId, String layerId, String asset_id) {
+        mapBox.getStyle(new Style.OnStyleLoaded() {
+            @Override
+            public void onStyleLoaded(@NonNull Style style) {
+
+                try {
+                    GeoJsonSource source = new GeoJsonSource(sourceId, new URI("asset://luas_redline.geojson"));
+                    style.addSource(source);
+                    Bitmap icon;
+                    if (layerId.equals("luas-points-redline")) {
+                        icon = BitmapFactory.decodeResource(getResources(), R.drawable.red_pin_marker);
+                    } else {
+                        icon = BitmapFactory.decodeResource(getResources(), R.drawable.red_pin_marker);
+                    }
+                    style.addImage(layerId + " marker", icon);
+                    SymbolLayer symbolLayer = new SymbolLayer(layerId, sourceId);
+
+                    symbolLayer.setProperties(
+                            iconImage(layerId + " marker"),
+                            iconAllowOverlap(true),
+                            iconIgnorePlacement(true)
+                    );
+
+                    style.addLayer(symbolLayer);
+
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public void GeoJSONToMap2(String sourceId, String layerId, String asset_id) {
+        mapBox.getStyle(new Style.OnStyleLoaded() {
+            @Override
+            public void onStyleLoaded(@NonNull Style style) {
+
+                try {
+                    GeoJsonSource source3 = new GeoJsonSource(sourceId, new URI("asset://luas_greenline.geojson"));
+                    style.addSource(source3);
+                    Bitmap icon;
+                    if (layerId.equals("luas-points-greenline")) {
+                        icon = BitmapFactory.decodeResource(getResources(), R.drawable.green_pin_marker);
+                    } else {
+                        icon = BitmapFactory.decodeResource(getResources(), R.drawable.green_pin_marker);
+                    }
+                    style.addImage(layerId + " marker", icon);
+                    SymbolLayer symbolLayer = new SymbolLayer(layerId, sourceId);
+
+                    symbolLayer.setProperties(
+                            iconImage(layerId + " marker"),
+                            iconAllowOverlap(true),
+                            iconIgnorePlacement(true)
+                    );
+
+                    style.addLayer(symbolLayer);
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+        });
+    }
+
+
+
 
     private void initSource(@NonNull Style loadedMapStyle) {
         loadedMapStyle.addSource(new GeoJsonSource(ROUTE_SOURCE_ID));
@@ -323,6 +400,7 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
 
         }
     }
+
 
     @Override
     public boolean onMapClick(@NonNull LatLng point) {
