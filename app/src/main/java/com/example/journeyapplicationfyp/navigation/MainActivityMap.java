@@ -33,7 +33,6 @@ import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.location.LocationComponent;
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions;
-import com.mapbox.mapboxsdk.location.LocationComponentOptions;
 import com.mapbox.mapboxsdk.location.modes.CameraMode;
 import com.mapbox.mapboxsdk.location.modes.RenderMode;
 import com.mapbox.mapboxsdk.maps.MapView;
@@ -65,16 +64,16 @@ import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineColor;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineJoin;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineWidth;
 
-
 public class MainActivityMap extends Fragment implements OnMapReadyCallback, PermissionsListener, MapboxMap.OnMapClickListener {
 
     private static final int REQUEST_CODE_AUTOCOMPLETE = 1;
+    private PermissionsManager permissionsManager;
+
     private static final String ROUTE_LAYER_ID = "route-layer-id";
     private static final String ROUTE_SOURCE_ID = "route-source-id";
     private static final String ICON_LAYER_ID = "icon-layer-id";
     private static final String ICON_SOURCE_ID = "icon-source-id";
     private static final String RED_PIN_ICON_ID = "red-pin-icon-id";
-    private PermissionsManager permissionsManager;
     private MapView mapView;
     private Point origin;
     private Point destination;
@@ -82,6 +81,7 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
     private MapboxDirections client;
     private SearchDialogFragment searchDialogFragment;
     private NavigationViewModel viewModel;
+    private String urlMap = "mapbox://styles/lindavelsoo1/ck9h89utr56031io7aier7s7u";
     private MapboxMap mapBox;
 
     @Nullable
@@ -103,9 +103,9 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(requireActivity()).get(NavigationViewModel.class);
         viewModel.selected.observe(requireActivity(), navigationState -> {
-            Toast.makeText(requireContext(), "" + mapBox, Toast.LENGTH_SHORT).show();
+            // Toast.makeText(requireContext(), ""+mapBox, Toast.LENGTH_SHORT).show();
             if (mapBox != null) {
-                Toast.makeText(requireContext(), "" + mapBox, Toast.LENGTH_SHORT).show();
+                // Toast.makeText(requireContext(), ""+mapBox, Toast.LENGTH_SHORT).show();
                 //getRoute(mapBox, navigationState.origin, navigationState.destination);
             }
         });
@@ -118,19 +118,17 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
             @Override
             public void onStyleLoaded(@NonNull Style style) {
 
-
-// Set the origin location to the Alhambra landmark in Granada, Spain.
+                // Set the origin location to the Alhambra landmark in Granada, Spain.
                 enableLocationComponent(style);
                 origin = Point.fromLngLat(53.3938952, -6.3942532);
 
-// Set the destination location to the Plaza del Triunfo in Granada, Spain
+                // Set the destination location to the Plaza del Triunfo in Granada, Spain
                 destination = Point.fromLngLat(53.3973931, -6.4003374);
 
                 initSource(style);
 
                 initLayers(style);
                 getRoute(mapboxMap, origin, destination);
-
                 GeoJSONToMap("luas-points-greenline", "luas-points-greenline", "asset://luas_greenline.geojson");
                 GeoJSONToMap2("luas-points-redline", "luas-points-redline", "asset://luas_redline.geojson");
                 GeoJSONToMap3("demo-data-dubin-bus-points", "demo-data-dubin-bus-points", "asset://dublin_bus_points.geojson");
@@ -138,7 +136,6 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
             }
         });
     }
-
 
     private void GeoJSONToMap(String sourceId, String layerId, String asset_id) {
         mapBox.getStyle(new Style.OnStyleLoaded() {
@@ -251,19 +248,17 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
                 Feature.fromGeometry(Point.fromLngLat(destination.longitude(), destination.latitude()))}));
         loadedMapStyle.addSource(iconGeoJsonSource);
     }
-
     /**
      * Add the route and marker icon layers to the map
      */
     private void initLayers(@NonNull Style loadedMapStyle) {
         LineLayer routeLayer = new LineLayer(ROUTE_LAYER_ID, ROUTE_SOURCE_ID);
-
 // Add the LineLayer to the map. This layer will display the directions route.
         routeLayer.setProperties(
                 lineCap(Property.LINE_CAP_ROUND),
                 lineJoin(Property.LINE_JOIN_ROUND),
                 lineWidth(5f),
-                lineColor(Color.parseColor("#009688"))
+                lineColor(Color.parseColor("#3F51B5"))
         );
         loadedMapStyle.addLayer(routeLayer);
 
@@ -302,10 +297,10 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
                     return;
                 }
 
-// Get the directions route
+                // Get the directions route
                 currentRoute = response.body().routes().get(0);
 
-// Make a toast which displays the route's distance
+                // Make a toast which displays the route's distance
                 Toast.makeText(getActivity(), "Response: " + currentRoute.distance(), Toast.LENGTH_SHORT).show();
 
                 if (mapboxMap != null) {
@@ -316,20 +311,16 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
 // Retrieve and update the source designated for showing the directions route
                             GeoJsonSource source = style.getSourceAs(ROUTE_SOURCE_ID);
 
-// Create a LineString with the directions route's geometry and
-// reset the GeoJSON source for the route LineLayer source
+                            // Create a LineString with the directions route's geometry and
+                            // reset the GeoJSON source for the route LineLayer source
                             if (source != null) {
                                 source.setGeoJson(LineString.fromPolyline(currentRoute.geometry(), PRECISION_6));
                             }
 
                         }
-
                     });
                 }
-
             }
-
-
             @Override
             public void onFailure(Call<DirectionsResponse> call, Throwable throwable) {
                 Timber.e("Error: " + throwable.getMessage());
@@ -342,13 +333,6 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
     @SuppressWarnings({"MissingPermission"})
     private void enableLocationComponent(@NonNull Style loadedMapStyle) {
         if (PermissionsManager.areLocationPermissionsGranted(requireContext())) {
-
-            LocationComponentOptions customLocationComponentOptions = LocationComponentOptions.builder(requireActivity())
-                    .elevation(5)
-                    .accuracyAlpha(.6f)
-                    .accuracyColor(Color.RED)
-                    .foregroundDrawable(R.drawable.current_location)
-                    .build();
             LocationComponent locationComponent = mapBox.getLocationComponent();
 
             locationComponent.activateLocationComponent(
@@ -377,7 +361,8 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
     @Override
     public void onPermissionResult(boolean granted) {
         if (granted) {
-            mapBox.setStyle(Style.LIGHT, new Style.OnStyleLoaded() {
+            mapBox.setStyle(Style.LIGHT,
+                    new Style.OnStyleLoaded() {
                         @Override
                         public void onStyleLoaded(@NonNull Style style) {
                             enableLocationComponent(style);
@@ -424,6 +409,7 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
         super.onDestroy();
         mapView.onDestroy();
     }
+
     @Override
     public void onLowMemory() {
         super.onLowMemory();
@@ -445,36 +431,24 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
         }
     }
 
-
     @Override
     public boolean onMapClick(@NonNull LatLng point) {
-
         return false;
     }
-/*
-    @Override
-    public boolean onMarkerClick(@NonNull Marker marker) {
+
+     /*   CameraPosition position = new CameraPosition.Builder()
+                .target(new LatLng(origin.longitude(), origin.latitude())) // Sets the new camera position
+                .zoom(17) // Sets the zoom
+                .bearing(180) // Rotate the camera
+                .tilt(30) // Set the camera tilt
+                .build(); // Creates a CameraPosition from the builder
+
+        mapBox.animateCamera(CameraUpdateFactory
+                .newCameraPosition(position), 7000);
 
 
-        return false;
-    }*/
+       return true;
+    }
 
-/*mapboxMap.addOnMapClickListener(new MapboxMap.OnMapClickListener() {
-        @Override
-        public void onMapClick(LatLng point) {
-            PointF screenPoint = mapboxMap.getProjection().toScreenLocation(point);
-            List<Feature> features = mapboxMap.queryRenderedFeatures(screenPoint, "layer-id");
-            if (!features.isEmpty()) {
-                Feature selectedFeature = features.get(0);
-                selectedFeature.getProperties().addProperty("selected", true);
-                String title = selectedFeature.getStringProperty("title");
-                Toast.makeText(MapActivity.this, "You selected " + title, Toast.LENGTH_SHORT).show();
-
-                // This triggers the update of the feature (Point) on the data source so it updates the SymbolLayer and you can see the feature enabled (bigger in this example)
-                geoJsonSource.setGeoJson(selectedFeature);
-            }
-        }
-    });*/
-
-
+      */
 }

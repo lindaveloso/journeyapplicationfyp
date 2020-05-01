@@ -68,19 +68,6 @@ public class SearchActivityBus_results extends Fragment {
         Settings();
     }
 
- /*   public void vaildation() {
-        bList = new ArrayList<>();
-        if (bList.isEmpty()) {
-            tv_no_data3.setVisibility(View.VISIBLE);
-            mRecyclerView.setVisibility(View.GONE);
-
-
-        } else {
-            tv_no_data3.setVisibility(View.GONE);
-            mRecyclerView.setVisibility(View.VISIBLE);
-        }
-    }*/
-
     private void jsonparsemethod() {
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -96,6 +83,13 @@ public class SearchActivityBus_results extends Fragment {
                                 String destinatioN = result.getString("destination");
                                 String dueT = result.getString("duetime");
                                 bList.add(new Data3(routE, destinatioN, dueT));
+                            }
+                            if (bList.isEmpty()) {
+                                tv_no_data3.setVisibility(View.VISIBLE);
+                                mRecyclerView.setVisibility(View.GONE);
+                            } else if (!bList.isEmpty()) {
+                                tv_no_data3.setVisibility(View.GONE);
+                                mRecyclerView.setVisibility(View.VISIBLE);
                             }
                             adapter = new Adapter(requireActivity(), bList);
                             mRecyclerView.setAdapter(adapter);

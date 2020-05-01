@@ -56,11 +56,6 @@
         android:name="com.example.journeyapplicationfyp.fragment.TimetableFragment"
         android:label="Profile"
         tools:layout="@layout/activity_timetables" />
-    <fragment
-        android:id="@+id/profile2"
-        android:name="com.example.journeyapplicationfyp.fragment.Profile"
-        android:label="Profile"
-        tools:layout="@layout/nav_header" />
 
 
 </navigation>
