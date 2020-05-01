@@ -90,7 +90,7 @@ public class Dart_Fragment extends Fragment {
                         selectedStop = selectedItem;
                         fullurl = url + selectedItem;
                         Irishrail();
-                        sessionManager.setFavourites(selectedItem);
+                        sessionManager.setStationName(selectedItem);
                         break;
                 }
             }
