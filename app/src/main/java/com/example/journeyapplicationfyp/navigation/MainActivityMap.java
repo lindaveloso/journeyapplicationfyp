@@ -147,6 +147,8 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
                 GeoJSONToMap3("demo-data-dubin-bus-points", "demo-data-dubin-bus-points", "asset://dublin_bus_points.geojson");
                 initSearchFab();
                 addUserLocations();
+
+
             }
         });
     }
@@ -291,10 +293,11 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
         loadedMapStyle.addSource(new GeoJsonSource(geojsonSourceLayerId));
     }
 
+    //NEW LAYER
     private void setupLayer(@NonNull Style loadedMapStyle) {
         loadedMapStyle.addLayer(new SymbolLayer("SYMBOL_LAYER_ID", geojsonSourceLayerId).withProperties(
-                //iconImage(symbolIconId),
-                //onOffset(new Float[] {0f, -8f})
+                // iconImage(symbolIconId),
+                // onOffset(new Float[] {0f, -8f})
         ));
     }
 
@@ -527,19 +530,5 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
         return false;
     }
 
-     /*   CameraPosition position = new CameraPosition.Builder()
-                .target(new LatLng(origin.longitude(), origin.latitude())) // Sets the new camera position
-                .zoom(17) // Sets the zoom
-                .bearing(180) // Rotate the camera
-                .tilt(30) // Set the camera tilt
-                .build(); // Creates a CameraPosition from the builder
 
-        mapBox.animateCamera(CameraUpdateFactory
-                .newCameraPosition(position), 7000);
-
-
-       return true;
-    }
-
-      */
 }

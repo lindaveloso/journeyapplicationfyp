@@ -54,7 +54,7 @@
     <fragment
         android:id="@+id/activity_timetables"
         android:name="com.example.journeyapplicationfyp.fragment.TimetableFragment"
-        android:label="Profile"
+        android:label="Favourites"
         tools:layout="@layout/activity_timetables" />
 
 

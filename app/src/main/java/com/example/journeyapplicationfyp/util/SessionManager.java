@@ -1,4 +1,3 @@
-/*
 package com.example.journeyapplicationfyp.util;
 
 import android.app.Activity;
@@ -15,11 +14,6 @@ public class SessionManager {
     private Activity activity;
     public static final String mypreference = "mypref";
 
-    public SessionManager(Activity activity, Context context) {
-
-        this.activity = activity;
-        this.context = context;
-    }
 
     private final SharedPreferences pref = getSharedPreferencesCustomer();
 
@@ -100,6 +94,7 @@ public class SessionManager {
     public void setStationName(String phoneNumber) {
         setStringPreference(STATION_NAME, phoneNumber);
     }
+
     public String getFavourties() {
         return getStringPreference(FAVOURITES);
     }
@@ -109,4 +104,3 @@ public class SessionManager {
     }
 
 }
-*/

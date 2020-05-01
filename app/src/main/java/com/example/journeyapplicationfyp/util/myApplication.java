@@ -1,4 +1,3 @@
-/*
 package com.example.journeyapplicationfyp.util;
 
 import android.app.Application;
@@ -19,4 +18,3 @@ public class myApplication extends Application {
 
     }
 }
-*/

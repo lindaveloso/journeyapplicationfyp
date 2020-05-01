@@ -22,6 +22,7 @@ import com.example.journeyapplicationfyp.activity.Adapter2;
 import com.example.journeyapplicationfyp.activity.Adapter3;
 import com.example.journeyapplicationfyp.activity.Handlexml;
 import com.example.journeyapplicationfyp.object.Data;
+import com.example.journeyapplicationfyp.util.SessionManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,8 @@ public class Dart_Fragment extends Fragment {
     private TextView tv_no_data;
     private TextView tv_no_data2;
 
+    SessionManager sessionManager;
+
     public Dart_Fragment() {
 
     }
@@ -51,8 +54,6 @@ public class Dart_Fragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-      //  ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     }
 
     @Nullable
@@ -75,6 +76,7 @@ public class Dart_Fragment extends Fragment {
         ry0.addItemDecoration(new DividerItemDecoration(ry0.getContext(), DividerItemDecoration.VERTICAL));
         tv_no_data = rootView.findViewById(R.id.tv_no_data);
         tv_no_data2 = rootView.findViewById(R.id.tv_no_data2);
+        sessionManager = new SessionManager();
         return rootView;
     }
 
@@ -88,6 +90,7 @@ public class Dart_Fragment extends Fragment {
                         selectedStop = selectedItem;
                         fullurl = url + selectedItem;
                         Irishrail();
+                        sessionManager.setFavourites(selectedItem);
                         break;
                 }
             }

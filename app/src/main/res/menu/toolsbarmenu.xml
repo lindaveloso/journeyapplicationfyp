@@ -5,9 +5,9 @@
     tools:showIn="navigation_view_layout">
 
         <item
-            android:id="@+id/profile"
-            android:visible="true"
-            app:showAsAction="never"
+            android:id="@+id/favourites"
+            android:icon="@drawable/heart"
+            app:showAsAction="always"
             android:title="Profile" />
 
     <item

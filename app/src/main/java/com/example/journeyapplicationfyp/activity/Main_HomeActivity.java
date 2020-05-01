@@ -16,6 +16,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.journeyapplicationfyp.R;
+import com.example.journeyapplicationfyp.util.SessionManager;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -23,6 +24,7 @@ public class Main_HomeActivity extends AppCompatActivity {
     Toolbar toolsbarmenu;
     BottomNavigationView navigation;
     private NavController navController;
+    SessionManager sessionManager;
 
  /*   private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -58,7 +60,7 @@ public class Main_HomeActivity extends AppCompatActivity {
         BadgeDrawable badge = navigation.getOrCreateBadge(R.id.rtpi);
         badge.setVisible(true);
         initializeViews();
-
+        sessionManager = new SessionManager();
         getSupportActionBar().setElevation(0);
 
 
@@ -68,7 +70,7 @@ public class Main_HomeActivity extends AppCompatActivity {
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.rtpi_nav_host);
         navController = navHostFragment.getNavController();
         NavigationUI.setupWithNavController(navigation, navHostFragment.getNavController());
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.map_search_fragment, R.id.rtpi_nav_fragment, R.id.profile).build();
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.map_search_fragment, R.id.rtpi_nav_fragment).build();
         NavigationUI.setupActionBarWithNavController(this, navHostFragment.getNavController(), appBarConfiguration);
     }
 
@@ -103,13 +105,9 @@ public class Main_HomeActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch ((item.getItemId())) {
-            case R.id.profile:
+            case R.id.favourites:
+                sessionManager.setFavourites(sessionManager.getStationNme());
 
-          /*      Fragment fr = new Profile();
-                FragmentManager fm = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fm.beginTransaction();
-              //  fragmentTransaction.replace(R.id.fragment_place, fr);
-                fragmentTransaction.commit();*/
                 break;
 
 
