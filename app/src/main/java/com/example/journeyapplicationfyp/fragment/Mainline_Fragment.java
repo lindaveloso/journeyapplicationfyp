@@ -22,6 +22,7 @@ import com.example.journeyapplicationfyp.activity.Adapter2;
 import com.example.journeyapplicationfyp.activity.Adapter3;
 import com.example.journeyapplicationfyp.activity.Handlexml;
 import com.example.journeyapplicationfyp.object.Data;
+import com.example.journeyapplicationfyp.util.SessionManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,7 @@ public class Mainline_Fragment extends Fragment {
     private RecyclerView ry2;
     private TextView tv_no_data;
     private TextView tv_no_data2;
+    SessionManager sessionManager;
 
     private Adapter3 adapter3;
 
@@ -71,6 +73,7 @@ public class Mainline_Fragment extends Fragment {
         ry2.addItemDecoration(new DividerItemDecoration(ry2.getContext(), DividerItemDecoration.VERTICAL));
         tv_no_data = rootView.findViewById(R.id.tv_no_data);
         tv_no_data2 = rootView.findViewById(R.id.tv_no_data2);
+        sessionManager = new SessionManager();
         return rootView;
     }
 
@@ -86,6 +89,7 @@ public class Mainline_Fragment extends Fragment {
                         selectedStop = selectedItem;
                         fullurl = url + selectedItem;
                         Irishrail();
+                        sessionManager.setStationName(selectedItem);
                         break;
                 }
             }

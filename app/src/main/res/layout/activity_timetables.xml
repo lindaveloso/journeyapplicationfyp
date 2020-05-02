@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/nav"
-    tools:context=".fragment.TimetableFragment">
+    tools:context=".fragment.FavouritesFragment">
 
 
     <Space
@@ -31,20 +31,16 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:text="No Favourites available"
+        android:visibility="visible"
         android:textSize="26sp" />
 
-    <TextView
-        android:id="@+id/text2"
+
+    <ListView
+        android:id="@+id/list1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/text1"
-        android:layout_gravity="bottom"
-        android:layout_marginTop="114dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:gravity="center"
-        android:text="Add Favourites"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="73dp" />
+
 
 </RelativeLayout>

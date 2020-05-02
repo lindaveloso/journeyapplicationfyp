@@ -47,7 +47,7 @@
             android:label="Train">
         </activity>
         <activity
-            android:name=".fragment.TimetableFragment"
+            android:name=".fragment.FavouritesFragment"
             android:exported="true">
         </activity>
         <activity

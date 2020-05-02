@@ -6,9 +6,9 @@
 
         <item
             android:id="@+id/favourites"
-            android:icon="@drawable/heart"
+            android:icon="@drawable/add"
             app:showAsAction="always"
-            android:title="Profile" />
+            android:title="F" />
 
     <item
         android:id="@+id/refresh"

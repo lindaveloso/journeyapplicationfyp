@@ -144,7 +144,7 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
             @Override
             public boolean onMarkerClick(@NonNull Marker marker) {
 
-                showDialog("This is " + marker.getTitle());
+                showDialog(marker.getTitle() + " Luas Stop");
                 return false;
             }
         });
@@ -169,7 +169,7 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
 
                 initLayers(style);
                 getRoute(mapboxMap, origin, destination);
-/*                GeoJSONToMap("luas-points-greenline", "luas-points-greenline", "asset://luas_greenline.geojson");
+/*              GeoJSONToMap("luas-points-greenline", "luas-points-greenline", "asset://luas_greenline.geojson");
                 GeoJSONToMap2("luas-points-redline", "luas-points-redline", "asset://luas_redline.geojson");
                 GeoJSONToMap3("demo-data-dubin-bus-points", "demo-data-dubin-bus-points", "asset://dublin_bus_points.geojson");*/
                 initSearchFab();
@@ -206,6 +206,7 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
                 mapboxMap.addMarker(new MarkerOptions()
                         .position(new LatLng(lat, lon))
                         .title(features.getJSONObject(i).getJSONObject("properties").getString("Name")));
+
             }
 
         } catch (JSONException e) {
@@ -610,7 +611,7 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
         return false;
     }
 
-    public String readJSONFromAsset(String fileName) {
+    private String readJSONFromAsset(String fileName) {
         String json = null;
         try {
             InputStream is = getResources().getAssets().open(fileName);

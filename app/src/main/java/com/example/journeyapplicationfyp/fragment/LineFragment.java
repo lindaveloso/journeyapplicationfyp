@@ -17,7 +17,6 @@ import com.example.journeyapplicationfyp.object.EnglishGaeilgeMap;
 import com.example.journeyapplicationfyp.object.Luas;
 import com.example.journeyapplicationfyp.object.Luas_Stop;
 import com.example.journeyapplicationfyp.object.StopNameIdMap;
-import com.example.journeyapplicationfyp.util.Preferences;
 import com.example.journeyapplicationfyp.util.StopForecastUtil;
 import com.example.journeyapplicationfyp.view.SpinnerCardView;
 import com.example.journeyapplicationfyp.view.StopForecastCardView;
@@ -134,10 +133,7 @@ public class LineFragment extends Fragment {
             isInitialised = initFragment();
         }
         if (!getActivity().getIntent().hasExtra(Constant.STOP_NAME)) {
-            if (Preferences.selectedStopName(context, Constant.NO_LINE) != null) {
-                String stopName = Preferences.selectedStopName(context, Constant.NO_LINE);
-                setTabAndSpinner(stopName);
-            }
+
         }
         return rootView;
     }
@@ -168,8 +164,6 @@ public class LineFragment extends Fragment {
                 if (spinnerCardView.getSpinnerStops().getSelectedItem() != null) {
                     String stopName =
                             spinnerCardView.getSpinnerStops().getSelectedItem().toString();
-
-                    Preferences.saveSelectedStopName(context, Constant.NO_LINE, stopName);
 
                     loadStopForecast(stopName, false);
 
@@ -219,13 +213,7 @@ public class LineFragment extends Fragment {
 
                             loadStopForecast(selectedStopName, false);
 
-                            if (isVisibleToUser) {
-                                Preferences.saveSelectedStopName(
-                                        context,
-                                        line,
-                                        selectedStopName
-                                );
-                            }
+
                         }
                     }
 
@@ -299,9 +287,6 @@ public class LineFragment extends Fragment {
             if (tab != null) {
                 tab.select();
             }
-
-            spinnerCardView.setSelection(Preferences.selectedStopName(context, line));
-
             return false;
         }
     }

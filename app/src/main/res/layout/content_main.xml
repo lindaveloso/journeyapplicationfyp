@@ -8,6 +8,7 @@
     tools:context=".activity.Main_HomeActivity"
     tools:showIn="@layout/activity_main"
 
+
     android:id="@+id/main_container">
 
     <fragment

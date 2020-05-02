@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -17,7 +18,6 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.journeyapplicationfyp.R;
 import com.example.journeyapplicationfyp.util.SessionManager;
-import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Main_HomeActivity extends AppCompatActivity {
@@ -26,38 +26,12 @@ public class Main_HomeActivity extends AppCompatActivity {
     private NavController navController;
     SessionManager sessionManager;
 
- /*   private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//            switch (item.getItemId()) {
-//                case R.id.timetable:
-//                    navController.navigate(R.id.timetableFragment);
-//                    return true;
-//
-//                case R.id.rtpi:
-//                    navController.navigate(R.id.RTPINavFragment);
-//
-//                    return true;
-//
-//                case R.id.homehere:
-//                    navController.navigate(R.id.mainActivityMap);
-//                    return true;
-//            }
-            return false;
-        }
-    };*/
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Settings();
         navigation = findViewById(R.id.BNV);
-        BadgeDrawable badge = navigation.getOrCreateBadge(R.id.rtpi);
-        badge.setVisible(true);
         initializeViews();
         sessionManager = new SessionManager();
         getSupportActionBar().setElevation(0);
@@ -100,14 +74,14 @@ public class Main_HomeActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch ((item.getItemId())) {
             case R.id.favourites:
                 sessionManager.setFavourites(sessionManager.getStationNme());
+                Toast.makeText(this, "Added to Favourites", Toast.LENGTH_SHORT).show();
                 break;
-
+            case R.id.refresh:
 
         }
         return super.onOptionsItemSelected(item);
@@ -115,6 +89,12 @@ public class Main_HomeActivity extends AppCompatActivity {
 
   /*  @Override
     public void onBackPressed() {
-        super.onBackPressed();
-    }*/
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            getFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }*/
+
+
+
 }

@@ -22,6 +22,7 @@ import com.example.journeyapplicationfyp.activity.Adapter2;
 import com.example.journeyapplicationfyp.activity.Adapter3;
 import com.example.journeyapplicationfyp.activity.Handlexml;
 import com.example.journeyapplicationfyp.object.Data;
+import com.example.journeyapplicationfyp.util.SessionManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class Suburban_Fragment extends Fragment {
     private List<Data> elements;
     private TextView tv_no_data;
     private TextView tv_no_data2;
+    SessionManager sessionManager;
 
 
     //Arrivals Data
@@ -74,6 +76,7 @@ public class Suburban_Fragment extends Fragment {
         ry2.addItemDecoration(new DividerItemDecoration(ry2.getContext(), DividerItemDecoration.VERTICAL));
         tv_no_data = rootView.findViewById(R.id.tv_no_data);
         tv_no_data2 = rootView.findViewById(R.id.tv_no_data2);
+        sessionManager = new SessionManager();
         return rootView;
     }
 
@@ -89,6 +92,7 @@ public class Suburban_Fragment extends Fragment {
                         selectedStop = selectedItem;
                         fullurl = url + selectedItem;
                         suburbanRail();
+                        sessionManager.setStationName(selectedItem);
                         break;
                 }
             }
