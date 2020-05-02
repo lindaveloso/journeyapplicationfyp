@@ -1,6 +1,7 @@
 package com.example.journeyapplicationfyp.navigation;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -35,6 +37,8 @@ import com.mapbox.geojson.FeatureCollection;
 import com.mapbox.geojson.LineString;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.annotations.Marker;
+import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
@@ -46,6 +50,7 @@ import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
+import com.mapbox.mapboxsdk.plugins.annotation.SymbolManager;
 import com.mapbox.mapboxsdk.plugins.places.autocomplete.PlaceAutocomplete;
 import com.mapbox.mapboxsdk.plugins.places.autocomplete.model.PlaceOptions;
 import com.mapbox.mapboxsdk.style.layers.LineLayer;
@@ -54,8 +59,15 @@ import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 import com.mapbox.mapboxsdk.utils.BitmapUtils;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import retrofit2.Call;
@@ -127,6 +139,21 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
     @Override
     public void onMapReady(@NonNull MapboxMap mapboxMap) {
         this.mapBox = mapboxMap;
+        mapBox.setOnMarkerClickListener(new MapboxMap.OnMarkerClickListener() {
+
+            @Override
+            public boolean onMarkerClick(@NonNull Marker marker) {
+
+                showDialog("This is " + marker.getTitle());
+                return false;
+            }
+        });
+        ///////////////////////  ADD MARKERS   ///////////////////
+        AddMarkersToMap("luas_greenline.geojson", mapBox);
+        AddMarkersToMap("luas_redline.geojson", mapBox);
+
+
+
         mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
             @Override
             public void onStyleLoaded(@NonNull Style style) {
@@ -142,15 +169,66 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
 
                 initLayers(style);
                 getRoute(mapboxMap, origin, destination);
-                GeoJSONToMap("luas-points-greenline", "luas-points-greenline", "asset://luas_greenline.geojson");
+/*                GeoJSONToMap("luas-points-greenline", "luas-points-greenline", "asset://luas_greenline.geojson");
                 GeoJSONToMap2("luas-points-redline", "luas-points-redline", "asset://luas_redline.geojson");
-                GeoJSONToMap3("demo-data-dubin-bus-points", "demo-data-dubin-bus-points", "asset://dublin_bus_points.geojson");
+                GeoJSONToMap3("demo-data-dubin-bus-points", "demo-data-dubin-bus-points", "asset://dublin_bus_points.geojson");*/
                 initSearchFab();
                 addUserLocations();
+
+                SymbolManager symbolManager = new SymbolManager(mapView, mapboxMap, style);
+                symbolManager.setIconAllowOverlap(true);
+                symbolManager.setIconIgnorePlacement(true);
+                symbolManager.addClickListener(symbol -> {
+
+                            Toast.makeText(getActivity(), "gfgddd" + symbol.getId(), Toast.LENGTH_LONG).show();
+
+                        }
+                );
 
 
             }
         });
+    }
+
+    private void AddMarkersToMap(String jsonFile, MapboxMap mapboxMap) {
+        JSONObject obj = null;
+        try {
+            obj = new JSONObject(readJSONFromAsset(jsonFile));
+
+            JSONArray features = obj.getJSONArray("features");
+
+            for (int i = 0; i < features.length(); i++) {
+                JSONObject jsonObject = features.getJSONObject(i).getJSONObject("geometry");
+                JSONArray cord = jsonObject.getJSONArray("coordinates");
+                double lat = cord.getDouble(0);
+                double lon = cord.getDouble(1);
+
+                mapboxMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(lat, lon))
+                        .title(features.getJSONObject(i).getJSONObject("properties").getString("Name")));
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showDialog(String message) {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
+        builder1.setMessage(message);
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Dismiss",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+
     }
 
     private void GeoJSONToMap(String sourceId, String layerId, String asset_id) {
@@ -342,6 +420,7 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
                 Feature.fromGeometry(Point.fromLngLat(destination.longitude(), destination.latitude()))}));
         loadedMapStyle.addSource(iconGeoJsonSource);
     }
+
     /**
      * Add the route and marker icon layers to the map
      */
@@ -415,6 +494,7 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
                     });
                 }
             }
+
             @Override
             public void onFailure(Call<DirectionsResponse> call, Throwable throwable) {
                 Timber.e("Error: " + throwable.getMessage());
@@ -530,5 +610,20 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
         return false;
     }
 
+    public String readJSONFromAsset(String fileName) {
+        String json = null;
+        try {
+            InputStream is = getResources().getAssets().open(fileName);
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, StandardCharsets.UTF_8);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+    }
 
 }

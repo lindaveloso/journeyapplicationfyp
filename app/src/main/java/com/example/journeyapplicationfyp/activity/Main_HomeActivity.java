@@ -56,7 +56,6 @@ public class Main_HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Settings();
         navigation = findViewById(R.id.BNV);
-        //navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         BadgeDrawable badge = navigation.getOrCreateBadge(R.id.rtpi);
         badge.setVisible(true);
         initializeViews();
@@ -107,7 +106,6 @@ public class Main_HomeActivity extends AppCompatActivity {
         switch ((item.getItemId())) {
             case R.id.favourites:
                 sessionManager.setFavourites(sessionManager.getStationNme());
-
                 break;
 
 
