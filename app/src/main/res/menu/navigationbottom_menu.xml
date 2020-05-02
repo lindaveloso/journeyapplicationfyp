@@ -12,11 +12,6 @@
         android:title="RTPI" />
 
     <item
-        android:id="@+id/farenav"
-        android:icon="@drawable/calculator"
-        android:title="Fare" />
-
-    <item
         android:id="@+id/timetable"
         android:icon="@drawable/mappp"
         android:title="Timetable" />

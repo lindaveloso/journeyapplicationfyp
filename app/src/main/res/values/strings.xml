@@ -8,7 +8,6 @@
 
 
     <!-- Navigation Top -->
-    <string name="Fare">Fare</string>
     <string name="Route">Route</string>
     <string name="tab_text_1">Main Line</string>
     <string name="tab_text_2">DART</string>
@@ -61,7 +60,7 @@
     <string name="due">DUE</string>
     <string name="min">min</string>
     <string name="mins">mins</string>
-    <string name="no_trams_forecast"><b>NO TRAMS TO FORCAST</b></string>
+    <string name="zerotrams"><b>No Tram available</b></string>
     <string name="action_favourites">Favourites</string>
     <string name="action_favourites_edit">Edit</string>
     <string name="action_favourites_save">Save</string>
@@ -329,6 +328,12 @@
         <item>Cherrywood</item>
         <item>Bride\'s Glen</item>
     </string-array>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ok">OK</string>
+
 
 </resources>
 

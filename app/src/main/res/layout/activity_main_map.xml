@@ -2,10 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:mapbox="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity.MainActivityMap">
+    android:layout_height="match_parent">
 
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapView"
@@ -13,7 +11,21 @@
         android:layout_height="match_parent"
         mapbox:mapbox_cameraTargetLat="37.1792"
         mapbox:mapbox_cameraTargetLng="-3.5953"
-        mapbox:mapbox_cameraZoom="14" />
+        mapbox:mapbox_cameraZoom="14">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_location_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:tint="@android:color/white"
+            app:backgroundTint="@color/colorPrimary"
+            app:srcCompat="@android:drawable/ic_search_category_default" />
+    </com.mapbox.mapboxsdk.maps.MapView>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -25,23 +37,8 @@
         app:cardCornerRadius="4dp"
         app:cardElevation="3dp">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:hint="@string/Searchbar"
-            android:textSize="24sp" />
 
     </androidx.cardview.widget.CardView>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/BNV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="?android:attr/windowBackground"
-        app:itemTextColor="@color/navtextcolor"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/navigationbottom_menu" />
 
 </RelativeLayout>

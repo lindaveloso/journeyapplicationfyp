@@ -1,28 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="25dp" />
-
 
     <LinearLayout
-        android:id="@+id/greenline_scrollview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/_scrollview"
+        android:layout_width="526dp"
+        android:layout_height="596dp"
         android:clipToPadding="false"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:orientation="vertical"
         android:paddingRight="@dimen/activity_horizontal_margin">
 
 
         <RelativeLayout
-            android:layout_width="fill_parent"
+            android:layout_width="504dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:paddingRight="40dp"
             android:paddingBottom="80dp">
 
             <TextView
@@ -31,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/luas_purple"
                 android:padding="3dp"
-                android:text="Route\t\t\t"
+                android:text="Route\t"
                 android:textColor="@color/navtextcolor"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -40,10 +36,10 @@
                 android:id="@+id/textview2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/textview1"
+                android:layout_toEndOf="@id/textview1"
                 android:background="@color/luas_purple"
                 android:padding="3dp"
-                android:text="Destination\t\t\t\t\t\t\t"
+                android:text="Destination\t\t"
                 android:textColor="@color/navtextcolor"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -52,54 +48,49 @@
                 android:id="@+id/textview3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="-22dp"
                 android:layout_toRightOf="@id/textview2"
                 android:background="@color/luas_purple"
                 android:padding="3dp"
-                android:text="Expected Time\t\t\t\t"
+                android:text="Expected Time\t"
                 android:textColor="@color/navtextcolor"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textview4"
-                android:layout_width="wrap_content"
+                android:layout_width="88dp"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/textview3"
                 android:background="@color/luas_purple"
                 android:padding="3dp"
-                android:text="Note\t\t\t\t"
+                android:text="Note"
                 android:textColor="@color/navtextcolor"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="462dp"
+                android:layout_height="466dp"
                 android:layout_below="@id/textview1"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:scrollbars="vertical" />
+
+            <TextView
+                android:id="@+id/tv_no_data3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/textview1"
+                android:text="No Buses Available"
+                android:textColor="@color/navtextcolor"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="invisible" />
 
         </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/BNV"
-            android:layout_width="270dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-
-            android:layout_marginBottom="52dp"
-            android:background="@color/nav"
-            app:itemTextColor="@color/navtextcolor"
-            app:labelVisibilityMode="labeled"
-            app:menu="@menu/navigationbottom_menu" />
-
     </LinearLayout>
-
 
 </LinearLayout>

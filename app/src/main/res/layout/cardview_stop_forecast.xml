@@ -14,11 +14,12 @@
         <TextView
             android:id="@+id/textview_direction"
             android:textStyle="bold"
+            android:textSize="17sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/luas_purple"
             android:gravity="center_horizontal"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/black" />
 
         <TableLayout
             android:id="@+id/tablelayout"
@@ -35,11 +36,13 @@
                 <TextView
                     android:id="@+id/textview_stop1_name"
                     android:gravity="center_horizontal"
+                    android:textColor="@android:color/black"
                     android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textview_stop1_time"
                     android:gravity="center_horizontal"
+                    android:textColor="@android:color/black"
                     android:textSize="18sp" />
             </TableRow>
 
@@ -57,11 +60,13 @@
                 <TextView
                     android:id="@+id/textview_stop2_name"
                     android:gravity="center_horizontal"
+                    android:textColor="@android:color/black"
                     android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textview_stop2_time"
                     android:gravity="center_horizontal"
+                    android:textColor="@android:color/black"
                     android:textSize="18sp" />
             </TableRow>
 
@@ -79,11 +84,13 @@
                 <TextView
                     android:id="@+id/textview_stop3_name"
                     android:gravity="center_horizontal"
+                    android:textColor="@android:color/black"
                     android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textview_stop3_time"
                     android:gravity="center_horizontal"
+                    android:textColor="@android:color/black"
                     android:textSize="18sp" />
             </TableRow>
 
@@ -102,11 +109,13 @@
                 <TextView
                     android:id="@+id/textview_stop4_name"
                     android:gravity="center_horizontal"
+                    android:textColor="@android:color/black"
                     android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textview_stop4_time"
                     android:gravity="center_horizontal"
+                    android:textColor="@android:color/black"
                     android:textSize="18sp" />
             </TableRow>
 
@@ -125,10 +134,12 @@
                 <TextView
                     android:id="@+id/textview_stop5_name"
                     android:gravity="center_horizontal"
+                    android:textColor="@android:color/black"
                     android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textview_stop5_time"
+                    android:textColor="@android:color/black"
                     android:gravity="center_horizontal"
                     android:textSize="18sp" />
             </TableRow>
@@ -148,11 +159,13 @@
                 <TextView
                     android:id="@+id/textview_stop6_name"
                     android:gravity="center_horizontal"
+                    android:textColor="@android:color/black"
                     android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textview_stop6_time"
                     android:gravity="center_horizontal"
+                    android:textColor="@android:color/black"
                     android:textSize="18sp" />
             </TableRow>
         </TableLayout>

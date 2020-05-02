@@ -5,14 +5,10 @@
     tools:showIn="navigation_view_layout">
 
         <item
-            android:id="@+id/profile"
-            android:visible="true"
-            app:showAsAction="never"
-            android:title="Profile" />
-        <item
-            android:id="@+id/nav_chat"
-            app:showAsAction="never"
-            android:title="favourites" />
+            android:id="@+id/favourites"
+            android:icon="@drawable/add"
+            app:showAsAction="always"
+            android:title="F" />
 
     <item
         android:id="@+id/refresh"

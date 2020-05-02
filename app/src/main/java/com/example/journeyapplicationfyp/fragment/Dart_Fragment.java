@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,8 +21,8 @@ import com.example.journeyapplicationfyp.R;
 import com.example.journeyapplicationfyp.activity.Adapter2;
 import com.example.journeyapplicationfyp.activity.Adapter3;
 import com.example.journeyapplicationfyp.activity.Handlexml;
-import com.example.journeyapplicationfyp.activity.SearchActivity;
 import com.example.journeyapplicationfyp.object.Data;
+import com.example.journeyapplicationfyp.util.SessionManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +39,10 @@ public class Dart_Fragment extends Fragment {
     private RecyclerView ry3;
     private RecyclerView ry0;
     private Adapter3 adapter3;
+    private TextView tv_no_data;
+    private TextView tv_no_data2;
+
+    SessionManager sessionManager;
 
     public Dart_Fragment() {
 
@@ -50,8 +54,6 @@ public class Dart_Fragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     }
 
     @Nullable
@@ -72,6 +74,9 @@ public class Dart_Fragment extends Fragment {
         ry0.setHasFixedSize(true);
         ry0.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         ry0.addItemDecoration(new DividerItemDecoration(ry0.getContext(), DividerItemDecoration.VERTICAL));
+        tv_no_data = rootView.findViewById(R.id.tv_no_data);
+        tv_no_data2 = rootView.findViewById(R.id.tv_no_data2);
+        sessionManager = new SessionManager();
         return rootView;
     }
 
@@ -85,6 +90,7 @@ public class Dart_Fragment extends Fragment {
                         selectedStop = selectedItem;
                         fullurl = url + selectedItem;
                         Irishrail();
+                        sessionManager.setStationName(selectedItem);
                         break;
                 }
             }
@@ -108,6 +114,28 @@ public class Dart_Fragment extends Fragment {
                 elements.remove(i);
             }
         }
+
+        if (elements.isEmpty()) {
+            tv_no_data.setVisibility(View.VISIBLE);
+            ry3.setVisibility(View.GONE);
+
+
+        } else {
+            tv_no_data.setVisibility(View.GONE);
+            ry3.setVisibility(View.VISIBLE);
+
+
+        }
+        if (elementsArrivals.isEmpty()) {
+            tv_no_data2.setVisibility(View.VISIBLE);
+            ry0.setVisibility(View.GONE);
+
+
+        } else {
+            tv_no_data2.setVisibility(View.GONE);
+            ry0.setVisibility(View.VISIBLE);
+        }
+
         if (!elements.isEmpty()) {
             adapter2 = new Adapter2(this.getActivity(), elements);
             adapter3 = new Adapter3(this.getActivity(), elementsArrivals);
@@ -123,7 +151,7 @@ public class Dart_Fragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                startActivity(new Intent(getActivity(), SearchActivity.class));
+                startActivity(new Intent(getActivity(), BusSearchFragment.class));
                 return true;
         }
 

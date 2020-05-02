@@ -4,17 +4,20 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="system">#2B548B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="bg">#E9EBEE</color>
 
 
     <color name="nav">#FFFFFF</color>
 
 
     <color name="navtextcolor">#020202</color>
+    <color name="line">#3F51B5</color>
 
 
     <color name="tool">#292929</color>
     <color name="ROUTE">#673AB7</color>
     <color name="luas_purple">#3373CA</color>
+    <color name="tab_selected_color">#ED0101</color>
 
 
     <color name="message_success">#ff006600</color>

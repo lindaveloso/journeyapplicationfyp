@@ -5,14 +5,17 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="100dp" />
+        android:layout_height="20dp" />
 
     <com.example.journeyapplicationfyp.view.SpinnerCardView
         android:id="@+id/redline_spinner_card_view"
-        android:layout_width="match_parent"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin" />
+        android:layout_marginLeft="40dp"
+        android:background="@drawable/spinner_border"
+        android:elevation="4dp"
+        android:padding="12dp"
+        android:popupElevation="10dp" />
 
 
     <LinearLayout
@@ -41,27 +44,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="7.2dp" />
 
-                <com.journeyapplicationfyp.view.TutorialCardView
-                    android:id="@+id/tutorialcardview_select_stop"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone" />
-
-                <com.example.journeyapplicationfyp.view.TutorialCardView
-                    android:id="@+id/tutorialcardview_notifications"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone" />
-
-                <com.example.journeyapplicationfyp.view.TutorialCardView
-                    android:id="@+id/tutorialcardview_favourites"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="4.8dp" />
 
                 <com.example.journeyapplicationfyp.view.StopForecastCardView
                     android:id="@+id/redline_inbound_stopforecastcardview"
