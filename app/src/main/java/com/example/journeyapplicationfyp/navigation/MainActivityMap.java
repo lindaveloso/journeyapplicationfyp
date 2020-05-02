@@ -145,6 +145,7 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
             public boolean onMarkerClick(@NonNull Marker marker) {
 
                 showDialog(marker.getTitle() + " Luas Stop");
+
                 return false;
             }
         });
@@ -219,13 +220,28 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
         builder1.setMessage(message);
         builder1.setCancelable(true);
 
-        builder1.setPositiveButton(
+        builder1.setNegativeButton(
                 "Dismiss",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                     }
                 });
+        builder1.setPositiveButton(
+                "Check",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        /* SearchActivity_Train fragment2=new SearchActivity_Train();*/
+                        /*FragmentManager fm=getActivity().getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction=fm.beginTransaction();
+                        fragmentTransaction.replace(R.id.main_container,fragment2,"tag");
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();*/
+                    }
+                }
+
+        );
 
         AlertDialog alert11 = builder1.create();
         alert11.show();
