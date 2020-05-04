@@ -12,6 +12,6 @@ public class NavigationViewModel extends ViewModel {
     public LiveData<NavigationState> selected = _selected;
 
     public void onNavigationSelected(Point origin, Point destination) {
-        _selected.setValue(new NavigationState(origin, destination));
+        _selected.postValue(new NavigationState(origin, destination));
     }
 }

@@ -81,7 +81,7 @@ public class SearchDialogFragment extends DialogFragment {
             }
 
             viewModel.onNavigationSelected(origin, destination);
-            dismissAllowingStateLoss();
+            dismiss();
         });
 
         AutoCompleteTextView destinationText = view.findViewById(R.id.search_destination);
@@ -139,7 +139,7 @@ public class SearchDialogFragment extends DialogFragment {
 
 
                 }, e -> {
-                    Log.e(requireActivity().getPackageName(), "Error: " + e.getMessage());
+                    Log.e("Search fragment", "Error: " + e.getMessage());
                     requireActivity().runOnUiThread(() -> {
                         progressBar.setVisibility(View.GONE);
                     });
@@ -151,9 +151,15 @@ public class SearchDialogFragment extends DialogFragment {
         ArrayList<Places> places = new ArrayList<>();
         for (CarmenFeature c : carmenFeatures) {
             places.add(new Places(c.placeName(), c.address(), c.center()));
-            Log.e(requireActivity().getPackageName(), "" + c.center());
+            Log.e(requireActivity().getPackageName(), "" + c.center() + c.placeName());
 
         }
         return places;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        compositeDisposable.dispose();
     }
 }

@@ -1,5 +1,6 @@
 package com.example.journeyapplicationfyp.navigation;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,11 +21,17 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.journeyapplicationfyp.R;
+import com.example.journeyapplicationfyp.activity.LocationChangeListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.JsonObject;
+import com.mapbox.android.core.location.LocationEngine;
+import com.mapbox.android.core.location.LocationEngineProvider;
+import com.mapbox.android.core.location.LocationEngineRequest;
+import com.mapbox.android.core.location.LocationEngineResult;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.api.directions.v5.DirectionsCriteria;
@@ -59,12 +66,14 @@ import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 import com.mapbox.mapboxsdk.utils.BitmapUtils;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.ref.WeakReference;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
@@ -75,6 +84,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import timber.log.Timber;
 
+import static android.os.Looper.getMainLooper;
 import static com.mapbox.core.constants.Constants.PRECISION_6;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconAllowOverlap;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconIgnorePlacement;
@@ -86,7 +96,8 @@ import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineJoin;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineWidth;
 
 public class MainActivityMap extends Fragment implements OnMapReadyCallback, PermissionsListener, MapboxMap.OnMapClickListener {
-
+    private static final long DEFAULT_INTERVAL_IN_MILLISECONDS = 1000L;
+    private static final long DEFAULT_MAX_WAIT_TIME = DEFAULT_INTERVAL_IN_MILLISECONDS * 5;
     private static final int REQUEST_CODE_AUTOCOMPLETE = 1;
     private PermissionsManager permissionsManager;
 
@@ -98,15 +109,21 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
     FloatingActionButton fab_location_search;
     private MapView mapView;
     private String geojsonSourceLayerId = "geojsonSourceLayerId";
+    private String symbolIconId = "symbolIconId";
     private CarmenFeature home;
-    private Point origin;
-    private Point destination;
+    private LocationEngine locationEngine;
+    private LocationChangeListener callback;
     private DirectionsRoute currentRoute;
     private MapboxDirections client;
     private SearchDialogFragment searchDialogFragment;
     private NavigationViewModel viewModel;
     private CarmenFeature work;
     private MapboxMap mapBox;
+    private Point origin;
+    private Point destination;
+    private Point currentLocation;
+    int count = 0;
+    private MutableLiveData<LocationState> currentLocationObsrvable = new MutableLiveData<>();
 
     @Nullable
     @Override
@@ -123,16 +140,34 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
         return rootView;
     }
 
+    @SuppressLint("MissingPermission")
+    private void initLocationEngine() {
+        locationEngine = LocationEngineProvider.getBestLocationEngine(requireContext());
+
+        LocationEngineRequest request = new LocationEngineRequest.Builder(DEFAULT_INTERVAL_IN_MILLISECONDS)
+                .setPriority(LocationEngineRequest.PRIORITY_HIGH_ACCURACY)
+                .setMaxWaitTime(DEFAULT_MAX_WAIT_TIME).build();
+
+        locationEngine.requestLocationUpdates(request, callback, getMainLooper());
+        locationEngine.getLastLocation(callback);
+    }
+
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(requireActivity()).get(NavigationViewModel.class);
-        viewModel.selected.observe(requireActivity(), navigationState -> {
-            // Toast.makeText(requireContext(), ""+mapBox, Toast.LENGTH_SHORT).show();
+        viewModel.selected.observe(getViewLifecycleOwner(), navigationState -> {
+            if (navigationState == null) return;
             if (mapBox != null) {
-                // Toast.makeText(requireContext(), ""+mapBox, Toast.LENGTH_SHORT).show();
-                //getRoute(mapBox, navigationState.origin, navigationState.destination);
+                moveToMyLocation(navigationState.origin);
+                getRoute(mapBox, navigationState.origin, navigationState.destination);
             }
+        });
+        currentLocationObsrvable.observe(getViewLifecycleOwner(), locationState -> {
+            initSource(locationState.style, locationState.location);
+            initLayers(locationState.style);
+            currentLocationObsrvable.removeObservers(getViewLifecycleOwner());
         });
     }
 
@@ -154,27 +189,53 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
         AddMarkersToMap("luas_redline.geojson", mapBox);
 
 
-
         mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
             @Override
             public void onStyleLoaded(@NonNull Style style) {
 
                 // Set the origin location to the Alhambra landmark in Granada, Spain.
                 enableLocationComponent(style);
-                origin = Point.fromLngLat(53.3938952, -6.3942532);
+                callback =
+                        new LocationChangeListener(new WeakReference<>(requireActivity()), mapBox) {
+                            @Override
+                            public void onSuccess(LocationEngineResult result) {
+                                super.onSuccess(result);
+                                currentLocation = Point.fromLngLat(result.getLastLocation().getLongitude(), result.getLastLocation().getLatitude());
+                                currentLocationObsrvable.postValue(new LocationState(currentLocation, style));
+                            }
+
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                super.onFailure(exception);
+                            }
+                        };
+                initLocationEngine();
+
+
+                // origin = Point.fromLngLat(53.3938952, -6.3942532);
+                //  origin = Point.fromLngLat(53.3938952,-6.3942532);
 
                 // Set the destination location to the Plaza del Triunfo in Granada, Spain
-                destination = Point.fromLngLat(53.3973931, -6.4003374);
+                //  destination = Point.fromLngLat(53.3973931, -6.4003374);
+                // destination = Point.fromLngLat(53.3953398,-6.4418919);
 
-                initSource(style);
-
-                initLayers(style);
-                getRoute(mapboxMap, origin, destination);
+                //initSource(style);
+                //  initSource(style);
+                //  initLayers(style);
+                // getRoute(mapboxMap, origin, destination);
 /*              GeoJSONToMap("luas-points-greenline", "luas-points-greenline", "asset://luas_greenline.geojson");
                 GeoJSONToMap2("luas-points-redline", "luas-points-redline", "asset://luas_redline.geojson");
                 GeoJSONToMap3("demo-data-dubin-bus-points", "demo-data-dubin-bus-points", "asset://dublin_bus_points.geojson");*/
                 initSearchFab();
                 addUserLocations();
+
+                style.addImage(symbolIconId, BitmapFactory.decodeResource(
+                        requireActivity().getResources(), R.drawable.red_pin_marker));
+
+                // Create an empty GeoJSON source using the empty feature collection
+                setUpSource(style);
+// Set up a new symbol layer for displaying the searched location's feature coordinates
+                setupLayer(style);
 
                 SymbolManager symbolManager = new SymbolManager(mapView, mapboxMap, style);
                 symbolManager.setIconAllowOverlap(true);
@@ -189,6 +250,18 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
 
             }
         });
+    }
+
+    private void moveToMyLocation(@NotNull Point point) {
+        CameraPosition position = new CameraPosition.Builder()
+                .target(new LatLng(point.latitude(), point.longitude())) // Sets the new camera position
+                .zoom(17) // Sets the zoom
+                .bearing(180) // Rotate the camera
+                .tilt(30) // Set the camera tilt
+                .build(); // Creates a CameraPosition from the builder
+
+        mapBox.animateCamera(CameraUpdateFactory
+                .newCameraPosition(position), 7000);
     }
 
     private void AddMarkersToMap(String jsonFile, MapboxMap mapboxMap) {
@@ -391,8 +464,8 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
     //NEW LAYER
     private void setupLayer(@NonNull Style loadedMapStyle) {
         loadedMapStyle.addLayer(new SymbolLayer("SYMBOL_LAYER_ID", geojsonSourceLayerId).withProperties(
-                // iconImage(symbolIconId),
-                // onOffset(new Float[] {0f, -8f})
+                iconImage(symbolIconId),
+                iconOffset(new Float[]{0f, -8f})
         ));
     }
 
@@ -415,28 +488,28 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
                         source.setGeoJson(FeatureCollection.fromFeatures(
                                 new Feature[]{Feature.fromJson(selectedCarmenFeature.toJson())}));
                     }
-
-// Move map camera to the selected location
+                    // Move map camera to the selected location
                     mapBox.animateCamera(CameraUpdateFactory.newCameraPosition(
                             new CameraPosition.Builder()
                                     .target(new LatLng(((Point) selectedCarmenFeature.geometry()).latitude(),
                                             ((Point) selectedCarmenFeature.geometry()).longitude()))
                                     .zoom(14)
                                     .build()), 4000);
+
                 }
             }
         }
     }
 
 
-    private void initSource(@NonNull Style loadedMapStyle) {
+    private void initSource(@NonNull Style loadedMapStyle, Point origin) {
         loadedMapStyle.addSource(new GeoJsonSource(ROUTE_SOURCE_ID));
 
         GeoJsonSource iconGeoJsonSource = new GeoJsonSource(ICON_SOURCE_ID, FeatureCollection.fromFeatures(new Feature[]{
-                Feature.fromGeometry(Point.fromLngLat(origin.longitude(), origin.latitude())),
-                Feature.fromGeometry(Point.fromLngLat(destination.longitude(), destination.latitude()))}));
+                Feature.fromGeometry(Point.fromLngLat(origin.longitude(), origin.latitude()))}));
         loadedMapStyle.addSource(iconGeoJsonSource);
     }
+
 
     /**
      * Add the route and marker icon layers to the map
@@ -478,7 +551,7 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
             @Override
             public void onResponse(Call<DirectionsResponse> call, Response<DirectionsResponse> response) {
 // You can get the generic HTTP info about the response
-                Timber.d("Response code: " + response.code());
+                Timber.d("Response code: %s", response.code());
                 if (response.body() == null) {
                     Timber.e("No routes found, make sure you set the right user and access token.");
                     return;
@@ -490,8 +563,11 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
                 // Get the directions route
                 currentRoute = response.body().routes().get(0);
 
+
                 // Make a toast which displays the route's distance
                 Toast.makeText(getActivity(), "Response: " + currentRoute.distance(), Toast.LENGTH_SHORT).show();
+// Draw the route on the map
+                //  drawRoute(currentRoute);
 
                 if (mapboxMap != null) {
                     mapboxMap.getStyle(new Style.OnStyleLoaded() {
@@ -520,6 +596,7 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
             }
         });
     }
+
 
     @SuppressWarnings({"MissingPermission"})
     private void enableLocationComponent(@NonNull Style loadedMapStyle) {
@@ -595,9 +672,11 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
         mapView.onSaveInstanceState(outState);
     }
 
+
     @Override
     public void onDestroy() {
         super.onDestroy();
+        locationEngine.removeLocationUpdates(callback);
         mapView.onDestroy();
     }
 
@@ -627,6 +706,7 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
         return false;
     }
 
+    //json
     private String readJSONFromAsset(String fileName) {
         String json = null;
         try {
@@ -641,6 +721,16 @@ public class MainActivityMap extends Fragment implements OnMapReadyCallback, Per
             return null;
         }
         return json;
+    }
+
+    class LocationState {
+        public Point location;
+        public Style style;
+
+        public LocationState(Point location, Style style) {
+            this.location = location;
+            this.style = style;
+        }
     }
 
 }
