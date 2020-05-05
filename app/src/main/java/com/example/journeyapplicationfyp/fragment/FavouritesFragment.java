@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -43,8 +44,13 @@ public class FavouritesFragment extends Fragment implements View.OnClickListener
                 arrayList);
         list1.setAdapter(adapter);
 
+        text2 = rootView.findViewById(R.id.text2);
+        text2.setOnClickListener(this);
+        sessionManager = new SessionManager();
+        text2.setText(sessionManager.getFavourties());
 
-        if (!arrayList.isEmpty()) {
+
+       /* if (!arrayList.isEmpty()) {
             text2.setVisibility(View.GONE);
             text1.setVisibility(View.GONE);
 
@@ -53,7 +59,7 @@ public class FavouritesFragment extends Fragment implements View.OnClickListener
 
         sessionManager = new SessionManager();
         arrayList.add(sessionManager.getFavourties());
-        adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();*/
 
         return rootView;
     }
@@ -67,7 +73,7 @@ public class FavouritesFragment extends Fragment implements View.OnClickListener
             case R.id.text2:
 
             case R.id.add:
-
+                Toast.makeText(requireActivity(), "Should appear here", Toast.LENGTH_SHORT).show();
 
         }
 
